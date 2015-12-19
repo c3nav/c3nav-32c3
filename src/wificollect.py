@@ -45,4 +45,12 @@ def addroom():
     json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
     return 'ok'
 
+
+@app.route('/locate', methods=['POST'])
+def locate():
+    f = open(filename)
+    graph = Graph(json.load(f), auto_connect=False)
+    result = graph.wifi.locate(json.loads(request.form.get('stations')))
+    return json.dumps(result)
+
 app.run(threaded=True, debug=True)

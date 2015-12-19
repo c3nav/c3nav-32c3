@@ -19,6 +19,14 @@ body {
     background-color:#FFFFFF;
     padding:10px;
 }
+#youare {
+    position:fixed;
+    top:0;
+    right:0;
+    color:#FFFFFF;
+    background-color:#0066CC;
+    padding:10px;
+}
 #scannow button {
     height:40px;
     background-color:#FFFFFF;
@@ -54,6 +62,19 @@ body {
     margin-top:-3px;
     margin-left:-3px;
 }
+#myposition {
+    position:absolute;
+    left:0;
+    top:0;
+    background-color:#3399FF;
+    width:16px;
+    height:16px;
+    opacity:0.7;
+    border-radius:10px;
+    pointer-events:none;
+    margin-top:-8px;
+    margin-left:-8px;
+}
 .level {
     position:relative;
 }
@@ -65,6 +86,7 @@ position = '';
 function nearby_stations_available() {
     // console.log(JSON.stringify(nearby_stations));
     lastsignal = new Date().getTime()/1000;
+
     if (nextscan) {
         $('#scannow button').prop('disabled', false).text('SCAN NOW').css('background-color', '#bb9900');
         $.ajax({
@@ -82,8 +104,27 @@ function nearby_stations_available() {
             },
         });
         nextscan = false;
+    } else {
+        $.ajax({
+            type: "POST",
+            url: '/locate',
+            dataType: 'json',
+            data: {
+                stations: mobileclient.getNearbyStations()
+            },
+            success: function(data) {
+                console.log(data);
+                pos = data[0];
+                $('#myposition').appendTo($('[data-level='+pos[0]+']')).css({ 'left': parseInt(pos[1]), 'top': parseInt(pos[2]) });
+                $('#youare').text(JSON.stringify(data));
+            },
+        });
+        nextscan = false;
     }
 }
+window.setInterval(function() {
+    mobileclient.scanNow();
+}, 3000);
 $(document).ready(function() {
     if (typeof mobileclient !== "undefined") {
         nearby_stations_available();
@@ -122,8 +163,10 @@ window.setInterval(function() {
     </div>
 {% endfor %}
 
-<div id="oldmarkers"></div>
+<div id="myposition"></div>
 <div id="marker"></div>
+
+<div id="youare"></div>
 
 <div id="scannow"><button>SCAN NOW</button><div class="beside"><strong>Position:</strong> <span id="position">(click to set)</span><br><strong>Last:</strong> <span id="last"></span></div></div>
 

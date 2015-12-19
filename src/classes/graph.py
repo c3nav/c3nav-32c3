@@ -9,6 +9,9 @@ from .roomgroup import RoomGroup
 from .superroom import SuperRoom
 
 
+# from .wifilocator import WifiLocator
+
+
 class Graph():
     connection_types = ('default', 'steps-up', 'steps-down', 'stairs-up', 'stairs-down',
                         'escalator-up', 'escalator-down', 'elevator-up', 'elevator-down')
@@ -20,6 +23,7 @@ class Graph():
         self.did_room_barriers = False
         self.did_auto_connect = False
 
+        # self.wifi = WifiLocator(self, data['wifidata'])
         # load basic data
         self.name = data['name']
         self.levels = data['levels']
