@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>32C3 Navigation</title>
+<meta name="viewport" content="initial-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
+<style type="text/css">
+body {
+    margin:0;
+    padding:10px 10px 60px;
+    font-family:sans-serif;
+}
+#scannow {
+    height:40px;
+    position:fixed;
+    bottom:0;
+    left:0;
+    background-color:#FFFFFF;
+    padding:10px;
+}
+#scannow button {
+    height:40px;
+    background-color:#FFFFFF;
+    margin-right:10px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    background-color:#009900;
+    color:#FFFFFF;
+    font-weight:bold;
+    width:90px;
+}
+.beside {
+    display:inline-block;
+    vertical-align: middle;
+}
+#marker {
+    position:absolute;
+    left:0;
+    top:0;
+    background-color:#FF0000;
+    width:6px;
+    height:6px;
+    margin-top:-3px;
+    margin-left:-3px;
+}
+</style>
+<script type="text/javascript">
+lastsignal = new Date().getTime()/1000-900;
+nextscan = false;
+position = '';
+function nearby_stations_available() {
+    // console.log(JSON.stringify(nearby_stations));
+    lastsignal = new Date().getTime()/1000;
+    if (nextscan) {
+        $('#scannow button').prop('disabled', false).text('SCAN NOW').css('background-color', '#bb9900');
+        $.ajax({
+            type: "POST",
+            url: '/add',
+            data: {
+                position: position,
+                stations: mobileclient.getNearbyStations()
+            },
+            success: function(data) {
+                $('#scannow button').css('background-color', '#009900');
+            },
+        });
+        nextscan = false;
+    }
+}
+$(document).ready(function() {
+    if (typeof mobileclient !== "undefined") {
+        nearby_stations_available();
+    }
+    $('[data-level]').click(function(e) {
+        position = $(this).attr('data-level')+'.'+String(e.offsetX)+'.'+String(e.offsetY);
+        $('#position').text(position);
+        $('#marker').css({
+            'top': $(this).position().top+e.offsetY,
+            'left': $(this).position().left+e.offsetX
+        });
+    });
+    $('#scannow button').click(function() {
+        $(this).prop('disabled', true);
+        $(this).css('width', $(this).outerWidth());
+        $(this).css('background-color', '#bb0000');
+        $(this).text('WAIT');
+        nextscan = true;
+        mobileclient.scanNow();
+    });
+});
+window.setInterval(function() {
+    $('#last').text(String(Math.floor(new Date().getTime()/1000-lastsignal))+' seconds ago');
+}, 100);
+</script>
+</head>
+<body>
+
+{% for level in graph.levels %}
+    <h2>Levels {{ level }}</h2>
+    <img src="/static/img/levels/{{ graph.name }}/level{{ level }}.jpg" data-level="{{ level }}">
+{% endfor %}
+
+<div id="marker"></div>
+
+<div id="scannow"><button>SCAN NOW</button><div class="beside"><strong>Position:</strong> <span id="position">(click to set)</span><br><strong>Last:</strong> <span id="last"></span></div></div>
+
+</body>
+</html>

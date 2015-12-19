@@ -1,0 +1,70 @@
+{
+    "poi_src": "https://events.ccc.de/congress/2015/wiki/api.php?action=ask&format=json&query=%5B%5BCategory%3AAssembly%5D%5D+%5B%5BHas+x-coordinate%3A%3A%2B%5D%5D+%5B%5BHas+y-coordinate%3A%3A%2B%5D%5D%7C%3FHas+x-coordinate%7C%3FHas+y-coordinate|offset%3D",
+    "levels": [
+        {
+            "name": "Level 0",
+            "bounds": [
+                0,
+                0,
+                5940,
+                4319
+            ],
+            "size": [
+                1408,
+                1024
+            ]
+        },
+        {
+            "name": "Level 1",
+            "bounds": [
+                0,
+                4320,
+                5940,
+                8639
+            ],
+            "size": [
+                1408,
+                1024
+            ]
+        },
+        {
+            "name": "Level 2",
+            "bounds": [
+                0,
+                8640,
+                5940,
+                12959
+            ],
+            "size": [
+                1408,
+                1024
+            ]
+        },
+        {
+            "name": "Level 3",
+            "bounds": [
+                0,
+                12960,
+                5940,
+                17279
+            ],
+            "size": [
+                1408,
+                1024
+            ]
+        },
+        {
+            "name": "Level 4",
+            "bounds": [
+                0,
+                17280,
+                5940,
+                21599
+            ],
+            "size": [
+                1408,
+                1024
+            ]
+        }
+    ]
+}

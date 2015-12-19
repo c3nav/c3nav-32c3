@@ -1,0 +1,34 @@
+{% if point %}
+{% set location = point %}
+{% set resetable = True %}
+<form action="/">
+    {% include 'fragment_location.html' %}
+    <input type="hidden" name="{{ otherprefix }}" value="{% if otherpoint %}{{ otherpoint.name }}{% endif %}" />
+    {% set hidden_fields = settings_fields %}
+    {% include 'fragment_hiddenfields.html' %}
+</form>
+{% endif %}
+{% set resetable = False %}
+<div class="selector">
+    {% if addlist %}
+    <div class="autocomplete-list">
+        <form>
+        {% for location in location_select if not location.superroom %}
+            {% include 'fragment_location.html' %}{% endfor %}
+        <input type="hidden" name="{{ otherprefix }}" value="{% if otherpoint %}{{ otherpoint.name }}{% endif %}" />
+        {% set hidden_fields = settings_fields %}
+        {% include 'fragment_hiddenfields.html' %}
+        </form>
+        <form class="location c" action="/">
+            <span>Enter coordinates:</span>
+            <div class="pure-g">
+                <input type="text" name="{{ prefix }}" placeholder="level.x.y" class="pure-u-3-4">
+                <button type="submit" class="pure-button pure-u-1-4">Set</button>
+            </div>
+            <input type="hidden" name="{{ otherprefix }}" value="{% if otherpoint %}{{ otherpoint.name }}{% endif %}" />
+            {% set hidden_fields = settings_fields %}
+            {% include 'fragment_hiddenfields.html' %}
+        </form>
+    </div>
+    {% endif %}
+</div>

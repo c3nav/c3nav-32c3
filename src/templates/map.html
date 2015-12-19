@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Map</title>
+<style type="text/css">
+body {
+    font-family:sans-serif;
+}
+#tools {
+    position:fixed;
+    background-color:#FFFFFF;
+    padding:5px;
+}
+.map {
+    margin-bottom:20px;
+    display:block;
+}
+.point {
+    fill:#333333;
+}
+.point:hover {
+    stroke-width:2px;
+    stroke:#333333;
+}
+.connection {
+    stroke-width:1.5px;
+    stroke:#009900;
+}
+.connection.steps {
+    stroke:#FFFF00;
+}
+.connection.escalator {
+    stroke:#FF6600;
+}
+.connection.stairs {
+    stroke:#FF0000;
+}
+.connection.directed {
+    marker-end: url(#arrow);
+}
+.connection.escalator {
+    marker-end: url(#arrow);
+}
+.connection.escalator {
+    marker-end: url(#arrow);
+}
+.connection.auto {
+    stroke:rgba(0, 150, 0, 0.2);
+    stroke-width:1;
+    pointer-events:none;
+}
+.connection:hover {
+    stroke-width:5;
+}
+body:not(.showrooms) .rooms, body:not(.showrooms) .roompoints {
+    display:none;
+}
+
+.barrierpoints  .point {
+    fill:#FF00FF;
+}
+.barrierlines line {
+    stroke: #990099;
+    stroke-width: 1.5;
+}
+.barrierlines line:hover {
+    stroke: #990099;
+    stroke-width: 5;
+}
+
+.pois .point {
+    fill:#FF6600;
+}
+
+.rooms polygon {
+    stroke: #0000FF;
+    stroke-width: 1.5;
+    fill: rgba(0, 0, 255, 0.1);
+}
+.rooms .addroom {
+    stroke: #00FFFF;
+    fill: rgba(0, 255, 255, 0.3);
+}
+
+.roompoints .point {
+    fill: #0000FF;
+}
+.roompoints .point.addroom {
+    fill: #00FFFF;
+}
+</style>
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
+<script type="text/javascript">
+mode = 'none';
+
+drawroom = [];
+drawroomlevel = null;
+
+barrierstart = null;
+
+firstnode = null;
+function add_to_currentroom(level, x, y) {
+    if (drawroomlevel === null) drawroomlevel = level;
+    if (drawroomlevel != level) return;
+    var xy = String(x)+','+String(y);
+    if (drawroom.indexOf(xy) < 0) {
+        drawroom.push(xy);
+    } else if (drawroom.indexOf(xy) == 0 && drawroom.length >= 3) {
+        // finish
+        var name = prompt('name:');
+        if (name === null) {
+            drawroom = [];
+            drawroomlevel = null;
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '/addroom',
+                data: {name: name, level: drawroomlevel, shape: drawroom.join(' ')},
+            });
+            drawroom = [];
+            drawroomlevel = null;
+            $('.map[data-level='+level+']').find('.room.addroom').attr('class', 'room');
+            $('.map[data-level='+level+']').find('.point.addroom').attr('class', 'point');
+        }
+    }
+    $('.map[data-level='+level+']').find('.addroom').remove();
+    $('.map[data-level='+level+']').find('.rooms').append(
+        $('<polygon class="addroom room">').attr('points', drawroom.join(' '))
+    );
+    for (var i=0;i<drawroom.length;i++) {
+        $('.map[data-level='+level+']').find('.roompoints').append(
+            $('<circle class="addroom point" r="4">').attr({cx: drawroom[i].split(',')[0], cy: drawroom[i].split(',')[1]})
+        );
+    }
+    redraw_level(level);
+}
+
+function redraw_level(level) {
+    var elem = $('.container[data-level='+String(level)+']');
+    elem.html(elem.html());
+    add_listeners(level);
+}
+function redraw_all_levels() {
+    $('.container').each(function() {
+        $(this).html($(this).html());
+        add_listeners($(this).attr('data-level'));
+    });
+}
+
+function click_map(e) {
+    var level = $(this).attr('data-level');
+    var x = e.offsetX;
+    var y = e.offsetY;
+    console.log('CLICK! level:'+String(level)+' x:'+String(x)+' y:'+String(y));
+
+    if (mode == 'rooms') {
+        add_to_currentroom(level, x, y);
+    } else if (mode == 'graph') {
+        $.ajax({
+            type: "POST",
+            url: '/addnode',
+            data: {level: level, x: x, y: y},
+            dataType: 'json',
+            success: function(data) {
+                if (!data.success) return;
+                console.log($('.map[data-level='+String(data.node.level)+']').find('.nodes'));
+                $('.map[data-level='+String(data.node.level)+']').find('.nodes').append(
+                    $('<circle class="point" r="4">').attr({cx: data.node.x, cy: data.node.y, 'data-name': data.name}).append(
+                        $('<title>').text(data.name+' ('+data.room+')')
+                    )
+                );
+                redraw_level(data.node.level);
+                if (firstnode !== null) {
+                    $('.point[data-name='+data.name+']').click();
+                }
+            }
+        });
+    } else if (mode == 'barriers') {
+        $('.map[data-level='+String(level)+']').find('.barrierpoints').append(
+            $('<circle class="point tmpbarrierpoint" r="4">').attr({cx: x, cy: y})
+        );
+        barrierdrawer(level, x, y);
+    } else if (mode == 'poi') {
+        var name = prompt('name:');
+        if (name !== null) {
+            $.ajax({
+                type: "POST",
+                url: '/addpoi',
+                data: {level: level, x: x, y: y, name: name}
+            });
+            $('.map[data-level='+String(level)+']').find('.pois').append(
+                $('<circle class="point poi" r="4">').attr({cx: x, cy: y})
+            );
+            redraw_level(level);
+        }
+    }
+}
+
+function click_node(e) {
+    e.stopPropagation();
+    var name = $(this).attr('data-name');
+    var level = $(this).parents('svg').attr('data-level');
+    var x = parseInt($(this).attr('cx'));
+    var y = parseInt($(this).attr('cy'));
+    console.log('CLICK! node:'+String(name)+' level:'+String(level)+' x:'+String(x)+' y:'+String(y));
+
+    if (mode == 'rooms') {
+        add_to_currentroom(level, x, y);
+    } else if (mode == 'graph') {
+        if (firstnode === null) {
+            firstnode = $(this).attr('data-name');
+        } else {
+            $.ajax({
+                type: "POST",
+                url: '/addconnection',
+                data: {
+                    node1: firstnode,
+                    node2: $(this).attr('data-name'),
+                    ctype: $('#ctype').val(),
+                    directed: $('#directed').is(':checked') ? 1 : 0
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (!data.success) return;
+                    firstnode = null;
+                    for (var i=0;i<data.levels.length;i++) {
+                        $('.map[data-level='+String(data.levels[i])+']').find('.connections').append(
+                            $('<line class="connection">').attr(
+                                {x1: data.x1, y1: data.y1, x2: data.x2, y2: data.y2,
+                                 'data-node0': data.node1, 'data-node1': data.node2}
+                            ).addClass(data.ctype).toggleClass('directed', data.directed).append(
+                                $('<title>').text(data.node1+(data.directed?' → ':' ↔ ')+data.node2)
+                            ).addClass(data.node1).addClass(data.node2)
+                        );
+                        redraw_level(data.levels[i]);
+                    }
+                },
+            });
+            firstnode = null;
+        }
+    } else if (mode == 'barriers') {
+        barrierdrawer(level, x, y);
+    } else if (mode == 'destroy') {
+        if (!confirm('sure to DESTROY?')) return;
+
+        node = $(this).attr('data-name');
+        $.ajax({
+            type: "POST",
+            url: '/delnode',
+            data: {name: node}
+        });
+        $('.nodes .point[data-name='+node+']').remove();
+        $('.connection.'+node).remove();
+        redraw_all_levels();
+    }
+}
+
+function click_poi(e) {
+    e.stopPropagation();
+    var name = $(this).attr('data-name');
+    var level = $(this).parents('svg').attr('data-level');
+    var x = parseInt($(this).attr('cx'));
+    var y = parseInt($(this).attr('cy'));
+    console.log('CLICK! poi:'+String(name)+' level:'+String(level)+' x:'+String(x)+' y:'+String(y));
+
+    if (mode == 'destroy') {
+        if (!confirm('sure to DESTROY poi?')) return;
+
+        poi = $(this).attr('data-name');
+        $.ajax({
+            type: "POST",
+            url: '/delpoi',
+            data: {name: poi}
+        });
+        $('.pois .point[data-name='+poi+']').remove();
+        redraw_all_levels();
+    }
+}
+
+function barrierdrawer(level, x, y) {
+    if (barrierstart === null) {
+        barrierstart = [level,x,y];
+    } else if (barrierstart[0] == level) {
+        $.ajax({
+            type: "POST",
+            url: '/addbarrier',
+            data: {
+                level: level,
+                x1: barrierstart[1],
+                y1: barrierstart[2],
+                x2: x,
+                y2: y
+            },
+            dataType: 'json',
+            success: function(data) {
+                for (var i=0;i<data.levels.length;i++) {
+
+                }
+            },
+        });
+        $('.map[data-level='+String(level)+']').find('.barrierlines').append(
+            $('<line class="barrier">').attr({x1: barrierstart[1], y1: barrierstart[2], x2: x, y2: y})
+        );
+        $('.tmpbarrierpoint').removeClass('tmpbarrierpoint');
+        barrierstart = null;
+    }
+    redraw_level(level);
+}
+
+function click_connection(e) {
+    e.stopPropagation();
+    var node1 = $(this).attr('data-node1');
+    var node2 = $(this).attr('data-node2');
+    console.log('CLICK! node1:'+String(node1)+' node2:'+String(node2));
+
+    if (mode == 'destroy') {
+        if (!confirm('sure to DESTROY?')) return;
+
+        node = $(this).attr('data-name');
+        $.ajax({
+            type: "POST",
+            url: '/delconnection',
+            data: {node1: node1, node2: node2}
+        });
+        $(this).remove();
+        redraw_all_levels();
+    }
+}
+
+function click_barrier(e) {
+    e.stopPropagation();
+
+    if (mode == 'destroy') {
+        if (!confirm('sure to DESTROY barrier?')) return;
+        $.ajax({
+            type: "POST",
+            url: '/delbarrier',
+            data: {level: $(this).parents('.map').attr('data-level'), x1: $(this).attr('x1'), y1: $(this).attr('y1'), x2: $(this).attr('x2'), y2: $(this).attr('y2')}
+        });
+        $(this).remove();
+        redraw_all_levels();
+    }
+}
+
+function click_room(e) {
+    if (mode == 'destroy') {
+        e.stopPropagation();
+        if (!confirm('sure to DESTROY ROOM?')) return;
+
+        room = $(this).attr('data-name');
+        $.ajax({
+            type: "POST",
+            url: '/delroom',
+            data: {room: room}
+        });
+        $(this).remove();
+        redraw_all_levels();
+    }
+}
+
+function add_listeners(level) {
+    elem = (level === undefined) ? $('body') : $('.container[data-level='+level+']');
+    elem.find('.map').click(click_map);
+    elem.find('.nodes .point, .barrierpoints .point, .roompoints .point').click(click_node);
+    elem.find('.pois .point').click(click_poi);
+    elem.find('.connection').click(click_connection);
+    elem.find('.room').click(click_room);
+    elem.find('.barrierlines line').click(click_barrier);
+}
+
+$(document).ready(function() {
+    add_listeners();
+    $('#tools :radio[name=tool]').click(function() {
+        var oldmode = mode;
+        mode = $(this).val();
+        if (oldmode == mode) return;
+        console.log(oldmode);
+        if (oldmode == 'rooms') {
+            $('.map .addroom').remove();
+            redraw_level(drawroomlevel);
+            drawroom = [];
+            drawroomlevel = null;
+        } else if (oldmode == 'graph') {
+            firstnode = null;
+        } else if (oldmode == 'barriers') {
+            redraw_level(barrierstart[0]);
+            barrierstart = null;
+            $('.tmpbarrierpoint').remove();
+        }
+    });
+    $('#showrooms').click(function() {
+        window.setTimeout(function() {
+            $('body').toggleClass('showrooms', $('#showrooms').is(':checked'));
+        }, 100);
+    });
+});
+</script>
+</head>
+<body class="showrooms">
+<div id="tools">
+    <label><input type="radio" name="tool" value="none" checked>none</label>
+    <label><input type="radio" name="tool" value="rooms">rooms</label>
+    <label><input type="radio" name="tool" value="barriers">barriers</label>
+    <label><input type="radio" name="tool" value="poi">poi</label>
+    <label><input type="radio" name="tool" value="graph">graph</label>
+    <select id="ctype">
+        <option value="default">default</option>
+        <option value="steps">steps (lower first)</option>
+        <option value="stairs">stairs</option>
+        <option value="escalator">escalator</option>
+        <option value="elevator">elevator</option>
+    </select>
+    <label><input type="checkbox" id="directed">directed</label>
+    <label><input type="radio" name="tool" value="destroy">destroy</label>
+    <label><input type="checkbox" id="showrooms" checked>show rooms</label>
+
+</div>
+<br><br>
+{% for levelnum, level in levels.items() %}
+Level {{ levelnum }}:
+<div class="container" data-level="{{ levelnum }}">
+<svg width="1408" height="1024" class="map" data-level="{{ levelnum }}">
+    <defs>
+        <marker id="arrow" markerWidth="5" markerHeight="6" refX="8" refY="3" orient="auto">
+            <path d="M0,0 L5,3 L0,6 L0,0" style="fill: #333333; stroke: 0;" />
+        </marker>
+    </defs>
+
+    <image width="1408" height="1024" xlink:href="/static/img/levels/{{ name }}/level{{ levelnum }}.jpg" />
+    <g class="rooms">
+        {% for room in level.rooms %}
+        <polygon class="room" points="{% for p in room.shape %}{{ p[0] }},{{ p[1] }} {% endfor %}" data-name="{{ room.name }}">
+            <title>{{ room.name }}</title>
+        </polygon>{% endfor %}
+    </g>
+    <g class="roompoints">
+        {% for room in level.rooms %}{% for p in room.shape %}
+        <circle class="point" r="4" cx="{{ p[0] }}" cy="{{ p[1] }}" />{% endfor %}{% endfor %}
+    </g>
+    <g class="barrierpoints">
+        {% for barrier in level.barriers %}
+        <circle cx="{{ barrier.x1 }}" cy="{{ barrier.y1 }}" r="4" class="point" /><circle cx="{{ barrier.x2 }}" cy="{{ barrier.y2 }}" r="4" class="point" />{% endfor %}
+    </g>
+    <g class="barrierlines">
+        {% for barrier in level.barriers %}
+        <line x1="{{ barrier.x1 }}" y1="{{ barrier.y1 }}" x2="{{ barrier.x2 }}" y2="{{ barrier.y2 }}" />{% endfor %}
+    </g>
+    <g class="pois">
+        {% for poi in level.pois %}
+        <circle cx="{{ poi.x }}" cy="{{ poi.y }}" r="4" class="point" data-name="{{ poi.name }}">
+            <title>{{ poi.name }} ({{ poi.room.name }})</title>
+        </circle>{% endfor %}
+    </g>
+    <g class="connections">
+        {% for connection in level.connections %}
+        <line x1="{{ connection.p0.x }}" y1="{{ connection.p0.y }}"
+              x2="{{ connection.p1.x }}" y2="{{ connection.p1.y }}"
+              class="connection {{ connection.ctype }}{% if connection.auto %} auto{% endif %}{% if connection.directed %} directed{% endif %} {{ connection.p0.name }} {{ connection.p1.name }}"
+              data-node1="{{ connection.p0.name }}" data-node2="{{ connection.p1.name }}">
+            <title>{{ connection.p0.name }} {% if connection.directed %}→{% else %}↔{% endif %} {{ connection.p1.name }}</title>
+        </line>{% endfor %}
+    </g>
+    <g class="nodes">
+        {% for node in level.nodes %}
+        <circle cx="{{ node.x }}" cy="{{ node.y }}" r="4" class="point" data-name="{{ node.name }}">
+            <title>{{ node.name }} ({{ node.room.name }})</title>
+        </circle>{% endfor %}
+    </g>
+
+</svg>
+</div>
+{% endfor %}
+</body>
+</html>

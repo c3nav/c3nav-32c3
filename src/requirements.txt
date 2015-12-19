@@ -1,0 +1,11 @@
+numpy
+flask
+matplotlib
+scipy
+isort
+Pillow
+qrcode
+cssmin
+jsmin
+Flask-Assets
+gunicorn
