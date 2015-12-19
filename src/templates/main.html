@@ -84,13 +84,13 @@
 
                 <div class="inline">
                     <label class="pure-checkbox">
-                        <input type="checkbox" name="e" value="h1"{% if 'hall1' in settings.e %} checked{% endif %}> avoid hall 1
+                        <input type="checkbox" name="e" value="h1"{% if 'h1' in settings.e %} checked{% endif %}> avoid hall 1
                     </label>
                     <label class="pure-checkbox">
-                        <input type="checkbox" name="e" value="h2"{% if 'hall2' in settings.e %} checked{% endif %}> avoid hall 2
+                        <input type="checkbox" name="e" value="h2"{% if 'h2' in settings.e %} checked{% endif %}> avoid hall 2
                     </label>
                     <label class="pure-checkbox">
-                        <input type="checkbox" name="i" value="heaven"{% if 'angels' not in settings.e %} checked{% endif %}> i am an angel
+                        <input type="checkbox" name="i" value="heaven"{% if 'heaven' not in settings.e %} checked{% endif %}> i am an angel
                     </label>
                     <input type="hidden" name="force-e" value="1" />
                     <input type="hidden" name="force-i" value="1" />
