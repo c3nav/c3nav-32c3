@@ -118,7 +118,7 @@ $(document).ready(function() {
         $(this).parents('.selector').siblings('form').remove();
         $('<form>').html(
             $('<div class="location">').html($(this).html()).append($('<div class="buttons">').append(
-                $('<a class="link">').attr('href', '/'+$(this).attr('name')+$(this).val()).click(linkbtn_click)
+                $('<a class="link">').attr('href', '/'+$(this).parents('.p').attr('name')+$(this).val()).click(linkbtn_click)
             ).append(
                 $('<button type="submit" class="reset">')
             ))
