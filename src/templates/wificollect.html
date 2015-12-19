@@ -44,6 +44,19 @@ body {
     margin-top:-3px;
     margin-left:-3px;
 }
+.marker {
+    position:absolute;
+    left:0;
+    top:0;
+    background-color:#FFFF00;
+    width:6px;
+    height:6px;
+    margin-top:-3px;
+    margin-left:-3px;
+}
+.level {
+    position:relative;
+}
 </style>
 <script type="text/javascript">
 lastsignal = new Date().getTime()/1000-900;
@@ -63,6 +76,9 @@ function nearby_stations_available() {
             },
             success: function(data) {
                 $('#scannow button').css('background-color', '#009900');
+                var pos = position.split('.');
+                $('[data-level='+pos[0]+']').append($('<div class="marker">').css({ 'left': parseInt(pos[1]), 'top': parseInt(pos[2]) }));
+                position = $(this).parent().attr('data-level')+'.'+String(e.offsetX)+'.'+String(e.offsetY);
             },
         });
         nextscan = false;
@@ -72,12 +88,12 @@ $(document).ready(function() {
     if (typeof mobileclient !== "undefined") {
         nearby_stations_available();
     }
-    $('[data-level]').click(function(e) {
-        position = $(this).attr('data-level')+'.'+String(e.offsetX)+'.'+String(e.offsetY);
+    $('[data-level] img').click(function(e) {
+        position = $(this).parent().attr('data-level')+'.'+String(e.offsetX)+'.'+String(e.offsetY);
         $('#position').text(position);
         $('#marker').css({
-            'top': $(this).position().top+e.offsetY,
-            'left': $(this).position().left+e.offsetX
+            'top': $(this).parent().position().top+e.offsetY,
+            'left': $(this).parent().position().left+e.offsetX
         });
     });
     $('#scannow button').click(function() {
@@ -98,9 +114,15 @@ window.setInterval(function() {
 
 {% for level in graph.levels %}
     <h2>Levels {{ level }}</h2>
-    <img src="/static/img/levels/{{ graph.name }}/level{{ level }}.jpg" data-level="{{ level }}">
+    <div class="level" data-level="{{ level }}"><img src="/static/img/levels/{{ graph.name }}/level{{ level }}.jpg">
+        {% for marker in graph.data.wifidata if marker.level == level %}
+            <div class="marker" style="top:{{ marker.y }}px;left:{{ marker.x }}px;"></div>
+        {% endfor %}
+
+    </div>
 {% endfor %}
 
+<div id="oldmarkers"></div>
 <div id="marker"></div>
 
 <div id="scannow"><button>SCAN NOW</button><div class="beside"><strong>Position:</strong> <span id="position">(click to set)</span><br><strong>Last:</strong> <span id="last"></span></div></div>

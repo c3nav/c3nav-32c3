@@ -21,12 +21,12 @@ else:
     sys.exit(1)
 
 starttime = time.time()
-f = open(filename)
-graph = Graph(json.load(f), auto_connect=False)
 
 
 @app.route('/')
 def map():
+    f = open(filename)
+    graph = Graph(json.load(f), auto_connect=False)
     return render_template('wificollect.html', graph=graph)
 
 
