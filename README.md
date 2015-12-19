@@ -24,7 +24,7 @@ My DECT number at 32c3 will be NMKT (6658).
 You can just edit minor stuff directly in the JSON file. You have to restart
 the python script in order to reload the graph.
 
-To editing the underlying graph, rooms, barriers and points of interest, run
+To edit the underlying graph, rooms, barriers and points of interest, run
 `python3 configure.py graph.32c3.json` and navigate to http://localhost:5000/.
 
 To add translations, use `python3 translate.py graph.32c3.json (en|de)`. Please
