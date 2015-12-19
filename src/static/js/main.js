@@ -148,6 +148,7 @@ $(document).ready(function() {
     $('#mainform').append($('<input type="hidden" name="ajax" value="1">')).submit(function(e) {
         e.preventDefault();
         update_history();
+        $('#routeresult').html('<div style="text-align:center;padding-top:15px;"><img src="/static/img/load.gif"></div>');
         $.ajax({'type': 'POST', 'url': $(this).attr('action'), 'data': $(this).serialize(), 'success': function(data) {
             var html = $(data);
             var hbefore = $('body').height();
