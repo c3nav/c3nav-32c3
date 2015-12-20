@@ -6,7 +6,7 @@ import sys
 import matplotlib.cm as cm
 import numpy as np
 from matplotlib import pyplot as plt
-from scipy.interpolate import griddata
+from scipy.interpolate import Rbf, griddata
 from scipy.misc import imread
 from scipy.optimize import curve_fit
 from scipy.spatial.distance import cdist
@@ -60,6 +60,7 @@ for sid, values in stations.items():
 
 stations = sorted([s for s in stations.items() if len(s[1]) >= 3], key=lambda s: -len(s[1]))
 
+
 for sid, values in stations:
     values = np.array(values)
 
@@ -70,6 +71,9 @@ for sid, values in stations:
 
     frequency = 2400
 
+    center = max(values, key=lambda v: v[3])[1:3]
+    print(center)
+
     print(sid, len(values))
     print(values[:, 3].min(), values[:, 3].max())
     # grid = griddata(values[:, 1:3], values[:, 3], (grid_x, grid_y), method='cubic')
@@ -78,10 +82,14 @@ for sid, values in stations:
     grid = griddata(values[:, 1:3], 10**((27.55-(20*math.log10(frequency))+values[:, 3])/20), (grid_x, grid_y),
                     method='linear')
 
+    rbfi = Rbf(values[:, 1], values[:, 2], values[:, 3])  # radial basis function interpolator instance
+    # grid = rbfi(grid_x, grid_y)   # interpolated values
+
     # print(grid.min(), grid.max())
 
     plt.imshow(imread('static/img/levels/dev/level0.jpg'))
     plt.imshow(grid.transpose(), alpha=.5, cmap=cm.jet, origin='upper')
+    plt.plot([center[0]], [center[1]], 'ro')
     plt.show()
 
     # xnew = range(0, graph['width'], 2)
