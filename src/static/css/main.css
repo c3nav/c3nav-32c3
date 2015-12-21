@@ -120,6 +120,7 @@ div.location {
     background-position:center;
     border:0;
     outline:0 !important;
+    vertical-align:top;
 }
 .buttons .reset {
     background-image:url('/static/img/icons/cross.svg');
