@@ -1,6 +1,9 @@
 import math
 from collections import OrderedDict
 
+from flask import escape
+from flask.ext.babel import gettext as _
+
 
 class Route():
     def __init__(self, graph, points, settings, avoided_ctypes=()):
@@ -14,11 +17,21 @@ class Route():
         has_avoided_ctypes = False
 
         for i, part in enumerate(routeparts):
+
             for j, path in enumerate(part['path']):
+                from_room = '<strong>'+self.graph.rooms[path['from']['room']].title+'</strong>'
+                to_room = '<strong>'+self.graph.rooms[path['to']['room']].title+'</strong>'
+
                 desc = {
                     'icon': '',
                     'text': '',
                 }
+                if j == 0:
+                    part['desc'] = _('You are now in %(room)s on %(level)s.',
+                                     room=from_room if i == 0 else to_room,
+                                     level='<strong>'+_('level %(level)d', level=part['level'])+'</strong>'
+                                    ).replace('&lt;strong&gt;', '<strong>').replace('&lt;/strong&gt;', '</strong>')
+
                 if i != 0 and j == 0:
                     desc['ignore'] = True
                 path['desc'] = desc
@@ -35,65 +48,69 @@ class Route():
                     turning = 'right'
 
                 level = path.get('level', '')
-                desc['icon'] = {
-                    'stairs': 'stairs-%s' % level,
-                    'elevator': 'elevator-%s' % level,
-                    'escalator': 'escalator-%s' % level,
-                    'steps': 'steps-%s' % level,
-                    'stairs': 'stairs-%s' % level
-                }.get(path['ctype'], turning)
+                desc['icon'] = turning if path['ctype'] == 'default' else (path['ctype']+'-'+str(level))
 
                 if desc['icon'] in self.avoided_ctypes:
                     has_avoided_ctypes = True
 
-                from_room = self.graph.rooms[path['from']['room']].titles.get('en', path['from']['room'])
-                to_room = self.graph.rooms[path['to']['room']].titles.get('en', path['to']['room'])
 
                 located = ''
                 located_icon = 'straight'
                 if 30 < direction_change:
-                    located = ' on the left'
+                    located = _(' on the left')
                     located_icon = 'light_left'
                 elif direction_change < -30:
-                    located = ' on the right'
+                    located = _(' on the right')
                     located_icon = 'light_right'
 
                 desc['can_merge_to_next'] = False
 
                 if path['ctype'] in ('stairs', 'steps', 'escalator', 'elevator'):
-                    to_level = ''
+                    args = {'located': '', 'to_level': ''}
                     if len(routeparts) > i+1 and len(part['path']) == j+1:
-                        to_level = ' to <strong>level %d</strong>' % routeparts[i+1]['level']
+                        level = '<strong>'+_('level %(level)d', level=routeparts[i+1]['level'])+'</strong>'
+                        args['to_level'] = _(' to %(level)s', level=level)
 
                     if path['ctype'] == 'steps':
                         desc['can_merge_to_last'] = True
-                        desc['text'] = 'Go %s the steps<strong>%s</strong>.' % (level, located)
-                    if path['ctype'] == 'stairs':
-                        desc['text'] = 'Go %s the stairs%s<strong>%s</strong>.' % (level, located, to_level)
-                    elif path['ctype'] == 'escalator':
-                        desc['text'] = ('Take the escalator%s %s<strong>%s</strong>.' %
-                                        (located, level, to_level))
-                    elif path['ctype'] == 'elevator':
-                        desc['text'] = ('Take the elevator%s %s<strong>%s</strong>.' %
-                                        (located, level, to_level))
+
+                    desc['text'] = {
+                        'steps-up': _('Go up the steps%(located)s.', **args),
+                        'steps-down': _('Go down the steps%(located)s.', **args),
+                        'stairs-up': _('Go up the stairs%(located)s %(to_level)s.', **args),
+                        'stairs-down': _('Go down the stairs%(located)s %(to_level)s.', **args),
+                        'escalator-down': _('Take the escalator%(located)s up %(to_level)s.', **args),
+                        'escalator-up': _('Take the escalator%(located)s down %(to_level)s.', **args),
+                        'elevator-up': _('Take the elevator%(located)s up %(to_level)s.', **args),
+                        'elevator-down': _('Take the elevator%(located)s down %(to_level)s.', **args)
+                    }.get(desc['icon'])
 
                 elif path['from']['room'] != path['to']['room']:
                     desc['icon'] = located_icon
                     if j > 0:
-                        desc['text'] = 'Enter <strong>%s</strong>%s.' % (to_room, located)
+                        desc['text'] = _('Enter %(room)s%(located)s.',
+                                         room='<strong>'+to_room+'</strong>', located=located)
                     else:
-                        desc['text'] = ('Leave <strong>%s</strong> and enter <strong>%s</strong>.' %
-                                        (from_room, to_room))
+                        desc['text'] = _('Leave %(from_room)s and enter %(to_room)s.',
+                                         from_room=from_room, to_room=to_room)
                     desc['can_merge_to_next'] = len(located) == 0
                     desc['can_merge_to_last'] = True
 
                 else:
+                    d = path['distance']/100
                     desc['text'] = {
-                        'light_left': 'Turn light to the left and continue for %.1f meters.',
-                        'light_right': 'Turn light to the right and continue for %.1f meters.',
-                        'left': 'Turn left and continue for %.1f meters.',
-                        'right': 'Turn right and continue for %.1f meters.'
-                    }.get(turning, 'Continue for %.1f meters.') % (path['distance']/100)
+                        'light_left': _('Turn light to the left and continue for %(d).1f meters.', d=d),
+                        'light_right': _('Turn light to the right and continue for %(d).1f meters.', d=d),
+                        'left': _('Turn left and continue for %(d).1f meters.', d=d),
+                        'right': _('Turn right and continue for %(d).1f meters.', d=d)
+                    }.get(turning, _('Continue for %(d).1f meters.', d=d))
+
+                desc['text'] = str(escape(desc['text'])).replace(
+                    '&lt;strong&gt;', '<strong>'
+                ).replace(
+                    '&lt;/strong&gt;', '</strong>'
+                )
+                print(desc['text'])
 
         if merge_descriptions:
             self._merge_descriptions(routeparts)

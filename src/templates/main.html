@@ -14,14 +14,21 @@
 </head>
 <body{% if mobile_client %} class="mobile-client"{% endif %} data-name="{{ graph.name }}" data-levels="{{ graph.levels | join(',') }}" data-w="{{ graph.width }}" data-h="{{ graph.height }}">
 <a id="github" href="//github.com/codingcatgirl/c3nav"><img src="/static/img/github.png"></a>
-<div id="main">
-    <h1>32C3 Navigation</h1>
+<div id="main" data-locale-error="{{ _('Sorry, an error occured =(') }}" data-locale-input-o="{{ _('select origin…') }}" data-locale-input-d="{{ _('select destination…') }}" data-locale-edit-s="{{ _('Edit Settings') }}" data-locale-swap="{{ _('swap') }}">
+
+    <h1>
+        32c3nav
+        <span id="langselect">
+            {% if g.locale == 'en' %}en{% else %}<a href="?lang=en">en</a>{% endif %}
+            {% if g.locale == 'de' %}de{% else %}<a href="?lang=de">de</a>{% endif %}
+        </span>
+    </h1>
     <p class="message"><strong>Work in Progress. Soon to come:</strong> more POIs (Assemblies etc.), selecting from map, Android App with Wi-Fi positioning, …</p>
 
     <div class="pure-g">
         <div class="pure-form pure-form-stacked pure-u-1 pure-u-sm-1-2 p{% if origin %} selected{% endif %}" name="o">
             <fieldset>
-                <legend>Origin</legend>
+                <legend>{{ _('Origin') }}</legend>
                 {% set prefix = 'o' %}
                 {% set point = origin %}
                 {% set addlist = (not origin or destination) %}
@@ -32,9 +39,9 @@
         </div>
         <div class="pure-form pure-form-stacked pure-u-1 pure-u-sm-1-2 p{% if destination %} selected{% endif %}" name="d">
             <fieldset>
-                <legend>Destination</legend>
+                <legend>{{ _('Destination') }}</legend>
                 {% if not origin and not destination %}
-                <span class="noscript">Set origin first or activate Javascript for fancy autocompletion.</span>
+                <span class="noscript">{{ _('Set origin first or activate Javascript for fancy autocompletion.') }}</span>
                 <div class="selector"></div>
                 {% else %}
                     {% set prefix = 'd' %}
@@ -50,31 +57,31 @@
     <form method="post" action="/" class="pure-form pure-form-stacked" id="mainform">
         <div id="s">
             <fieldset>
-                <legend>Route Options</legend>
+                <legend>{{ _('Route Options') }}</legend>
                 <div class="pure-g">
                     <div class="pure-u-1-2 pure-u-sm-1-4">
-                        <label for="steps">Steps</label>
+                        <label for="steps">{{ _('Steps') }}</label>
                         <select name="steps" id="steps">
                             {% set value = settings.steps %}
                             {% include 'fragment_allowoptions.html' %}
                         </select>
                     </div>
                     <div class="pure-u-1-2 pure-u-sm-1-4">
-                        <label for="stairs">Stairs</label>
+                        <label for="stairs">{{ _('Stairs') }}</label>
                         <select name="stairs" id="stairs">
                             {% set value = settings.stairs %}
                             {% include 'fragment_allowoptions.html' %}
                         </select>
                     </div>
                     <div class="pure-u-1-2 pure-u-sm-1-4">
-                        <label for="escalators">Escalators</label>
+                        <label for="escalators">{{ _('Escalators') }}</label>
                         <select name="escalators" id="escalators">
                             {% set value = settings.escalators %}
                             {% include 'fragment_allowoptions.html' %}
                         </select>
                     </div>
                     <div class="pure-u-1-2 pure-u-sm-1-4">
-                        <label for="elevators">Elevators</label>
+                        <label for="elevators">{{ _('Elevators') }}</label>
                         <select name="elevators" id="elevators">
                             {% set value = settings.elevators %}
                             {% include 'fragment_allowoptions.html' %}
@@ -84,13 +91,13 @@
 
                 <div class="inline">
                     <label class="pure-checkbox">
-                        <input type="checkbox" name="e" value="h1"{% if 'h1' in settings.e %} checked{% endif %}> avoid hall 1
+                        <input type="checkbox" name="e" value="h1"{% if 'h1' in settings.e %} checked{% endif %}> {{ _('avoid %(roomtitle)s', roomtitle=titles.h1) }}
                     </label>
                     <label class="pure-checkbox">
-                        <input type="checkbox" name="e" value="h2"{% if 'h2' in settings.e %} checked{% endif %}> avoid hall 2
+                        <input type="checkbox" name="e" value="h2"{% if 'h2' in settings.e %} checked{% endif %}> {{ _('avoid %(roomtitle)s', roomtitle=titles.h2) }}
                     </label>
                     <label class="pure-checkbox">
-                        <input type="checkbox" name="i" value="heaven"{% if 'heaven' not in settings.e %} checked{% endif %}> i am an angel
+                        <input type="checkbox" name="i" value="heaven"{% if 'heaven' not in settings.e %} checked{% endif %}>  {{ _('i am an angel') }}
                     </label>
                     <input type="hidden" name="force-e" value="1" />
                     <input type="hidden" name="force-i" value="1" />
@@ -98,40 +105,40 @@
             </fieldset>
 
             <fieldset>
-                <legend>Speed <small>(cm/s)</small></legend>
+                <legend>{{ _('Speed') }} <small>{{ _('(cm/s)') }}</small></legend>
                 <div class="pure-g">
                     <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-6">
-                        <label for="s-walking">Walking</label>
+                        <label for="s-walking">{{ _('Walking') }}</label>
                         <input type="number" name="s-default" id="s-default" value="{{ settings['s-default'] }}" min="1" max="30000">
                     </div>
                     <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-6">
-                        <label for="s-elevator">Elevator <small>(s/level)</small></label>
+                        <label for="s-elevator">{{ _('Elevator') }} <small>{{ _('(s/level)') }}</small></label>
                         <input type="number" name="s-elevator" id="s-elevator" value="{{ settings['s-elevator'] }}" min="0" max="900">
                     </div>
                     <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-6">
-                        <label for="s-stairs-up">Stairs↑</label>
+                        <label for="s-stairs-up">{{ _('Stairs↑') }}</label>
                         <input type="number" name="s-stairs-up" id="s-stairs-up" value="{{ settings['s-stairs-up'] }}" min="1" max="30000">
                     </div>
                     <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-6">
-                        <label for="s-stairs-down">Stairs↓</label>
+                        <label for="s-stairs-down">{{ _('Stairs↓') }}</label>
                         <input type="number" name="s-stairs-down" id="s-stairs-down" value="{{ settings['s-stairs-down'] }}" min="1" max="30000">
                     </div>
                     <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-6">
-                        <label for="s-escalator-up">Escalator↑</label>
+                        <label for="s-escalator-up">{{ _('Escalator↑') }}</label>
                         <input type="number" name="s-escalator-up" id="s-stairs-up" value="{{ settings['s-escalator-up'] }}" min="1" max="30000">
                     </div>
                     <div class="pure-u-1-2 pure-u-sm-1-3 pure-u-md-1-6">
-                        <label for="s-escalator-down">Escalator↓</label>
+                        <label for="s-escalator-down">{{ _('Escalator↓') }}</label>
                         <input type="number" name="s-escalator-down" id="s-stairs-down" value="{{ settings['s-escalator-down'] }}" min="1" max="30000">
                     </div>
                 </div>
 
                 <div class="inline">
                     <label class="pure-radio">
-                        <input type="radio" name="route" value="fast"{% if settings.route == 'fast' %} checked{% endif %}> fastest route
+                        <input type="radio" name="route" value="fast"{% if settings.route == 'fast' %} checked{% endif %}> {{ _('fastest route') }}
                     </label>
                     <label class="pure-radio">
-                        <input type="radio" name="route" value="short"{% if settings.route == 'short' %} checked{% endif %}> shortest route
+                        <input type="radio" name="route" value="short"{% if settings.route == 'short' %} checked{% endif %}> {{ _('shortest route') }}
                     </label>
                 </div>
             </fieldset>
@@ -143,14 +150,15 @@
         <div class="pure-g">
             <div class="pure-u-1 pure-u-sm-1-2 settings-meta">
                 <label class="pure-checkbox s" id="savesettings">
-                    <input type="checkbox" name="savesettings" value="1"{% if had_settings_cookie %} checked{% endif %}> save settings in cookie
+                    <input type="checkbox" name="savesettings" value="1"{% if had_settings_cookie %} checked{% endif %}> {{ _('save settings in cookie') }}
                 </label>
 {% endif %}
-                <span id="settingsdesc">{{ settings.route }}est route – {% if avoid %}avoid {{ avoid | join(', ') }}{% else %}no restrictions{% endif %}</span>
+                <span id="settingsdesc">{% if settings.route == 'fast' %}{{ _('fastest route') }}{% else %}{{ _('shortest route') }}{% endif %}
+                     – {% if avoid %}{{ _('avoid %(avoidlist)s', avoidlist=', '.join(avoid)) }}{% else %}{{ _('no restrictions') }}{% endif %}</span>
 {% if not resultsonly %}
             </div>
             <div class="pure-u-1 pure-u-sm-1-2" id="main-buttons">
-                <button type="submit" class="pure-button pure-button-primary" id="main-submit"{% if not origin or not destination %} disabled{% endif %}>Get Route</button>
+                <button type="submit" class="pure-button pure-button-primary" id="main-submit"{% if not origin or not destination %} disabled{% endif %}>{{ _('Get Route') }}</button>
             </div>
         </div>
     </form>
@@ -159,7 +167,7 @@
     <div class="parts{% if isresult %} routeresult{% endif %}" id="routeresult">
     {% if isresult %}
     <h2>
-        Your Route
+        {{ _('Your Route') }}
         {% if routeparts %} <span class="routemeta">{{ total_distance }}m / {% if total_duration[0] %}{{ total_duration[0] }}min {% endif %}{{ total_duration[1] }}s</span>{% endif %}
     </h2>
     {% for message in messages %}
@@ -190,17 +198,10 @@
                 <div class="desc_items">
                     <div>
                         <img src="/static/img/icons/location.svg">
-                        {% if loop.first %}
-                            {% set title = titles[routepart.path[0].from.room] %}
-                        {% else %}
-                            {% set title = titles[routepart.path[0].to.room] %}
-                        {% endif %}
-                        <p>You are now in <strong>{{ title }}</strong>{% if 'Level' not in title %} on <strong>Level {{ routepart.level }}</strong>{% endif %}.</p>
+                        <p>{{ routepart.desc | safe }}</p>
                     </div>
                     {% for p in routepart.path if not p.desc.ignore and not p.desc.merged_to_next and not p.desc.merged_to_last %}
                     {% set desc = p.desc %}
-
-
                     <div>
                         {% if desc.icon == 'straight' %}
                         <img src="/static/img/icons/arrow.svg">
@@ -221,7 +222,7 @@
                     {% if loop.last %}
                     <div>
                         <img src="/static/img/icons/destination.svg">
-                        <p>You have reached your destination.</p>
+                        <p>{{ _('You have reached your destination.') }}</p>
                     </div>
                     {% endif %}
                 </div>

@@ -8,6 +8,7 @@ html, body {
 h1 {
     margin:0;
     padding:20px 0 5px;
+    position:relative;
 }
 h2, p {
     margin:10px 0;
@@ -212,6 +213,18 @@ legend {
 #main-buttons button {
     margin:0 0 0 8px;
 }
+#langselect {
+    font-size:15px;
+    display:inline-block;
+}
+#langselect a {
+    color:#0078e7 !important;
+    text-decoration:none;
+    margin:0 2px 0 4px;
+}
+#main-buttons a:hover {
+    text-decoration:underline;
+}
 .settings-meta {
     padding-bottom:8px;
 }
@@ -379,6 +392,6 @@ footer {
     box-sizing:border-box;
     color:#666666;
 }
-footer, a {
+footer a {
     color:#666666 !important;
 }

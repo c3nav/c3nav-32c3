@@ -1,3 +1,6 @@
+from flask import g
+
+
 class Location:
     """ has nodes and a title """
     def __init__(self, name, titles):
@@ -6,4 +9,4 @@ class Location:
 
     @property
     def title(self):
-        return self.titles.get('en', self.name)
+        return self.titles.get(g.locale, self.name)
