@@ -148,6 +148,27 @@ class Router():
         g_sparse = csr_matrix(np.ma.masked_values(np.fromstring(data).reshape(shape), 0))
         return shortest_path(g_sparse, return_predecessors=True)
 
+    def avoided_ctypes(self):
+        avoided_ctypes = set()
+        if self.settings['steps'] not in ('yes', 'up'):
+            avoided_ctypes.add('steps-up')
+        if self.settings['steps'] not in ('yes', 'down'):
+            avoided_ctypes.add('steps-down')
+        if self.settings['stairs'] not in ('yes', 'up'):
+            avoided_ctypes.add('stairs-up')
+        if self.settings['stairs'] not in ('yes', 'down'):
+            avoided_ctypes.add('stairs-down')
+        if self.settings['escalators'] not in ('yes', 'up'):
+            avoided_ctypes.add('escalator-up')
+        if self.settings['escalators'] not in ('yes', 'down'):
+            avoided_ctypes.add('escalator-down')
+        if self.settings['elevators'] not in ('yes', 'up'):
+            avoided_ctypes.add('elevator-up')
+        if self.settings['elevators'] not in ('yes', 'down'):
+            avoided_ctypes.add('elevator-down')
+
+        return avoided_ctypes
+
     def get_route(self, origin, destination):
         print(datetime.now(), origin, destination, json.dumps(self.settings))
         messages = []
@@ -232,23 +253,6 @@ class Router():
         if isinstance(destination, Position):
             positions.append(destination)
 
-        # did we use unallowed ctypes?
-        avoided_ctypes = set()
-        if self.settings['steps'] not in ('yes', 'up'):
-            avoided_ctypes.add('steps-up')
-        if self.settings['steps'] not in ('yes', 'down'):
-            avoided_ctypes.add('steps-down')
-        if self.settings['stairs'] not in ('yes', 'up'):
-            avoided_ctypes.add('stairs-up')
-        if self.settings['stairs'] not in ('yes', 'down'):
-            avoided_ctypes.add('stairs-down')
-        if self.settings['escalators'] not in ('yes', 'up'):
-            avoided_ctypes.add('escalator-up')
-        if self.settings['escalators'] not in ('yes', 'down'):
-            avoided_ctypes.add('escalator-down')
-        if self.settings['elevators'] not in ('yes', 'up'):
-            avoided_ctypes.add('elevator-up')
-        if self.settings['elevators'] not in ('yes', 'down'):
-            avoided_ctypes.add('elevator-down')
+        avoided_ctypes = self.avoided_ctypes()
 
         return messages, Route(self.graph, positions, self.settings, avoided_ctypes)
