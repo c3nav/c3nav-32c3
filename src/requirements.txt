@@ -10,3 +10,4 @@ jsmin
 Flask-Assets
 gunicorn
 flask-babel
+htmlmin

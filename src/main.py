@@ -6,7 +6,7 @@ import sys
 import time
 from collections import Iterable
 from datetime import datetime, timedelta
-
+from htmlmin import minify
 import qrcode
 from flask import Flask, g, make_response, render_template, request, send_file
 from flask.ext.assets import Environment
@@ -130,7 +130,7 @@ def main(origin=None, destination=None):
     ctx['avoid'] = avoid
 
     if request.method == 'GET':
-        resp = make_response(render_template('main.html', **ctx))
+        resp = make_response(minify(render_template('main.html', **ctx)))
         if 'lang' in request.cookies or 'lang' in request.args:
             resp.set_cookie('lang', g.locale, expires=datetime.now()+timedelta(days=30))
         return resp
@@ -158,7 +158,7 @@ def main(origin=None, destination=None):
         'resultsonly': src.get('ajax') == '1'
     })
 
-    resp = make_response(render_template('main.html', **ctx))
+    resp = make_response(minify(render_template('main.html', **ctx)))
     if src.get('savesettings') == '1':
         resp.set_cookie('settings', json.dumps(router.settings),
                         expires=datetime.now()+timedelta(days=30))
