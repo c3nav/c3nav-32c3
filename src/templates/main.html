@@ -19,8 +19,8 @@
     <h1>
         32c3nav
         <span id="langselect">
-            {% if g.locale == 'en' %}en{% else %}<a href="?lang=en">en</a>{% endif %}
-            {% if g.locale == 'de' %}de{% else %}<a href="?lang=de">de</a>{% endif %}
+            {% if g.locale == 'en' %}<span>en</span>{% else %}<a href="?lang=en">en</a>{% endif %}
+            {% if g.locale == 'de' %}<span>de</span>{% else %}<a href="?lang=de">de</a>{% endif %}
         </span>
     </h1>
     <p class="message"><strong>Work in Progress. Soon to come:</strong> more POIs (Assemblies etc.), selecting from map, Android App with Wi-Fi positioning, …</p>

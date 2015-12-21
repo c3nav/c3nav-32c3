@@ -217,10 +217,12 @@ legend {
     font-size:15px;
     display:inline-block;
 }
-#langselect a {
+#langselect > * {
+    margin:0 4px 0 0;
+}
+#langselect > a {
     color:#0078e7 !important;
     text-decoration:none;
-    margin:0 2px 0 4px;
 }
 #main-buttons a:hover {
     text-decoration:underline;
