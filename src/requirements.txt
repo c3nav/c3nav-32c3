@@ -9,3 +9,4 @@ cssmin
 jsmin
 Flask-Assets
 gunicorn
+flask-babel
