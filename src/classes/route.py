@@ -24,28 +24,24 @@ class Route():
                 path['desc'] = desc
 
                 turning = 'straight'
-                if 'direction_change' not in path:
-                    pass
-                elif 20 < path['direction_change'] <= 75:
+                direction_change = path.get('direction_change', 0)
+                if 20 < direction_change <= 75:
                     turning = 'light_left'
-                elif -75 <= path['direction_change'] < -20:
+                elif -75 <= direction_change < -20:
                     turning = 'light_right'
-                elif 75 < path['direction_change']:
+                elif 75 < direction_change:
                     turning = 'left'
-                elif path['direction_change'] < -75:
+                elif direction_change < -75:
                     turning = 'right'
 
-                desc['icon'] = turning
-                if path['ctype'] == 'stairs':
-                    desc['icon'] = 'stairs-%s' % path['level']
-                elif path['ctype'] == 'elevator':
-                    desc['icon'] = 'elevator-%s' % path['level']
-                elif path['ctype'] == 'escalator':
-                    desc['icon'] = 'escalator-%s' % path['level']
-                elif path['ctype'] == 'steps':
-                    desc['icon'] = 'steps-%s' % path['level']
-                elif path['ctype'] == 'stairs':
-                    desc['icon'] = 'stairs-%s' % path['level']
+                level = path.get('level', '')
+                desc['icon'].get({
+                    'stairs': 'stairs-%s' % level,
+                    'elevator': 'elevator-%s' % level,
+                    'escalator': 'escalator-%s' % level,
+                    'steps': 'steps-%s' % level,
+                    'stairs': 'stairs-%s' % level
+                }, path['ctype'])
 
                 if desc['icon'] in self.avoided_ctypes:
                     has_avoided_ctypes = True
@@ -55,12 +51,10 @@ class Route():
 
                 located = ''
                 located_icon = 'straight'
-                if 'direction_change' not in path:
-                    pass
-                elif 30 < path['direction_change']:
+                if 30 < direction_change:
                     located = ' on the left'
                     located_icon = 'light_left'
-                elif path['direction_change'] < -30:
+                elif direction_change < -30:
                     located = ' on the right'
                     located_icon = 'light_right'
 
@@ -73,15 +67,15 @@ class Route():
 
                     if path['ctype'] == 'steps':
                         desc['can_merge_to_last'] = True
-                        desc['text'] = 'Go %s the steps<strong>%s</strong>.' % (path['level'], located)
+                        desc['text'] = 'Go %s the steps<strong>%s</strong>.' % (level, located)
                     if path['ctype'] == 'stairs':
-                        desc['text'] = 'Go %s the stairs%s<strong>%s</strong>.' % (path['level'], located, to_level)
+                        desc['text'] = 'Go %s the stairs%s<strong>%s</strong>.' % (level, located, to_level)
                     elif path['ctype'] == 'escalator':
                         desc['text'] = ('Take the escalator%s %s<strong>%s</strong>.' %
-                                        (located, path['level'], to_level))
+                                        (located, level, to_level))
                     elif path['ctype'] == 'elevator':
                         desc['text'] = ('Take the elevator%s %s<strong>%s</strong>.' %
-                                        (located, path['level'], to_level))
+                                        (located, level, to_level))
 
                 elif path['from']['room'] != path['to']['room']:
                     desc['icon'] = located_icon
