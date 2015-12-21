@@ -35,13 +35,13 @@ class Route():
                     turning = 'right'
 
                 level = path.get('level', '')
-                desc['icon'].get({
+                desc['icon'] = {
                     'stairs': 'stairs-%s' % level,
                     'elevator': 'elevator-%s' % level,
                     'escalator': 'escalator-%s' % level,
                     'steps': 'steps-%s' % level,
                     'stairs': 'stairs-%s' % level
-                }, path['ctype'])
+                }.get(path['ctype'], turning)
 
                 if desc['icon'] in self.avoided_ctypes:
                     has_avoided_ctypes = True
