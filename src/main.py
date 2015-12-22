@@ -6,12 +6,13 @@ import sys
 import time
 from collections import Iterable
 from datetime import datetime, timedelta
-from htmlmin import minify
+
 import qrcode
 from flask import Flask, g, make_response, render_template, request, send_file
 from flask.ext.assets import Environment
 from flask.ext.babel import gettext as _
 from flask.ext.babel import Babel
+from htmlmin import minify
 
 from classes import Graph, Router
 

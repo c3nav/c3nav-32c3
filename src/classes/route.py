@@ -30,7 +30,7 @@ class Route():
                     part['desc'] = _('You are now in %(room)s on %(level)s.',
                                      room=from_room if i == 0 else to_room,
                                      level='<strong>'+_('level %(level)d', level=part['level'])+'</strong>'
-                                    ).replace('&lt;strong&gt;', '<strong>').replace('&lt;/strong&gt;', '</strong>')
+                                     ).replace('&lt;strong&gt;', '<strong>').replace('&lt;/strong&gt;', '</strong>')
 
                 if i != 0 and j == 0:
                     desc['ignore'] = True
@@ -52,7 +52,6 @@ class Route():
 
                 if desc['icon'] in self.avoided_ctypes:
                     has_avoided_ctypes = True
-
 
                 located = ''
                 located_icon = 'straight'
@@ -110,7 +109,6 @@ class Route():
                 ).replace(
                     '&lt;/strong&gt;', '</strong>'
                 )
-                print(desc['text'])
 
         if merge_descriptions:
             self._merge_descriptions(routeparts)
