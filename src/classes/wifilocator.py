@@ -121,7 +121,7 @@ class WifiLocator():
                     print(sid, np.max(values))
                     plt.imshow(imread('static/img/levels/dev/level0.jpg')[::self.divide_by, ::self.divide_by])
                     plt.imshow(self.w_to_dbm(newmatrix).transpose(), alpha=0.5, cmap=cm.jet, origin='upper')
-                    plt.plot(*np_positions.transpose()//self.divide_by, ',w')
+                    plt.plot(*np_positions.transpose()//self.divide_by, marker=',w')
                     plt.show()
 
             levelmatrixes.append(np.dstack(sidmatrixes))
