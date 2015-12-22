@@ -10,37 +10,37 @@ from classes import Graph, Node, Position
 
 app = Flask('c3nav-config')
 
-if 'C3NAVCONF' in os.environ:
-    filename = os.environ['C3NAVCONF']
+if 'C3NAVPROJECT' in os.environ:
+    project = os.environ['C3NAVPROJECT']
 elif len(sys.argv) > 1:
-    filename = sys.argv[1]
+    project = sys.argv[1]
 else:
-    print('Please specify filename: run.py <filename> or environment variable C3NAVCONF')
+    print('Please specify project: run.py <project> or environment variable C3NAVPROJECT')
     sys.exit(1)
 
 
 @app.route('/')
 def map():
-    graph = Graph(json.load(open(filename)), auto_connect=True)
+    graph = Graph(project, auto_connect=True)
     return render_template('map.html', levels=graph.get_by_levels(), name=graph.name)
 
 
 @app.route('/addroom', methods=['POST'])
 def addroom():
-    data = json.load(open(filename))
+    data = json.load(open('config/'+project+'/graph.json'))
     data['rooms'][request.form.get('name')] = {
         'level': int(request.form.get('level')),
         'shape': request.form.get('shape')
     }
 
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
 @app.route('/addnode', methods=['POST'])
 def addnode():
-    data = json.load(open(filename))
-    graph = Graph(data)
+    data = json.load(open('config/'+project+'/graph.json'))
+    graph = Graph(project, auto_connect=False)
 
     level = int(request.form.get('level'))
     x = int(request.form.get('x'))
@@ -55,7 +55,7 @@ def addnode():
         'x': x,
         'y': y
     }
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
 
     return json.dumps({
         'success': True,
@@ -67,8 +67,8 @@ def addnode():
 
 @app.route('/addpoi', methods=['POST'])
 def addpoi():
-    data = json.load(open(filename))
-    graph = Graph(data)
+    data = json.load(open('config/'+project+'/pois.json'))
+    graph = Graph(project, auto_connect=False)
 
     level = int(request.form.get('level'))
     x = int(request.form.get('x'))
@@ -78,19 +78,19 @@ def addpoi():
     if room is None:
         return json.dumps({'success': False})
 
-    data['pois'][name] = {
+    data[name] = {
         'level': level,
         'x': x,
         'y': y
     }
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('config/'+project+'/pois.json', 'w'), indent=4, sort_keys=True)
 
     return 'ok'
 
 
 @app.route('/addbarrier', methods=['POST'])
 def addbarrier():
-    data = json.load(open(filename))
+    data = json.load(open('config/'+project+'/graph.json'))
 
     level = int(request.form.get('level'))
     x1 = int(request.form.get('x1'))
@@ -105,15 +105,15 @@ def addbarrier():
         'x2': x2,
         'y2': y2,
     })
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
 
     return 'ok'
 
 
 @app.route('/addconnection', methods=['POST'])
 def addconnection():
-    data = json.load(open(filename))
-    graph = Graph(data)
+    data = json.load(open('config/'+project+'/graph.json'))
+    graph = Graph(project, auto_connect=False)
 
     node1 = graph.nodes[graph.nodes_by_name[request.form.get('node1')]]
     node2 = graph.nodes[graph.nodes_by_name[request.form.get('node2')]]
@@ -135,7 +135,7 @@ def addconnection():
         cdata['directed'] = True
 
     data['connections'].append(cdata)
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
 
     return json.dumps({
         'success': True,
@@ -153,45 +153,46 @@ def addconnection():
 
 @app.route('/delnode', methods=['POST'])
 def delnode():
-    data = json.load(open(filename))
+    data = json.load(open('config/'+project+'/graph.json'))
     name = request.form.get('name')
-    del data['nodes'][name]
+    data['nodes'].pop(name)
     data['connections'] = [c for c in data['connections'] if c['node0'] != name and c['node1'] != name]
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
 @app.route('/delpoi', methods=['POST'])
 def delpoi():
-    data = json.load(open(filename))
+    data = json.load(open('config/'+project+'/pois.json'))
     name = request.form.get('name')
-    del data['pois'][name]
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    print(data)
+    data.pop(name)
+    json.dump(data, open('config/'+project+'/pois.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
 @app.route('/delconnection', methods=['POST'])
 def delconnection():
-    data = json.load(open(filename))
+    data = json.load(open('config/'+project+'/graph.json'))
     nodes = (request.form.get('node1'), request.form.get('node2'))
 
     data['connections'] = [c for c in data['connections'] if c['node0'] not in nodes or c['node1'] not in nodes]
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
 @app.route('/delroom', methods=['POST'])
 def delroom():
-    data = json.load(open(filename))
+    data = json.load(open('config/'+project+'/graph.json'))
     room = request.form.get('room')
-    del data['rooms'][room]
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    data['rooms'].pop(room)
+    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
 @app.route('/delbarrier', methods=['POST'])
 def delbarrier():
-    data = json.load(open(filename))
+    data = json.load(open('config/'+project+'/graph.json'))
     level = int(request.form.get('level'))
     x1 = int(request.form.get('x1'))
     y1 = int(request.form.get('y1'))
@@ -199,13 +200,8 @@ def delbarrier():
     y2 = int(request.form.get('y2'))
     data['barriers'] = [b for b in data['barriers']
                         if b['level'] != level or b['x1'] != x1 or b['y1'] != y1 or b['x2'] != x2 or b['y2'] != y2]
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
-with open('./log', 'a+') as log:
-    try:
-        app.run(threaded=True, debug=True)
-        log.write("done adding wsgi app\n")
-    except Exception as e:
-        log.write(repr(e))
+app.run(threaded=True, debug=True)

@@ -1,3 +1,5 @@
+import json
+
 import numpy as np
 from matplotlib.path import Path
 
@@ -15,7 +17,12 @@ class Graph():
                         'escalator-up', 'escalator-down', 'elevator-up', 'elevator-down')
     diag = 2**0.5
 
-    def __init__(self, data, room_positions=True, auto_connect=False, load_wifi=False):
+    def __init__(self, project, room_positions=True, auto_connect=False, load_wifi=False):
+        data = json.load(open('projects/'+project+'/config.json'))
+        data.update(json.load(open('projects/'+project+'/graph.json')))
+        data['pois'] = json.load(open('projects/'+project+'/pois.json'))
+        data['titles'] = json.load(open('projects/'+project+'/titles.json'))
+
         self.data = data
         self.did_room_positions = False
         self.did_room_barriers = False
@@ -204,7 +211,7 @@ class Graph():
         return None, None
 
     def get_by_levels(self):
-        levels = {i: {'nodes': [], 'pois': [], 'barriers': [], 'connections': []} for i in self.levels}
+        levels = {i: {'nodes': [], 'pois': [], 'barriers': [], 'connections': []} for i in range(self.levels)}
 
         for node in self.nodes:
             levels[node.level]['nodes'].append(node)
@@ -223,7 +230,7 @@ class Graph():
                     'directed': c.get('directed', False)
                 })
 
-        for i in self.levels:
+        for i in range(self.levels):
             levels[i]['rooms'] = [room for room in self.rooms.values() if room.level == i]
             levels[i]['barriers'] = [b for b in self.barriers if b.level == i]
         return levels
@@ -242,7 +249,7 @@ class Graph():
         if mode not in ('o', 'd'):
             raise ValueError
 
-        data = self.levels.index(int(location.level))
+        data = int(location.level)
         data = data*self.width + int(location.x)
         data = data*self.height + int(location.y)
         data = data*4 + (mode == 'd')*2 + 0

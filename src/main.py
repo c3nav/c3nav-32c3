@@ -26,17 +26,16 @@ app = Flask('congress-route-planner')
 assets = Environment(app)
 babel = Babel(app)
 
-if 'C3NAVCONF' in os.environ:
-    filename = os.environ['C3NAVCONF']
+if 'C3NAVPROJECT' in os.environ:
+    project = os.environ['C3NAVPROJECT']
 elif len(sys.argv) > 1:
-    filename = sys.argv[1]
+    project = sys.argv[1]
 else:
-    print('Please specify filename: run.py <filename> or environment variable C3NAVCONF')
+    print('Please specify project: run.py <project> or environment variable C3NAVPROJECT')
     sys.exit(1)
 
 starttime = time.time()
-f = open(filename)
-graph = Graph(json.load(f), auto_connect=True)
+graph = Graph(project, auto_connect=True)
 print('Graph loaded in %.3fs' % (time.time()-starttime))
 
 

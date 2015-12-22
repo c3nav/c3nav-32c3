@@ -1,0 +1,13 @@
+{
+    "cm_per_px": 21.4035,
+    "height": 1024,
+    "levels": 5,
+    "name": "32c3",
+    "width": 1408,
+    "overwrite_default_settings": {
+        "e": [
+            "heaven",
+            "noc"
+        ]
+    }
+}

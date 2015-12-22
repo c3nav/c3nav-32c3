@@ -153,7 +153,7 @@ window.setInterval(function() {
 </head>
 <body>
 
-{% for level in graph.levels %}
+{% for level in range(graph.levels) %}
     <h2>Levels {{ level }}</h2>
     <div class="level" data-level="{{ level }}"><img src="/static/img/levels/{{ graph.name }}/level{{ level }}.jpg">
         {% for marker in graph.data.wifidata if marker.level == level %}

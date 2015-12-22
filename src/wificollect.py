@@ -12,40 +12,38 @@ from classes import Graph
 app = Flask('c3nav-wificollect')
 
 
-if 'C3NAVCONF' in os.environ:
-    filename = os.environ['C3NAVCONF']
+if 'C3NAVPROJECT' in os.environ:
+    project = os.environ['C3NAVPROJECT']
 elif len(sys.argv) > 1:
-    filename = sys.argv[1]
+    project = sys.argv[1]
 else:
-    print('Please specify filename: run.py <filename> or environment variable C3NAVCONF')
+    print('Please specify project: run.py <project> or environment variable C3NAVPROJECT')
     sys.exit(1)
 
 starttime = time.time()
 
-f = open(filename)
-graph = Graph(json.load(f), auto_connect=False, load_wifi=True)
+graph = Graph(project, auto_connect=False)
 
 
 @app.route('/')
 def map():
-    f = open(filename)
-    graph = Graph(json.load(f), auto_connect=False)
+    graph = Graph(project, auto_connect=False)
     return render_template('wificollect.html', graph=graph)
 
 
 @app.route('/add', methods=['POST'])
 def addroom():
-    data = json.load(open(filename))
+    data = json.load(open('config/'+project+'/wifiscans.json'))
     position = [int(i) for i in request.form.get('position').split('.')]
     stations = json.loads(request.form.get('stations'))
-    data['wifidata'].append({
+    data.append({
         'level': position[0],
         'x': position[1],
         'y': position[2],
         'time': str(datetime.datetime.now()),
         'stations': stations
     })
-    json.dump(data, open(filename, 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('config/'+project+'/wifiscans.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 

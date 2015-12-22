@@ -50,12 +50,12 @@ class WifiLocator():
         self.sid_ids = {sid: i for i, sid in enumerate(self.sids)}
         # print('\n'.join(str(a) for a in self.sid_ids.keys()))
 
-        self.matrix = np.empty((len(self.graph.levels), self.graph.width//2, self.graph.height//2, len(self.sids)))
+        self.matrix = np.empty((self.graph.levels, self.graph.width//2, self.graph.height//2, len(self.sids)))
         self.matrix.fill(self.no_signal)
 
         # group scans by sid
         levelmatrixes = []
-        for level in range(len(self.graph.levels)):
+        for level in range(self.graph.levels):
             sidmatrixes = []
             positions = tuple(i[1:] for i in scans_by_position.keys() if i[0] == level)
             np_positions = np.array(positions)
