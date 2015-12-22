@@ -9,11 +9,12 @@ from scipy.spatial.distance import cdist
 
 
 class WifiLocator():
-    connection_types = ('default', 'steps-up', 'steps-down', 'stairs-up', 'stairs-down',
-                        'escalator-up', 'escalator-down', 'elevator-up', 'elevator-down')
     diag = 2**0.5
 
-    divide_by = 4
+    divide_by = 2
+    no_signal = -90
+    exclude_sids = ()
+    sid_positions = {}
 
     def __init__(self, graph, data):
         self.graph = graph
@@ -28,6 +29,8 @@ class WifiLocator():
                 scans_by_position[pos] = {}
             for station in scan['stations']:
                 sid = (station['bssid'], station['ssid'])
+                if sid in self.exclude_sids:
+                    continue
                 if sid not in scans_by_position[pos]:
                     scans_by_position[pos][sid] = []
                 scans_by_position[pos][sid].append(station['level'])
@@ -40,14 +43,15 @@ class WifiLocator():
                 if sid not in self.sids_count:
                     self.sids_count[sid] = 0
                 self.sids_count[sid] += 1
-                stations[sid] = (sum(stations[sid])+(-100*(count-len(stations[sid]))))/count
+                stations[sid] = (sum(stations[sid])+(self.no_signal*(count-len(stations[sid]))))/count
 
         # sids to id
-        self.sids = [sid for sid, values in self.sids_count.items() if values >= 3]
+        self.sids = [sid for sid, values in self.sids_count.items() if values >= 6]
         self.sid_ids = {sid: i for i, sid in enumerate(self.sids)}
+        # print('\n'.join(str(a) for a in self.sid_ids.keys()))
 
         self.matrix = np.empty((len(self.graph.levels), self.graph.width//2, self.graph.height//2, len(self.sids)))
-        self.matrix[:, :, :, :] = -100
+        self.matrix.fill(self.no_signal)
 
         # group scans by sid
         levelmatrixes = []
@@ -69,10 +73,10 @@ class WifiLocator():
                            alpha=0.3, cmap=cm.prism, origin='upper')
                 plt.show()
 
-            max_distance = 2000
+            max_distance = 1500
 
             cartesian = cartesian[distances.flatten() <= max_distance]
-            cartesian_div = cartesian//4
+            cartesian_div = cartesian//self.divide_by
             print(cartesian.shape)
 
             if False:
@@ -80,32 +84,44 @@ class WifiLocator():
                 plt.imshow(imread('static/img/levels/dev/level0.jpg')[::self.divide_by, ::self.divide_by])
                 plt.imshow(np.where(distances <= max_distance, 1, 0).transpose(),
                            alpha=0.3, cmap=cm.gray, origin='upper')
+                plt.plot(*np_positions.transpose()//self.divide_by, 'o')
                 plt.show()
 
             for sid in self.sids:
-                values = np.array(tuple(scans_by_position[(level,)+pos].get(sid, -100) for pos in positions))
-                center = np_positions[np.argmax(values)]
+                values = np.array(tuple(scans_by_position[(level,)+pos].get(sid, self.no_signal) for pos in positions))
+
+                if sid in self.sid_positions:
+                    center = np.array(self.sid_positions[sid])[1:]
+                else:
+                    center = np_positions[np.argmax(values)]
 
                 polar = np.dstack((np.arctan2(*(np_positions-center).transpose())/np.pi/2*360,
                                    cdist([center], np_positions)[0]))[0]
+                values = self.dbm_to_w_linear(values, polar[:, 1])
 
                 polar = np.concatenate((polar-np.array((360, 0)), polar, polar+np.array((360, 0))))
-                values = np.concatenate((values, values, values))
-                f = LinearNDInterpolator(polar, self.dbm_to_linear(values, 2400),
-                                         fill_value=self.dbm_to_linear(-100, 2400))
+                f = LinearNDInterpolator(polar, np.tile(values, 3),
+                                         fill_value=np.nan)
 
                 polar = np.array((np.arctan2(*(cartesian-center).transpose())/np.pi/2*360,
                                   cdist([center], cartesian)[0]))
                 newmatrix = np.ones((self.graph.width//self.divide_by,
-                                     self.graph.height//self.divide_by))*self.dbm_to_linear(-100)
-                newmatrix[cartesian_div[:, 0], cartesian_div[:, 1]] = f(*polar)
+                                     self.graph.height//self.divide_by))*self.dbm_to_w(self.no_signal)
+
+                # idea bei codefetch
+                interpolated_values = self.w_linear_to_w(f(*polar), polar[1])
+                interpolated_values[np.isnan(interpolated_values)] = self.dbm_to_w(self.no_signal)
+
+                # 10*log(1/r²*b)
+                newmatrix[cartesian_div[:, 0], cartesian_div[:, 1]] = interpolated_values
                 sidmatrixes.append(newmatrix)
 
                 if False:
-                    # Enable this to show allowed positionss based on max_distance
-                    print(sid)
+                    # Enable this show interpolated ap data
+                    print(sid, np.max(values))
                     plt.imshow(imread('static/img/levels/dev/level0.jpg')[::self.divide_by, ::self.divide_by])
-                    plt.imshow(newmatrix.transpose(), alpha=0.3, cmap=cm.jet, origin='upper')
+                    plt.imshow(self.w_to_dbm(newmatrix).transpose(), alpha=0.5, cmap=cm.jet, origin='upper')
+                    plt.plot(*np_positions.transpose()//self.divide_by, ',w')
                     plt.show()
 
             levelmatrixes.append(np.dstack(sidmatrixes))
@@ -121,23 +137,43 @@ class WifiLocator():
         # return value
         return 10**((27.55-(20*math.log10(frequency))+value)/20)
 
+    def dbm_to_w(self, value):
+        return 10**(value/10)
+
+    def dbm_to_w_linear(self, value, distance):
+        return 10**(value/10)*(distance*self.graph.cm_per_px)**2
+
+    def w_linear_to_dbm(self, value, distance):
+        return 10*np.log10(1/(distance*self.graph.cm_per_px)**2*value)
+
+    def w_to_dbm(self, value):
+        return 10*np.log10(value)
+
+    def w_linear_to_w(self, value, distance):
+        return 1/(np.clip(distance, 1, 10000000)*self.graph.cm_per_px)**2*value
+
     def locate(self, scan):
         scan = {(s['bssid'], s['ssid']): s['level'] for s in scan}
-        np_scan = np.ones((len(self.sid_ids), ))*-100
-        known_spots = 0
+        np_scan = np.ones((len(self.sid_ids), ))*self.no_signal
+        my_sids = []
         for sid, level in scan.items():
             if sid in self.sid_ids:
-                known_spots += 1
                 np_scan[self.sid_ids[sid]] = level
-        print(self.dbm_to_linear(np_scan))
+                my_sids.append(self.sid_ids[sid])
+        # print(self.dbm_to_linear(np_scan))
+
+        my_sids = np.array(my_sids)
+        known_spots = len(my_sids)
 
         # best_station = np.argmax(scan)
         # best_sid = self.sids[best_station]
 
-        matches = ((self.matrix-self.dbm_to_linear(np_scan))**2).sum(axis=3)
-        print(matches)
+        diffs = ((self.matrix[:, :, :, my_sids]-self.dbm_to_w(np_scan[my_sids]))**2)
+        matches = diffs.sum(axis=3)
+        # print(matches)
         best_match = np.unravel_index(np.argmin(matches), matches.shape)
-        return [int(i*self.divide_by) for i in best_match], '%.12f' % np.min(matches), known_spots
+        print(diffs[best_match])
+        return [int(i*self.divide_by) for i in best_match], round(self.w_to_dbm(np.min(matches)), 2), known_spots
 
     def locate_old(self, scan):
         scan = {(s['bssid'], s['ssid']): s['level'] for s in scan}
