@@ -84,7 +84,7 @@ class WifiLocator():
                 plt.imshow(imread('static/img/levels/dev/level0.jpg')[::self.divide_by, ::self.divide_by])
                 plt.imshow(np.where(distances <= max_distance, 1, 0).transpose(),
                            alpha=0.3, cmap=cm.gray, origin='upper')
-                plt.plot(*np_positions.transpose()//self.divide_by, 'o')
+                plt.plot(*np_positions.transpose()//self.divide_by, marker='o')
                 plt.show()
 
             for sid in self.sids:
