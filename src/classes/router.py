@@ -4,6 +4,7 @@ from datetime import datetime
 from functools import lru_cache
 
 import numpy as np
+from flask.ext.babel import gettext as _
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import shortest_path
 
@@ -148,6 +149,27 @@ class Router():
         g_sparse = csr_matrix(np.ma.masked_values(np.fromstring(data).reshape(shape), 0))
         return shortest_path(g_sparse, return_predecessors=True)
 
+    def avoided_ctypes(self):
+        avoided_ctypes = set()
+        if self.settings['steps'] not in ('yes', 'up'):
+            avoided_ctypes.add('steps-up')
+        if self.settings['steps'] not in ('yes', 'down'):
+            avoided_ctypes.add('steps-down')
+        if self.settings['stairs'] not in ('yes', 'up'):
+            avoided_ctypes.add('stairs-up')
+        if self.settings['stairs'] not in ('yes', 'down'):
+            avoided_ctypes.add('stairs-down')
+        if self.settings['escalators'] not in ('yes', 'up'):
+            avoided_ctypes.add('escalator-up')
+        if self.settings['escalators'] not in ('yes', 'down'):
+            avoided_ctypes.add('escalator-down')
+        if self.settings['elevators'] not in ('yes', 'up'):
+            avoided_ctypes.add('elevator-up')
+        if self.settings['elevators'] not in ('yes', 'down'):
+            avoided_ctypes.add('elevator-down')
+
+        return avoided_ctypes
+
     def get_route(self, origin, destination):
         print(datetime.now(), origin, destination, json.dumps(self.settings))
         messages = []
@@ -164,20 +186,17 @@ class Router():
         self.create_routing_table()
 
         if not (origin_nodes - self.excluded_nodes):
-            messages.append(('warn', 'This route contains locations that you wanted to avoid '
-                                     'because your origin has no point outside of them.'))
+            messages.append(('warn', _('This route contains locations that you wanted to avoid '
+                                       'because your origin has no point outside of them.')))
 
         if not (destination_nodes - self.excluded_nodes):
-            messages.append(('warn', 'This route contains locations that you wanted to avoid '
-                                     'because your destination has no point outside of them.'))
+            messages.append(('warn', _('This route contains locations that you wanted to avoid '
+                                       'because your destination has no point outside of them.')))
 
         if origin_nodes & destination_nodes:
-            if not isinstance(origin, Position) and not isinstance(destination, Position):
-                messages.append(('success', 'Congratulations – you are already there!'))
-                return messages, None
-
-            if origin.level == destination.level and origin.x == destination.x and origin.y == destination.y:
-                messages.append(('success', 'Congratulations – you are already there!'))
+            if ((not isinstance(origin, Position) and not isinstance(destination, Position)) or
+                    (origin.level == destination.level and origin.x == destination.x and origin.y == destination.y)):
+                messages.append(('success', _('Congratulations – you are already there!')))
                 return messages, None
 
             if self.graph.can_connect_positions(origin, destination):
@@ -221,8 +240,8 @@ class Router():
             prevnode = self.predecessors[firstnode, prevnode]
 
         if (set(route) - origin_nodes - destination_nodes) & self.excluded_nodes:
-            messages.append(('warn', 'This route contains locations that you wanted to avoid '
-                                     'because otherwise no route would be possible.'))
+            messages.append(('warn', _('This route contains locations that you wanted to avoid '
+                                       'because otherwise no route would be possible.')))
 
         positions = [self.graph.nodes[i] for i in route]
 
@@ -232,23 +251,6 @@ class Router():
         if isinstance(destination, Position):
             positions.append(destination)
 
-        # did we use unallowed ctypes?
-        avoided_ctypes = set()
-        if self.settings['steps'] not in ('yes', 'up'):
-            avoided_ctypes.add('steps-up')
-        if self.settings['steps'] not in ('yes', 'down'):
-            avoided_ctypes.add('steps-down')
-        if self.settings['stairs'] not in ('yes', 'up'):
-            avoided_ctypes.add('stairs-up')
-        if self.settings['stairs'] not in ('yes', 'down'):
-            avoided_ctypes.add('stairs-down')
-        if self.settings['escalators'] not in ('yes', 'up'):
-            avoided_ctypes.add('escalator-up')
-        if self.settings['escalators'] not in ('yes', 'down'):
-            avoided_ctypes.add('escalator-down')
-        if self.settings['elevators'] not in ('yes', 'up'):
-            avoided_ctypes.add('elevator-up')
-        if self.settings['elevators'] not in ('yes', 'down'):
-            avoided_ctypes.add('elevator-down')
+        avoided_ctypes = self.avoided_ctypes()
 
         return messages, Route(self.graph, positions, self.settings, avoided_ctypes)

@@ -8,6 +8,7 @@ html, body {
 h1 {
     margin:0;
     padding:20px 0 5px;
+    position:relative;
 }
 h2, p {
     margin:10px 0;
@@ -119,6 +120,7 @@ div.location {
     background-position:center;
     border:0;
     outline:0 !important;
+    vertical-align:top;
 }
 .buttons .reset {
     background-image:url('/static/img/icons/cross.svg');
@@ -212,6 +214,20 @@ legend {
 #main-buttons button {
     margin:0 0 0 8px;
 }
+#langselect {
+    font-size:15px;
+    display:inline-block;
+}
+#langselect > * {
+    margin:0 4px 0 0;
+}
+#langselect > a {
+    color:#0078e7 !important;
+    text-decoration:none;
+}
+#main-buttons a:hover {
+    text-decoration:underline;
+}
 .settings-meta {
     padding-bottom:8px;
 }
@@ -280,7 +296,10 @@ legend {
 line {
     stroke:#FF0000;
     stroke-width:2.5px;
-    marker-end: url(#arrow);
+}
+marker path {
+     fill: #FF0000;
+     stroke: 0;
 }
 .path {
     background-color:#000000;
@@ -379,6 +398,6 @@ footer {
     box-sizing:border-box;
     color:#666666;
 }
-footer, a {
+footer a {
     color:#666666 !important;
 }

@@ -6,31 +6,24 @@ import sys
 import time
 from collections import Iterable
 from datetime import datetime, timedelta
-
+from htmlmin import minify
 import qrcode
-from flask import Flask, make_response, render_template, request, send_file
+from flask import Flask, g, make_response, render_template, request, send_file
 from flask.ext.assets import Environment
+from flask.ext.babel import gettext as _
+from flask.ext.babel import Babel
 
 from classes import Graph, Router
 
-app = Flask('congress-route-planner')
-assets = Environment(app)
-
-default_settings = {
-    'steps': 'yes',
-    'stairs': 'yes',
-    'escalators': 'yes',
-    'elevators': 'yes',
-    'h': '0',
-    'e': [],
-    's-default': 160,
-    's-elevator': 20,
-    's-stairs-up': 130,
-    's-stairs-down': 160,
-    's-escalator-up': 160,
-    's-escalator-down': 160,
+LANGUAGES = {
+    'en': 'English',
+    'de': 'Deutsch'
 }
 short_base = 'c3nav.de/'
+
+app = Flask('congress-route-planner')
+assets = Environment(app)
+babel = Babel(app)
 
 if 'C3NAVCONF' in os.environ:
     filename = os.environ['C3NAVCONF']
@@ -46,13 +39,34 @@ graph = Graph(json.load(f), auto_connect=True)
 print('Graph loaded in %.3fs' % (time.time()-starttime))
 
 
+@babel.localeselector
+def get_locale():
+    locale = 'en'  # request.accept_languages.best_match(LANGUAGES.keys())
+    if request.cookies.get('lang') in LANGUAGES.keys():
+        locale = request.cookies.get('lang')
+    if request.args.get('lang') in LANGUAGES.keys():
+        locale = request.args.get('lang')
+    return locale
+
+
+@app.before_request
+def before_request():
+    g.locale = get_locale()
+
+
 @app.route('/', methods=['GET', 'POST'])
 def main(origin=None, destination=None):
     src = request.args if request.method == 'GET' else request.form
 
+    _('Sorry, an error occured =(')
+    _('select origin…')
+    _('select destination…')
+    _('Edit Settings')
+    _('swap')
+
     ctx = {
         'location_select': sorted(graph.selectable_locations.values(), key=lambda l: (0-l.priority, l.title)),
-        'titles': {name: room.titles.get('en', name) for name, room in graph.rooms.items()},
+        'titles': {name: titles.get(get_locale(), name) for name, titles in graph.data['titles'].items()},
         'mobile_client': request.headers.get('User-Agent').startswith('c3navClient'),
         'graph': graph
     }
@@ -116,7 +130,10 @@ def main(origin=None, destination=None):
     ctx['avoid'] = avoid
 
     if request.method == 'GET':
-        return make_response(render_template('main.html', **ctx))
+        resp = make_response(minify(render_template('main.html', **ctx)))
+        if 'lang' in request.cookies or 'lang' in request.args:
+            resp.set_cookie('lang', g.locale, expires=datetime.now()+timedelta(days=30))
+        return resp
 
     """
     Now lets route!
@@ -125,8 +142,8 @@ def main(origin=None, destination=None):
     if route is not None:
         route_description, has_avoided_ctypes = route.describe()
         if has_avoided_ctypes:
-            messages.append(('warn', 'This route contains way types that you wanted to avoid '
-                                     'because otherwise there would route would be possible.'))
+            messages.append(('warn', _('This route contains way types that you wanted to avoid '
+                                       'because otherwise no route would be possible.')))
         total_duration = sum(rp['duration'] for rp in route_description)
         ctx.update({
             'routeparts': route_description,
@@ -141,10 +158,12 @@ def main(origin=None, destination=None):
         'resultsonly': src.get('ajax') == '1'
     })
 
-    resp = make_response(render_template('main.html', **ctx))
+    resp = make_response(minify(render_template('main.html', **ctx)))
     if src.get('savesettings') == '1':
         resp.set_cookie('settings', json.dumps(router.settings),
                         expires=datetime.now()+timedelta(days=30))
+    if 'lang' in request.cookies or 'lang' in request.args:
+        resp.set_cookie('lang', g.locale, expires=datetime.now()+timedelta(days=30))
     return resp
 
 

@@ -20,10 +20,10 @@
         {% include 'fragment_hiddenfields.html' %}
         </form>
         <form class="location c" action="/">
-            <span>Enter coordinates:</span>
+            <span>{{ _('Enter coordinates:') }}</span>
             <div class="pure-g">
                 <input type="text" name="{{ prefix }}" placeholder="level.x.y" class="pure-u-3-4">
-                <button type="submit" class="pure-button pure-u-1-4">Set</button>
+                <button type="submit" class="pure-button pure-u-1-4">{{ _('Set') }}</button>
             </div>
             <input type="hidden" name="{{ otherprefix }}" value="{% if otherpoint %}{{ otherpoint.name }}{% endif %}" />
             {% set hidden_fields = settings_fields %}

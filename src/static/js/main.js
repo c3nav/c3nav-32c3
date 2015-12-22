@@ -92,7 +92,7 @@ $(document).ready(function() {
     }).each(function() {
         var name = $(this).parent().attr('name');
         $('<input type="text" class="locationinput pure-u-1" autocomplete="off">').insertBefore(this).attr({
-            'placeholder': ($(this).parents('.p').attr('name') == 'o') ? 'Enter any location' : 'select destination…'
+            'placeholder': $('#main').attr('data-locale-input-'+$(this).parents('.p').attr('name'))
         }).keyup(keyup_complete).focus(keyup_complete).focus(function() {
             $('.locationinput').not(this).dequeue();
         }).blur(function() {
@@ -163,13 +163,13 @@ $(document).ready(function() {
                 $('html, body').animate({ scrollTop: $('.parts').offset().top-10 }, 800);
             }
         }, 'error': function() {
-            $('#routeresult').html('<div class="message error">Sorry, an error occured =(</div>');
+            $('#routeresult').html($('<div class="message error">').text($('#main').attr('data-locale-error')));
             if ($(window).width()<568) {
                 $('html, body').animate({ scrollTop: $('.parts').offset().top-10 }, 800);
             }
         }, 'dataType': 'html'});
     });
-    $('<button class="pure-button" id="editsettings">Edit Settings</button>').insertBefore('#main-submit').click(function(e) {
+    $('<button class="pure-button" id="editsettings">').text($('#main').attr('data-locale-edit-s')).insertBefore('#main-submit').click(function(e) {
         e.preventDefault();
         show_settings = true;
         $('#s').show();
@@ -189,7 +189,7 @@ $(document).ready(function() {
         $(this).attr('href', $(this).attr('href').replace('/link', ''));
     }).click(linkbtn_click);
     $('#s select, #s input').change(update_history).click(update_history);
-    $('.p[name=d] legend').append($('<button id="swapbtn" class="pure-button">').text('swap').click(function() {
+    $('.p[name=d] legend').append($('<button id="swapbtn" class="pure-button">').text($('#main').attr('data-locale-swap')).click(function() {
         origin = $('.p[name=o]').is('.selected') ? $('[type=hidden][name=o]').val() : null;
         destination = $('.p[name=d]').is('.selected') ? $('[type=hidden][name=d]').val() : null;
         $('.p[name=d]').find((origin !== null) ? ('button.location[value='+origin+']') : '.reset').click();
