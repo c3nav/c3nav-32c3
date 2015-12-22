@@ -13,13 +13,14 @@ class WifiLocator():
 
     divide_by = 2
     no_signal = -90
-    exclude_sids = ()
-    sid_positions = {}
 
-    def __init__(self, graph, data):
+    def __init__(self, graph):
         self.graph = graph
         import time
         starttime = time.time()
+
+        data = graph.data['wifiscans']
+        sid_positions = graph.data['wifipositions']
 
         # group multiple scans at the same position
         scans_by_position = {}
@@ -29,7 +30,8 @@ class WifiLocator():
                 scans_by_position[pos] = {}
             for station in scan['stations']:
                 sid = (station['bssid'], station['ssid'])
-                if sid in self.exclude_sids:
+                if sid[0] in sid_positions and sid_positions[sid[0]] is None:
+                    print(sid)
                     continue
                 if sid not in scans_by_position[pos]:
                     scans_by_position[pos][sid] = []
@@ -90,8 +92,8 @@ class WifiLocator():
             for sid in self.sids:
                 values = np.array(tuple(scans_by_position[(level,)+pos].get(sid, self.no_signal) for pos in positions))
 
-                if sid in self.sid_positions:
-                    center = np.array(self.sid_positions[sid])[1:]
+                if sid[0] in sid_positions:
+                    center = np.array(sid_positions[sid[0]])[1:]
                 else:
                     center = np_positions[np.argmax(values)]
 

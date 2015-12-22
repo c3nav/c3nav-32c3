@@ -27,19 +27,19 @@ def map():
 
 @app.route('/addroom', methods=['POST'])
 def addroom():
-    data = json.load(open('config/'+project+'/graph.json'))
+    data = json.load(open('projects/'+project+'/graph.json'))
     data['rooms'][request.form.get('name')] = {
         'level': int(request.form.get('level')),
         'shape': request.form.get('shape')
     }
 
-    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
 @app.route('/addnode', methods=['POST'])
 def addnode():
-    data = json.load(open('config/'+project+'/graph.json'))
+    data = json.load(open('projects/'+project+'/graph.json'))
     graph = Graph(project, auto_connect=False)
 
     level = int(request.form.get('level'))
@@ -55,7 +55,7 @@ def addnode():
         'x': x,
         'y': y
     }
-    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
 
     return json.dumps({
         'success': True,
@@ -67,7 +67,7 @@ def addnode():
 
 @app.route('/addpoi', methods=['POST'])
 def addpoi():
-    data = json.load(open('config/'+project+'/pois.json'))
+    data = json.load(open('projects/'+project+'/pois.json'))
     graph = Graph(project, auto_connect=False)
 
     level = int(request.form.get('level'))
@@ -83,14 +83,14 @@ def addpoi():
         'x': x,
         'y': y
     }
-    json.dump(data, open('config/'+project+'/pois.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/pois.json', 'w'), indent=4, sort_keys=True)
 
     return 'ok'
 
 
 @app.route('/addbarrier', methods=['POST'])
 def addbarrier():
-    data = json.load(open('config/'+project+'/graph.json'))
+    data = json.load(open('projects/'+project+'/graph.json'))
 
     level = int(request.form.get('level'))
     x1 = int(request.form.get('x1'))
@@ -105,14 +105,14 @@ def addbarrier():
         'x2': x2,
         'y2': y2,
     })
-    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
 
     return 'ok'
 
 
 @app.route('/addconnection', methods=['POST'])
 def addconnection():
-    data = json.load(open('config/'+project+'/graph.json'))
+    data = json.load(open('projects/'+project+'/graph.json'))
     graph = Graph(project, auto_connect=False)
 
     node1 = graph.nodes[graph.nodes_by_name[request.form.get('node1')]]
@@ -135,7 +135,7 @@ def addconnection():
         cdata['directed'] = True
 
     data['connections'].append(cdata)
-    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
 
     return json.dumps({
         'success': True,
@@ -153,46 +153,46 @@ def addconnection():
 
 @app.route('/delnode', methods=['POST'])
 def delnode():
-    data = json.load(open('config/'+project+'/graph.json'))
+    data = json.load(open('projects/'+project+'/graph.json'))
     name = request.form.get('name')
     data['nodes'].pop(name)
     data['connections'] = [c for c in data['connections'] if c['node0'] != name and c['node1'] != name]
-    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
 @app.route('/delpoi', methods=['POST'])
 def delpoi():
-    data = json.load(open('config/'+project+'/pois.json'))
+    data = json.load(open('projects/'+project+'/pois.json'))
     name = request.form.get('name')
     print(data)
     data.pop(name)
-    json.dump(data, open('config/'+project+'/pois.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/pois.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
 @app.route('/delconnection', methods=['POST'])
 def delconnection():
-    data = json.load(open('config/'+project+'/graph.json'))
+    data = json.load(open('projects/'+project+'/graph.json'))
     nodes = (request.form.get('node1'), request.form.get('node2'))
 
     data['connections'] = [c for c in data['connections'] if c['node0'] not in nodes or c['node1'] not in nodes]
-    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
 @app.route('/delroom', methods=['POST'])
 def delroom():
-    data = json.load(open('config/'+project+'/graph.json'))
+    data = json.load(open('projects/'+project+'/graph.json'))
     room = request.form.get('room')
     data['rooms'].pop(room)
-    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
 @app.route('/delbarrier', methods=['POST'])
 def delbarrier():
-    data = json.load(open('config/'+project+'/graph.json'))
+    data = json.load(open('projects/'+project+'/graph.json'))
     level = int(request.form.get('level'))
     x1 = int(request.form.get('x1'))
     y1 = int(request.form.get('y1'))
@@ -200,7 +200,7 @@ def delbarrier():
     y2 = int(request.form.get('y2'))
     data['barriers'] = [b for b in data['barriers']
                         if b['level'] != level or b['x1'] != x1 or b['y1'] != y1 or b['x2'] != x2 or b['y2'] != y2]
-    json.dump(data, open('config/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/graph.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 

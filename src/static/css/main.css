@@ -7,7 +7,7 @@ html, body {
 }
 h1 {
     margin:0;
-    padding:20px 0 5px;
+    padding:20px 0 5px 67px;
     position:relative;
 }
 h2, p {
@@ -17,6 +17,9 @@ h2, p {
 #main {
     margin:auto;
     max-width:1000px;
+    background-image:url('/static/img/logo.png');
+    background-repeat:no-repeat;
+    background-position:0 8px;
 }
 
 .message {
@@ -258,7 +261,12 @@ legend {
 @media (max-width: 567px) {
     h1 {
         margin-top:0;
+        padding-left:57px;
         padding-top:10px;
+    }
+    #main {
+        background-size:60px 50px;
+        background-position:0 1px;
     }
     #github img {
         width:100px;

@@ -26,7 +26,7 @@ superrooms = [room['superroom'] for room in data['rooms'].values() if 'superroom
 roomgroups = list(sum((room.get('groups', []) for room in data['rooms'].values()), []))
 
 for name in set(pois+roomgroups+rooms+superrooms):
-    data = json.load(open('config/'+project+'/titles.json'))
+    data = json.load(open('projects/'+project+'/titles.json'))
     titles = data.get(name, {})
 
     if lang in titles:
@@ -39,7 +39,7 @@ for name in set(pois+roomgroups+rooms+superrooms):
     titles[lang] = newtitle
 
     data[name] = titles
-    json.dump(data, open('config/'+project+'/titles.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/titles.json', 'w'), indent=4, sort_keys=True)
     print('')
 
 print('all done.')

@@ -33,7 +33,7 @@ def map():
 
 @app.route('/add', methods=['POST'])
 def addroom():
-    data = json.load(open('config/'+project+'/wifiscans.json'))
+    data = json.load(open('projects/'+project+'/wifiscans.json'))
     position = [int(i) for i in request.form.get('position').split('.')]
     stations = json.loads(request.form.get('stations'))
     data.append({
@@ -43,7 +43,7 @@ def addroom():
         'time': str(datetime.datetime.now()),
         'stations': stations
     })
-    json.dump(data, open('config/'+project+'/wifiscans.json', 'w'), indent=4, sort_keys=True)
+    json.dump(data, open('projects/'+project+'/wifiscans.json', 'w'), indent=4, sort_keys=True)
     return 'ok'
 
 
