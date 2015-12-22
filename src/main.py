@@ -35,7 +35,7 @@ else:
     sys.exit(1)
 
 starttime = time.time()
-graph = Graph(project, auto_connect=True)
+graph = Graph(project, auto_connect=True, load_wifi=True)
 print('Graph loaded in %.3fs' % (time.time()-starttime))
 
 

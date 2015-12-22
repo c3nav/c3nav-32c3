@@ -22,12 +22,12 @@ else:
 
 starttime = time.time()
 
-graph = Graph(project, auto_connect=False)
+graph = Graph(project, auto_connect=False, load_wifi=True)
 
 
 @app.route('/')
 def map():
-    graph = Graph(project, auto_connect=False)
+    graph = Graph(project, auto_connect=False, load_wifi=True)
     return render_template('wificollect.html', graph=graph)
 
 

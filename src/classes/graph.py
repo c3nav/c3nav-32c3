@@ -22,6 +22,7 @@ class Graph():
         data.update(json.load(open('projects/'+project+'/graph.json')))
         data['pois'] = json.load(open('projects/'+project+'/pois.json'))
         data['titles'] = json.load(open('projects/'+project+'/titles.json'))
+        data['wifiscans'] = json.load(open('projects/'+project+'/wifiscans.json'))
 
         self.data = data
         self.did_room_positions = False
@@ -38,7 +39,7 @@ class Graph():
         self.overwrite_default_settings = data['overwrite_default_settings']
 
         if load_wifi:
-            self.wifi = WifiLocator(self, data['wifidata'])
+            self.wifi = WifiLocator(self, data['wifiscans'])
 
         # load rooms
         self.rooms = {}
