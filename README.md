@@ -16,7 +16,7 @@ My DECT number at 32c3 will be NMKT (6658).
 * Clone the repository
 * `pip install -r requirements.txt`
   (if this fails because of build dependencies use `apt-get build-dep python-pil python-matplotlib python-scipy` or something similar for you distribution to install the dependencies and run pip again)
-* `python3 main.py graph.32c3.json`
+* `python3 main.py 32c3`
 * navigate to http://localhost:5000/
 * To activate debugging, add `debug` to the end of the command.
 
@@ -26,12 +26,12 @@ You can just edit minor stuff directly in the JSON file. You have to restart
 the python script in order to reload the graph.
 
 To edit the underlying graph, rooms, barriers and points of interest, run
-`python3 configure.py graph.32c3.json` and navigate to http://localhost:5000/.
+`python3 configure.py 32c3` and navigate to http://localhost:5000/.
 
-To add translations, use `python3 translate.py graph.32c3.json (en|de)`. Please
+To add translations, use `python3 translate.py 32c3 (en|de)`. Please
 do not submit pull request for other languages for now.
 
 ## Setting up a new graph
 
-Copy `graph.empty.json` and edit the basic meta data, add the level maps as
-images, then build/edit the graph as described above.
+Copy `/projects/empty` and edit the basic meta data in config.json, add the
+level maps as images, then build/edit the graph as described above.
