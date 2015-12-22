@@ -6,9 +6,8 @@ import sys
 import matplotlib.cm as cm
 import numpy as np
 from matplotlib import pyplot as plt
-from scipy.interpolate import Rbf, griddata
+from scipy.interpolate import LinearNDInterpolator
 from scipy.misc import imread
-from scipy.optimize import curve_fit
 from scipy.spatial.distance import cdist
 
 graph = json.load(open('graph.dev.json'))
@@ -27,24 +26,24 @@ for scan in graph['wifidata']:
 
 for pos, stations in scans_by_position.items():
     count = max(len(s) for s in stations.values())
-    print(pos)
     for sid in tuple(stations.keys()):
-        if len(stations[sid]) < count:
-            del stations[sid]
-        else:
-            stations[sid] = sum(stations[sid])/count
+        # if len(stations[sid]) < count:
+        #    del stations[sid]
+        # else:
+        stations[sid] = (sum(stations[sid])+(-100*(count-len(stations[sid]))))/count
 
 
 # group scans by station
-stations = {}
+station_positions = {}
 for pos, statlist in scans_by_position.items():
     for sid, level in statlist.items():
-        if sid not in stations:
-            stations[sid] = []
-        stations[sid].append((pos) + (level,))
+        if sid not in station_positions:
+            station_positions[sid] = {}
+        station_positions[sid][pos] = level
 
 # group stations
 for sid, values in stations.items():
+    break
     print(sid)
     for val in values:
         print(val)
@@ -58,66 +57,54 @@ for sid, values in stations.items():
 #        if not stations[sid] or stations[sid][-1][-1] != station['level']:
 #            stations[sid].append((pos) + (station['level'],))
 
-stations = sorted([s for s in stations.items() if len(s[1]) >= 3], key=lambda s: -len(s[1]))
 
+def dbm_to_linear(value, frequency=2400):
+    return 10**((27.55-(20*math.log10(frequency))+value)/20)
 
-for sid, values in stations:
-    values = np.array(values)
+stations = [sid for sid, values in station_positions.items() if len(values) >= 3]
+print('%d stations in total' % len(stations))
 
-    # if sid[1] not in ('codingcatgirl', 'Freifunk', 'Telekom'):
-    #    continue
+positions = tuple(scans_by_position.keys())
+np_positions = np.array(positions)
+np_positions = np_positions[:, 1:]
+for sid in stations:
+    if sid[1] not in ('codingcatgirl', 'Freifunk', 'Telekom'):
+        continue
 
-    grid_x, grid_y = np.mgrid[0:graph['width'], 0:graph['height']]
+    measured_values = station_positions[sid]
+    station_values = np.array(tuple(measured_values.get(pos, -100) for pos in positions))
+    weakest_value = min(measured_values.values())
 
+    center = np_positions[np.argmax(station_values)]
+    print(sid, center)
+
+    if sid[1] == 'Freifunk':
+        center = np.array((581, 403))
     frequency = 2400
 
-    center = max(values, key=lambda v: v[3])[1:3]
-    print(center)
+    # Turn measured positions inter polar coordinates
+    polar = np.dstack((np.arctan2(*(np_positions-center).transpose())/np.pi/2*360,
+                       cdist([center], np_positions)[0]))[0]
 
-    print(sid, len(values))
-    print(values[:, 3].min(), values[:, 3].max())
-    # grid = griddata(values[:, 1:3], values[:, 3], (grid_x, grid_y), method='cubic')
-    # grid = 10000-griddata(values[:, 1:3], 10**(values[:, 3]/10), (grid_x, grid_y), method='cubic')
-    # grid = 100000-griddata(values[:, 1:3], 1/(10**(values[:, 3]/10))**0.5, (grid_x, grid_y), method='cubic')
-    grid = griddata(values[:, 1:3], 10**((27.55-(20*math.log10(frequency))+values[:, 3])/20), (grid_x, grid_y),
-                    method='linear')
+    # Interpolate
+    polar = np.concatenate((polar-np.array((360, 0)), polar, polar+np.array((360, 0))))
+    station_values = np.concatenate((station_values, station_values, station_values))
+    # f = CloughTocher2DInterpolator(polar, dbm_to_linear(station_values, frequency))
+    f = LinearNDInterpolator(polar, dbm_to_linear(station_values, frequency))
 
-    rbfi = Rbf(values[:, 1], values[:, 2], values[:, 3])  # radial basis function interpolator instance
-    # grid = rbfi(grid_x, grid_y)   # interpolated values
+    # Turn back into cartesian system
+    cartesian_coordinates = np.vstack(np.dstack(np.mgrid[0:graph['width']:2, 0:graph['height']:2]))
+    polar = np.array((np.arctan2(*(cartesian_coordinates-center).transpose())/np.pi/2*360,
+                      cdist([center], cartesian_coordinates)[0]))
+    cartesian = f(*polar).reshape((graph['width']//2, graph['height']//2))
+    cartesian[cartesian <= dbm_to_linear(-90)] = np.nan
+    # print(cartesian)
+    # print('convert to %d cartesian coordinates' % len(cartesian_coordinates))
 
-    # print(grid.min(), grid.max())
-
-    plt.imshow(imread('static/img/levels/dev/level0.jpg'))
-    plt.imshow(grid.transpose(), alpha=.5, cmap=cm.jet, origin='upper')
-    plt.plot([center[0]], [center[1]], 'ro')
+    plt.imshow(imread('static/img/levels/dev/level0.jpg')[::2, ::2])
+    plt.imshow(cartesian.transpose(), alpha=.5, cmap=cm.jet, origin='upper')
     plt.show()
 
-    # xnew = range(0, graph['width'], 2)
-    # ynew = range(0, graph['height'], 2)
-    # znew = f(xnew, ynew)
-    # plt.plot(xnew, znew[0, :], 'b-')
-    # plt.show()
-
-    # continue
-
-    def myfunc(x, a, b):
-        return cdist(np.array([(a, b)]), x, 'euclidean')[0]
-
-    frequency = 2400
-    coordinates = values[:, 1:3]
-    print(coordinates)
-    distances = 10**((27.55 - (20 * math.log10(frequency)) + values[:, 3]*-1)/20)
-    print(distances)
-
-    bla = curve_fit(myfunc, coordinates, distances)
-    print(bla)
-    print(tuple(round(float(i), 2) for i in bla[0]))
-
-    print('')
-
-    # for val in values:
-    #     print(val)
-    # print('')
 
 sys.exit(0)
 

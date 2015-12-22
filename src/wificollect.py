@@ -22,6 +22,9 @@ else:
 
 starttime = time.time()
 
+f = open(filename)
+graph = Graph(json.load(f), auto_connect=False, load_wifi=True)
+
 
 @app.route('/')
 def map():
@@ -48,8 +51,6 @@ def addroom():
 
 @app.route('/locate', methods=['POST'])
 def locate():
-    f = open(filename)
-    graph = Graph(json.load(f), auto_connect=False)
     result = graph.wifi.locate(json.loads(request.form.get('stations')))
     return json.dumps(result)
 

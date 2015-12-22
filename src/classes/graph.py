@@ -7,9 +7,7 @@ from .poi import POI
 from .room import Room
 from .roomgroup import RoomGroup
 from .superroom import SuperRoom
-
-
-# from .wifilocator import WifiLocator
+from .wifilocator import WifiLocator
 
 
 class Graph():
@@ -17,13 +15,12 @@ class Graph():
                         'escalator-up', 'escalator-down', 'elevator-up', 'elevator-down')
     diag = 2**0.5
 
-    def __init__(self, data, room_positions=True, auto_connect=False):
+    def __init__(self, data, room_positions=True, auto_connect=False, load_wifi=False):
         self.data = data
         self.did_room_positions = False
         self.did_room_barriers = False
         self.did_auto_connect = False
 
-        # self.wifi = WifiLocator(self, data['wifidata'])
         # load basic data
         self.name = data['name']
         self.levels = data['levels']
@@ -32,6 +29,9 @@ class Graph():
         self.cm_per_px = data['cm_per_px']
         self.titles = data['titles']
         self.overwrite_default_settings = data['overwrite_default_settings']
+
+        if load_wifi:
+            self.wifi = WifiLocator(self, data['wifidata'])
 
         # load rooms
         self.rooms = {}
