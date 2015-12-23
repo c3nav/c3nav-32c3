@@ -64,17 +64,19 @@ function linkbtn_click(e) {
     e.stopPropagation();
     $('#linkmodal').remove();
     $('body').append(
-        $('<div id="linkmodal">').css({
-            'width': 290, 'z-index': 9001, 'padding-bottom': 20, 'position': 'absolute', 'top': '15px', 'left': '50%',
-            'margin-left': -145, 'background-color': '#FFFFFF', 'box-shadow': '0px 0px 5px 0px rgba(0,0,0,0.75)', 'text-align': 'center'
-        }).append(
+        $('<div id="linkmodal">').append(
             $('<img>').attr('src', '/qr'+$(this).attr('href'))
         ).append(
             $('<strong>').text('https://'+location.host+$(this).attr('href')).css('display', 'block').css('margin-bottom', 15)
-        ).append(
-            $('<button class="pure-button">').text('close').click(function() {$('#linkmodal').remove();})
+        ).append(' ').append(
+            $('<button class="pure-button">').text($('#main').attr('data-locale-close')).click(function() {$('#linkmodal').remove();})
         )
     );
+    if (typeof mobileclient !== "undefined" || true) {
+        $('<button class="pure-button">').text($('#main').attr('data-locale-share')).click(function() {
+            mobileclient.shareUrl($(this).siblings('strong').text());
+        }).insertBefore($('#linkmodal button'));
+    }
 }
 $(document).ready(function() {
     wifilocate = ($('body').attr('data-wifilocate') == '1');

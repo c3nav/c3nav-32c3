@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-23 14:50+0100\n"
-"PO-Revision-Date: 2015-12-23 14:51+0100\n"
+"POT-Creation-Date: 2015-12-23 15:08+0100\n"
+"PO-Revision-Date: 2015-12-23 15:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -39,14 +39,22 @@ msgid "swap"
 msgstr "vertauschen"
 
 #: main.py:66
+msgid "close"
+msgstr "schließen"
+
+#: main.py:67
+msgid "share"
+msgstr "teilen"
+
+#: main.py:68
 msgid "wifi positioning is currently not (yet) available"
 msgstr "WLAN-basierte ortung ist aktuell (noch) nicht verfügbar"
 
-#: main.py:67
+#: main.py:69
 msgid "determining your position…"
 msgstr "Suche deine Position…"
 
-#: main.py:147
+#: main.py:149
 msgid ""
 "This route contains way types that you wanted to avoid because otherwise no "
 "route would be possible."
@@ -204,115 +212,115 @@ msgstr "Koordinaten eingeben:"
 msgid "Set"
 msgstr "OK"
 
-#: templates/main.html:38
+#: templates/main.html:40
 msgid "Origin"
 msgstr "Startort"
 
-#: templates/main.html:49
+#: templates/main.html:51
 msgid "Destination"
 msgstr "Zielort"
 
-#: templates/main.html:51
+#: templates/main.html:53
 msgid "Set origin first or activate Javascript for fancy autocompletion."
 msgstr ""
 "Setze zunächst den Zielort oder aktivier Javasciprt für schicke "
 "Autovervollständigung."
 
-#: templates/main.html:67
+#: templates/main.html:69
 msgid "Route Options"
 msgstr "Routenoptionen"
 
-#: templates/main.html:70
+#: templates/main.html:72
 msgid "Steps"
 msgstr "Stufen"
 
-#: templates/main.html:77
+#: templates/main.html:79
 msgid "Stairs"
 msgstr "Treppen"
 
-#: templates/main.html:84
+#: templates/main.html:86
 msgid "Escalators"
 msgstr "Rolltreppen"
 
-#: templates/main.html:91
+#: templates/main.html:93
 msgid "Elevators"
 msgstr "Aufzüge"
 
-#: templates/main.html:101 templates/main.html:104
+#: templates/main.html:103 templates/main.html:106
 #, python-format
 msgid "avoid %(roomtitle)s"
 msgstr "vermeide %(roomtitle)s"
 
-#: templates/main.html:107
+#: templates/main.html:109
 msgid "i am an angel"
 msgstr "Ich bin Engel"
 
-#: templates/main.html:115
+#: templates/main.html:117
 msgid "Speed"
 msgstr "Geschwindigkeit"
 
-#: templates/main.html:115
+#: templates/main.html:117
 msgid "(cm/s)"
 msgstr "(cm/s)"
 
-#: templates/main.html:118
+#: templates/main.html:120
 msgid "Walking"
 msgstr "Zu Fuß"
 
-#: templates/main.html:122
+#: templates/main.html:124
 msgid "Elevator"
 msgstr "Aufzug"
 
-#: templates/main.html:122
+#: templates/main.html:124
 msgid "(s/level)"
 msgstr "(s/Etage)"
 
-#: templates/main.html:126
+#: templates/main.html:128
 msgid "Stairs↑"
 msgstr "Treppen↑"
 
-#: templates/main.html:130
+#: templates/main.html:132
 msgid "Stairs↓"
 msgstr "Treppen↓"
 
-#: templates/main.html:134
+#: templates/main.html:136
 msgid "Escalator↑"
 msgstr "Rolltreppen↑"
 
-#: templates/main.html:138
+#: templates/main.html:140
 msgid "Escalator↓"
 msgstr "Rolltreppen↓"
 
-#: templates/main.html:145 templates/main.html:163
+#: templates/main.html:147 templates/main.html:165
 msgid "fastest route"
 msgstr "schnellster Weg"
 
-#: templates/main.html:148 templates/main.html:163
+#: templates/main.html:150 templates/main.html:165
 msgid "shortest route"
 msgstr "kürzester Weg"
 
-#: templates/main.html:160
+#: templates/main.html:162
 msgid "save settings in cookie"
 msgstr "Einstellungen in Cookie speichern"
 
-#: templates/main.html:164
+#: templates/main.html:166
 #, python-format
 msgid "avoid %(avoidlist)s"
 msgstr "vermeide %(avoidlist)s"
 
-#: templates/main.html:164
+#: templates/main.html:166
 msgid "no restrictions"
 msgstr "keine Einschränkungen"
 
-#: templates/main.html:168
+#: templates/main.html:170
 msgid "Get Route"
 msgstr "Route berechnen"
 
-#: templates/main.html:177
+#: templates/main.html:179
 msgid "Your Route"
 msgstr "Deine Route"
 
-#: templates/main.html:232
+#: templates/main.html:234
 msgid "You have reached your destination."
 msgstr "Du hast dein Ziel erreicht."
 

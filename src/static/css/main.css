@@ -243,6 +243,22 @@ legend {
     display:block;
 }
 
+#linkmodal {
+    width: 290px;
+    z-index: 9001;
+    padding-bottom: 20px;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    margin-left: -145px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    text-align: center;
+}
+#linkmodal button {
+    margin:0 4px;
+}
+
 #github {
     position:absolute;
     top:0;

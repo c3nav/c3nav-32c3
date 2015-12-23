@@ -63,6 +63,8 @@ def main(origin=None, destination=None):
     _('select destination…')
     _('Edit Settings')
     _('swap')
+    _('close')
+    _('share')
     _('wifi positioning is currently not (yet) available')
     _('determining your position…')
 
