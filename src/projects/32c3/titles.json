@@ -1,4 +1,16 @@
 {
+    "be2": {
+        "de": "Hinteraufzug 2. OG",
+        "en": "Backstage Elevator Level 2"
+    },
+    "be3": {
+        "de": "Hinteraufzug 3. OG",
+        "en": "Backstage Elevator Level 3"
+    },
+    "be4": {
+        "de": "Hinteraufzug 4. OG",
+        "en": "Backstage Elevator Level 4"
+    },
     "cash": {
         "de": "Cash Desk",
         "en": "Cash Desk"
