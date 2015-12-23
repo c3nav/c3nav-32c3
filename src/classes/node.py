@@ -2,8 +2,6 @@ from .position import Position
 
 
 class Node(Position):
-    priority = 10
-
     def __init__(self, i, name, level, x, y):
         self.i = i
         self.name = name

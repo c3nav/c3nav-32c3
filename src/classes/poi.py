@@ -3,7 +3,7 @@ from .position import Position
 
 
 class POI(Position, Location):
-    priority = 10
+    priority = 3
 
     def __init__(self, name, level, x, y, titles):
         Position.__init__(self, level, x, y)
