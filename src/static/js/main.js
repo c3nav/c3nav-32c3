@@ -68,7 +68,7 @@ function linkbtn_click(e) {
             $('<img>').attr('src', '/qr'+$(this).attr('href'))
         ).append(
             $('<strong>').text('https://'+location.host+$(this).attr('href')).css('display', 'block').css('margin-bottom', 15)
-        ).append(' ').append(
+        ).append(
             $('<button class="pure-button">').text($('#main').attr('data-locale-close')).click(function() {$('#linkmodal').remove();})
         )
     );
