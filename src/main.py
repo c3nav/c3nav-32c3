@@ -111,7 +111,8 @@ def main(origin=None, destination=None):
             setsettings[name] = src.get(name)
         elif name in cookie_settings:
             cookie_value = cookie_settings.get(name)
-            if not isinstance(cookie_value, Iterable):
+            if (isinstance(cookie_value, Iterable) and isinstance(default_value, str) or
+                    isinstance(cookie_value, int) and isinstance(default_value, int)):
                 setsettings[name] = cookie_value
 
     router = Router(graph, setsettings)
