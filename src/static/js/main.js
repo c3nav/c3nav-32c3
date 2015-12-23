@@ -77,6 +77,7 @@ function linkbtn_click(e) {
     );
 }
 $(document).ready(function() {
+    wifilocate = ($('body').attr('data-wifilocate') == '1');
     $('body').addClass('yesscript');
     $('.location.c').remove();
     $('.noscript').remove();
@@ -106,12 +107,15 @@ $(document).ready(function() {
         );*/
         if ($('body').is('.mobile-client')) {
             buttons.prepend(
-                $('<button class="locating">')
+                $('<button>').addClass(wifilocate ? 'locate' : 'nolocate')
             ).prepend(
                 $('<button class="located">')
             );
         }
         buttons.insertBefore(this);
+    });
+    $('.nolocate').attr('title', $('#main').attr('data-locale-nolocate')).click(function() {
+        alert($('#main').attr('data-locale-nolocate'));
     });
     $('button.location').attr('tabIndex', '-1').click(function(e) {
         e.preventDefault();

@@ -12,9 +12,16 @@
           "js/jquery.min.js", "js/main.js" %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>{% endassets %}
 </head>
-<body{% if mobile_client %} class="mobile-client"{% endif %} data-name="{{ graph.name }}" data-levels="{{ graph.levels }}" data-w="{{ graph.width }}" data-h="{{ graph.height }}">
+<body{% if mobile_client %} class="mobile-client"{% endif %} data-wifilocate="{% if graph.wifi.disabled %}0{% else %}1{% endif %}" data-name="{{ graph.name }}" data-levels="{{ graph.levels }}" data-w="{{ graph.width }}" data-h="{{ graph.height }}">
 <a id="github" href="//github.com/codingcatgirl/c3nav"><img src="/static/img/github.png"></a>
-<div id="main" data-locale-error="{{ _('Sorry, an error occured =(') }}" data-locale-input-o="{{ _('select origin…') }}" data-locale-input-d="{{ _('select destination…') }}" data-locale-edit-s="{{ _('Edit Settings') }}" data-locale-swap="{{ _('swap') }}">
+<div id="main"
+    data-locale-error="{{ _('Sorry, an error occured =(') }}"
+    data-locale-input-o="{{ _('select origin…') }}"
+    data-locale-input-d="{{ _('select destination…') }}"
+    data-locale-edit-s="{{ _('Edit Settings') }}"
+    data-locale-swap="{{ _('swap') }}"
+    data-locale-nolocate="{{ _('wifi positioning is currently not (yet) available') }}"
+    data-locale-locating="{{ _('determining your position…') }}">
 
     <h1>
         32c3nav

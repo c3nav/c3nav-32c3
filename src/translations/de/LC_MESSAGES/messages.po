@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-21 15:52+0100\n"
-"PO-Revision-Date: 2015-12-21 15:52+0100\n"
+"POT-Creation-Date: 2015-12-23 14:50+0100\n"
+"PO-Revision-Date: 2015-12-23 14:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -38,7 +38,15 @@ msgstr "Einstellungen"
 msgid "swap"
 msgstr "vertauschen"
 
-#: main.py:145
+#: main.py:66
+msgid "wifi positioning is currently not (yet) available"
+msgstr "WLAN-basierte ortung ist aktuell (noch) nicht verfügbar"
+
+#: main.py:67
+msgid "determining your position…"
+msgstr "Suche deine Position…"
+
+#: main.py:147
 msgid ""
 "This route contains way types that you wanted to avoid because otherwise no "
 "route would be possible."
@@ -46,12 +54,12 @@ msgstr ""
 "Diese Route enthält Wegtypen, die du vermeiden wolltest, weil sonst keine "
 "Route möglich wäre."
 
-#: classes/route.py:31 classes/route.py:70
+#: classes/route.py:32 classes/route.py:70
 #, python-format
 msgid "level %(level)d"
 msgstr "%(level)d. Stock"
 
-#: classes/route.py:29
+#: classes/route.py:30
 #, python-format
 msgid "You are now in %(room)s on %(level)s."
 msgstr "Du bist jetzt in %(room)s im %(level)s."
@@ -144,7 +152,7 @@ msgstr "Rechts abbiegen und %(d).1fm weiter geradeaus."
 msgid "Continue for %(d).1f meters."
 msgstr "%(d).1fm weiter geradeaus."
 
-#: classes/router.py:190
+#: classes/router.py:189
 msgid ""
 "This route contains locations that you wanted to avoid because your origin "
 "has no point outside of them."
@@ -152,7 +160,7 @@ msgstr ""
 "Diese Route enthält Orte, die du vermeiden wolltest, weil dein Startort "
 "keine Punkte außerhalb dieser Orte enthält."
 
-#: classes/router.py:194
+#: classes/router.py:193
 msgid ""
 "This route contains locations that you wanted to avoid because your "
 "destination has no point outside of them."
@@ -160,11 +168,11 @@ msgstr ""
 "Diese Route enthält Orte, die du vermeiden wolltest, weil dein Zielort keine "
 "Punkte außerhalb dieser Orte enthält."
 
-#: classes/router.py:200
+#: classes/router.py:199
 msgid "Congratulations – you are already there!"
 msgstr "Herzlichen Glückwunsch – du bist bereits dort!"
 
-#: classes/router.py:244
+#: classes/router.py:243
 msgid ""
 "This route contains locations that you wanted to avoid because otherwise no "
 "route would be possible."
@@ -196,115 +204,115 @@ msgstr "Koordinaten eingeben:"
 msgid "Set"
 msgstr "OK"
 
-#: templates/main.html:31
+#: templates/main.html:38
 msgid "Origin"
 msgstr "Startort"
 
-#: templates/main.html:42
+#: templates/main.html:49
 msgid "Destination"
 msgstr "Zielort"
 
-#: templates/main.html:44
+#: templates/main.html:51
 msgid "Set origin first or activate Javascript for fancy autocompletion."
 msgstr ""
 "Setze zunächst den Zielort oder aktivier Javasciprt für schicke "
 "Autovervollständigung."
 
-#: templates/main.html:60
+#: templates/main.html:67
 msgid "Route Options"
 msgstr "Routenoptionen"
 
-#: templates/main.html:63
+#: templates/main.html:70
 msgid "Steps"
 msgstr "Stufen"
 
-#: templates/main.html:70
+#: templates/main.html:77
 msgid "Stairs"
 msgstr "Treppen"
 
-#: templates/main.html:77
+#: templates/main.html:84
 msgid "Escalators"
 msgstr "Rolltreppen"
 
-#: templates/main.html:84
+#: templates/main.html:91
 msgid "Elevators"
 msgstr "Aufzüge"
 
-#: templates/main.html:94 templates/main.html:97
+#: templates/main.html:101 templates/main.html:104
 #, python-format
 msgid "avoid %(roomtitle)s"
 msgstr "vermeide %(roomtitle)s"
 
-#: templates/main.html:100
+#: templates/main.html:107
 msgid "i am an angel"
 msgstr "Ich bin Engel"
 
-#: templates/main.html:108
+#: templates/main.html:115
 msgid "Speed"
 msgstr "Geschwindigkeit"
 
-#: templates/main.html:108
+#: templates/main.html:115
 msgid "(cm/s)"
 msgstr "(cm/s)"
 
-#: templates/main.html:111
+#: templates/main.html:118
 msgid "Walking"
 msgstr "Zu Fuß"
 
-#: templates/main.html:115
+#: templates/main.html:122
 msgid "Elevator"
 msgstr "Aufzug"
 
-#: templates/main.html:115
+#: templates/main.html:122
 msgid "(s/level)"
 msgstr "(s/Etage)"
 
-#: templates/main.html:119
+#: templates/main.html:126
 msgid "Stairs↑"
 msgstr "Treppen↑"
 
-#: templates/main.html:123
+#: templates/main.html:130
 msgid "Stairs↓"
 msgstr "Treppen↓"
 
-#: templates/main.html:127
+#: templates/main.html:134
 msgid "Escalator↑"
 msgstr "Rolltreppen↑"
 
-#: templates/main.html:131
+#: templates/main.html:138
 msgid "Escalator↓"
 msgstr "Rolltreppen↓"
 
-#: templates/main.html:138 templates/main.html:156
+#: templates/main.html:145 templates/main.html:163
 msgid "fastest route"
 msgstr "schnellster Weg"
 
-#: templates/main.html:141 templates/main.html:156
+#: templates/main.html:148 templates/main.html:163
 msgid "shortest route"
 msgstr "kürzester Weg"
 
-#: templates/main.html:153
+#: templates/main.html:160
 msgid "save settings in cookie"
 msgstr "Einstellungen in Cookie speichern"
 
-#: templates/main.html:157
+#: templates/main.html:164
 #, python-format
 msgid "avoid %(avoidlist)s"
 msgstr "vermeide %(avoidlist)s"
 
-#: templates/main.html:157
+#: templates/main.html:164
 msgid "no restrictions"
 msgstr "keine Einschränkungen"
 
-#: templates/main.html:161
+#: templates/main.html:168
 msgid "Get Route"
 msgstr "Route berechnen"
 
-#: templates/main.html:170
+#: templates/main.html:177
 msgid "Your Route"
 msgstr "Deine Route"
 
-#: templates/main.html:225
+#: templates/main.html:232
 msgid "You have reached your destination."
 msgstr "Du hast dein Ziel erreicht."
 

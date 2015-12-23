@@ -20,6 +20,11 @@ class WifiLocator():
         starttime = time.time()
 
         data = graph.data['wifiscans']
+        if not data:
+            self.disabled = True
+            return
+        self.disabled = False
+
         sid_positions = graph.data['wifipositions']
 
         # group multiple scans at the same position
@@ -155,6 +160,8 @@ class WifiLocator():
         return 1/(np.clip(distance, 1, 10000000)*self.graph.cm_per_px)**2*value
 
     def locate(self, scan):
+        if self.disabled:
+            return None
         scan = {(s['bssid'], s['ssid']): s['level'] for s in scan}
         np_scan = np.ones((len(self.sid_ids), ))*self.no_signal
         my_sids = []

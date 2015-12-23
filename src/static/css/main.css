@@ -138,15 +138,11 @@ div.location {
 .buttons .map {
     background-image:url('/static/img/icons/map.svg');
 }
-.buttons .located {
-    background-image:url('/static/img/icons/located.svg');
-    transition: opacity 0.5s;
-    -webkit-transition: opacity 0.5s;
+.buttons .locate {
+    background-image:url('/static/img/icons/locate.svg');
 }
-.buttons .located:not(.ready) {
-    -webkit-pointer-events:none;
-    pointer-events:none;
-    opacity:0;
+.buttons .nolocate {
+    background-image:url('/static/img/icons/nolocate.svg');
 }
 
 #swapbtn {

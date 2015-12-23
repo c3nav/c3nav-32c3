@@ -63,6 +63,8 @@ def main(origin=None, destination=None):
     _('select destination…')
     _('Edit Settings')
     _('swap')
+    _('wifi positioning is currently not (yet) available')
+    _('determining your position…')
 
     ctx = {
         'location_select': sorted(graph.selectable_locations.values(), key=lambda l: (0-l.priority, l.title)),
