@@ -51,9 +51,9 @@
         "de": "Aufz\u00fcge 4. OG",
         "en": "Elevators Level 4"
     },
-    "entry": {
-        "de": "Eingangshalle",
-        "en": "Entrance Hall"
+    "lobby": {
+        "de": "Lobby",
+        "en": "Lobby"
     },
     "f0": {
         "de": "Erdgeschoss Foyer",
@@ -248,8 +248,8 @@
         "en": "Lounge"
     },
     "noc": {
-        "de": "NOC",
-        "en": "NOC"
+        "de": "Saal 8",
+        "en": "Hall 8"
     },
     "outside": {
         "de": "Vorplatz",
@@ -267,9 +267,9 @@
         "de": "Presseraum",
         "en": "Press Room"
     },
-    "public": {
-        "de": "Eingang (\u00f6ffentlich)",
-        "en": "Entrance (public)"
+    "entry": {
+        "de": "Eingangsbereich",
+        "en": "Entrance area"
     },
     "shirts": {
         "de": "Shirt Desk",
@@ -311,7 +311,7 @@
         "de": "Toilette, Aufz\u00fcge 2. OG",
         "en": "Toilet, Elevators Level 2"
     },
-    "tentry": {
+    "tlobby": {
         "de": "Toilette, Eingangshalle",
         "en": "Toilet, Entrance Hall"
     },
@@ -360,11 +360,11 @@
         "en": "Toilet, Heaven Foyer"
     },
     "wc": {
-        "de": "Toilette",
-        "en": "Toilet"
+        "de": "Beliebige Toilette",
+        "en": "Any Toilet"
     },
     "wch": {
-        "de": "Barrierefreie Toilette",
-        "en": "Handicapped Toilet"
+        "de": "Beliebige barrierefreie Toilette",
+        "en": "Any Handicapped Toilet"
     }
 }
