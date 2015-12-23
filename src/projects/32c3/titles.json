@@ -51,9 +51,9 @@
         "de": "Aufz\u00fcge 4. OG",
         "en": "Elevators Level 4"
     },
-    "lobby": {
-        "de": "Lobby",
-        "en": "Lobby"
+    "entry": {
+        "de": "Eingangsbereich",
+        "en": "Entrance area"
     },
     "f0": {
         "de": "Erdgeschoss Foyer",
@@ -243,6 +243,10 @@
         "de": "Infodesk",
         "en": "Infodesk"
     },
+    "lobby": {
+        "de": "Lobby",
+        "en": "Lobby"
+    },
     "lounge": {
         "de": "Lounge",
         "en": "Lounge"
@@ -267,9 +271,9 @@
         "de": "Presseraum",
         "en": "Press Room"
     },
-    "entry": {
-        "de": "Eingangsbereich",
-        "en": "Entrance area"
+    "sendez": {
+        "de": "Sendezentrum",
+        "en": "Sendezentrum"
     },
     "shirts": {
         "de": "Shirt Desk",
@@ -310,10 +314,6 @@
     "te2": {
         "de": "Toilette, Aufz\u00fcge 2. OG",
         "en": "Toilet, Elevators Level 2"
-    },
-    "tlobby": {
-        "de": "Toilette, Lobby",
-        "en": "Toilet, Lobby"
     },
     "tf0": {
         "de": "Toilette, Erdgeschoss Foyer",
@@ -358,6 +358,10 @@
     "thvf": {
         "de": "Toilette, Himmel Foyer",
         "en": "Toilet, Heaven Foyer"
+    },
+    "tlobby": {
+        "de": "Toilette, Lobby",
+        "en": "Toilet, Lobby"
     },
     "wc": {
         "de": "Beliebige Toilette",
