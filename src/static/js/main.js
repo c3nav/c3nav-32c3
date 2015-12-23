@@ -72,7 +72,7 @@ function linkbtn_click(e) {
             $('<button class="pure-button">').text($('#main').attr('data-locale-close')).click(function() {$('#linkmodal').remove();})
         )
     );
-    if (typeof mobileclient !== "undefined" || true) {
+    if (typeof mobileclient !== "undefined") {
         $('<button class="pure-button">').text($('#main').attr('data-locale-share')).click(function() {
             mobileclient.shareUrl($(this).siblings('strong').text());
         }).insertBefore($('#linkmodal button'));
