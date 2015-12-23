@@ -243,7 +243,10 @@
 {% if not resultsonly %}
 </form>
 </div>
-<footer>{% include 'fragment_imprint.html' %}</footer>
+<footer>{% include 'fragment_imprint.html' %} –
+{% if g.locale == 'en' %}<span>en</span>{% else %}<a href="?lang=en">en</a>{% endif %}
+{% if g.locale == 'de' %}<span>de</span>{% else %}<a href="?lang=de">de</a>{% endif %}
+</footer>
 
 </body>
 </html>
