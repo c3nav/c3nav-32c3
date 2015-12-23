@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-23 15:08+0100\n"
-"PO-Revision-Date: 2015-12-23 15:08+0100\n"
+"PO-Revision-Date: 2015-12-23 22:13+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -128,12 +128,12 @@ msgstr "Fahr%(located)s mit dem Aufzug runter %(to_level)s."
 #: classes/route.py:90
 #, python-format
 msgid "Enter %(room)s%(located)s."
-msgstr "Betrete%(located)s %(room)s."
+msgstr "Betritt%(located)s %(room)s."
 
 #: classes/route.py:93
 #, python-format
 msgid "Leave %(from_room)s and enter %(to_room)s."
-msgstr "Verlasse %(from_room)s und betrete %(to_room)s."
+msgstr "Verlasse %(from_room)s und betritt %(to_room)s."
 
 #: classes/route.py:101
 #, python-format
