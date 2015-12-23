@@ -20,6 +20,10 @@ h2, p {
     background-image:url('/static/img/logo.png');
     background-repeat:no-repeat;
     background-position:0 8px;
+    background-size:70px 58px;
+}
+.mobile-client #main {
+    background-image:none;
 }
 
 .message {
