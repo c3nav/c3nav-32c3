@@ -78,8 +78,8 @@ class Route():
                         'steps-down': _('Go down the steps%(located)s.', **args),
                         'stairs-up': _('Go up the stairs%(located)s %(to_level)s.', **args),
                         'stairs-down': _('Go down the stairs%(located)s %(to_level)s.', **args),
-                        'escalator-down': _('Take the escalator%(located)s up %(to_level)s.', **args),
-                        'escalator-up': _('Take the escalator%(located)s down %(to_level)s.', **args),
+                        'escalator-up': _('Take the escalator%(located)s up %(to_level)s.', **args),
+                        'escalator-down': _('Take the escalator%(located)s down %(to_level)s.', **args),
                         'elevator-up': _('Take the elevator%(located)s up %(to_level)s.', **args),
                         'elevator-down': _('Take the elevator%(located)s down %(to_level)s.', **args)
                     }.get(desc['icon'])
