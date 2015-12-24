@@ -139,9 +139,7 @@ class Graph():
             position = UserPosition(level, x, y)
             room = self.get_room(position)
             position.room = room
-            if room is None:
-                pass # return None  # todo: find next acceptable point
-            else:
+            if room is not None:
                 self.connect_position(position)
             return position
         else:

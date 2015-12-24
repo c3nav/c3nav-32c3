@@ -8,7 +8,7 @@ from collections import Iterable
 from datetime import datetime, timedelta
 
 import qrcode
-from flask import Flask, g, make_response, render_template, request, send_file, Response
+from flask import Flask, g, make_response, render_template, request, send_file
 from flask.ext.assets import Environment
 from flask.ext.babel import gettext as _
 from flask.ext.babel import Babel
@@ -212,6 +212,23 @@ def get_location_title(level, x, y):
         'name': '%d:%d:%d' % (level, x, y),
         'title': pos.title
     })
+
+
+@app.route('/locate', methods=['POST'])
+def locate():
+    result = graph.wifi.locate(json.loads(request.form.get('stations')))
+    if result is not None:
+        position, score, matched_stations = result
+        result = {
+            'name': position.name,
+            'title': position.title,
+            'level': position.level,
+            'x': position.x,
+            'y': position.y,
+            'score': score,
+            'known_stations': matched_stations
+        }
+    return json.dumps(result)
 
 
 if 'gunicorn' not in os.environ.get('SERVER_SOFTWARE', ''):

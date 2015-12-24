@@ -28,7 +28,7 @@ function keyup_complete(e) {
         }
 
         var value = $(this).val().toLowerCase();
-        locations.filter(':not(.user)').each(function() {
+        locations.filter(':not(.user, .locating)').each(function() {
             $(this).hide().toggle($(this).text().toLowerCase().indexOf(value)>-1 || $(this).val().indexOf(value)>-1);
         });
         toggle_user_location(locations.filter('.user'), value);
@@ -71,15 +71,36 @@ function point_set() {
     if ($('.p[name=o]').is('.selected')) qs.push('o='+$('[type=hidden][name=o]').val());
     if ($('.p[name=d]').is('.selected')) qs.push('d='+$('[type=hidden][name=d]').val());
     update_history();
-    var cansubmit = ($('.p:not(.selected)').length === 0);
+    var cansubmit = ($('.p:not(.selected), .p.locating').length === 0);
     $('#main-submit').prop('disabled', !cansubmit);
     $('#savesettings').toggle(show_settings);
     if (!cansubmit) $('#savesettings').prop('checked', show_settings);
 }
 function nearby_stations_available() {
     console.log(JSON.parse(mobileclient.getNearbyStations()));
-    $('.locating').remove();
-    $('.located').addClass('ready');
+    if ($('.p.locating').length > 0) {
+        $.ajax({
+            type: "POST",
+            url: '/locate',
+            data: { stations: mobileclient.getNearbyStations() },
+            dataType: 'json',
+            success: function(data) {
+                if (data === null) {
+                    $('.p.locating').find('.locating .reset').click();
+                    return;
+                }
+                current_location = data;
+                $('.p.locating').each(function() {
+                    var location = $(this).find('button.user');
+                    location.val(current_location.name);
+                    location.find('span').text(current_location.title);
+                    location.find('small').text(current_location.name);
+                    location.click();
+                });
+                toggle_user_location($('.p[name=d]').find('button.user'), origin);
+            },
+        });
+    }
 }
 function linkbtn_click(e) {
     e.preventDefault();
@@ -139,7 +160,7 @@ $(document).ready(function() {
         var buttons = $('<div class="buttons">');/*.append(
             $('<button class="map">')
         );*/
-        if ($('body').is('.mobile-client')) {
+        if (typeof mobileclient !== "undefined") {
             buttons.prepend(
                 $('<button>').addClass(wifilocate ? 'locate' : 'nolocate')
             ).prepend(
@@ -153,22 +174,31 @@ $(document).ready(function() {
         ).append(
             $('<small>')
         ).appendTo($(this).find('form'));
+        $('<button type="submit" class="location locating">').attr('name', $(this).parents('.p').attr('name')).attr('value', 'locating').append(
+            $('<span>').text($('#main').attr('data-locale-locating'))
+        ).appendTo($(this).find('form'));
     });
     $('.nolocate').attr('title', $('#main').attr('data-locale-nolocate')).click(function() {
         alert($('#main').attr('data-locale-nolocate'));
+    });
+    $('.locate').click(function() {
+        $(this).parents('.p').find('.locating').click();
     });
     $('button.location').attr('tabIndex', '-1').click(function(e) {
         e.preventDefault();
         $(this).parents('.selector').siblings('form').remove();
         $('<form>').html(
-            $('<div class="location">').html($(this).html()).append($('<div class="buttons">').append(
-                $('<a class="link">').attr('href', '/'+$(this).parents('.p').attr('name')+$(this).val()).click(linkbtn_click)
+            $('<div class="location">').toggleClass('locating', $(this).is('.locating')).html($(this).html()).append($('<div class="buttons">').append(
+                $(this).is(':not(.locating)') ? $('<a class="link">').attr('href', '/'+$(this).parents('.p').attr('name')+$(this).val()).click(linkbtn_click) : null
             ).append(
                 $('<button type="submit" class="reset">')
             ))
         ).insertBefore($(this).parents('.selector'));
-        $(this).parents('.p').addClass('selected');
-        $('input[type=hidden][name='+$(this).parents('.p').attr('name')+']').val($(this).val());
+        $(this).parents('.p').addClass('selected').toggleClass('locating', $(this).is('.locating'));
+        if (!$(this).is('.locating')) {
+            $('input[type=hidden][name='+$(this).parents('.p').attr('name')+']').val($(this).val());
+            mobileclient.scanNow();
+        }
         point_set();
         if ($('.locationinput:visible').first().focus().length && $(window).width()<568) {
             $('html, body').animate({ scrollTop: $('.locationinput:visible').first().parents('fieldset').offset().top-5 }, 300);
@@ -179,7 +209,7 @@ $(document).ready(function() {
     $('.p').on('click', '.location .reset', function(e) {
         e.preventDefault();
         $(this).parents('.p').find('.location').hide();
-        var f = $(this).parents('.p').removeClass('selected').find('.locationinput').val('').focus();
+        var f = $(this).parents('.p').removeClass('selected').removeClass('locating').find('.locationinput').val('').focus();
         if ($(window).width()<568) {
             $('html, body').animate({ scrollTop: f.offset().top-5 }, 300);
         }
@@ -224,6 +254,9 @@ $(document).ready(function() {
     $('.locationinput:visible').first().focus();
     point_set();
     if (typeof mobileclient !== "undefined") {
+        if (wifilocate) {
+            $('.p:not(.selected)').first().find('.locate').click();
+        }
         nearby_stations_available();
     }
     if ($('#routeresult.routeresult').length > 0 && $(window).width()<768 && $('html, body').scrollTop() === 0) {

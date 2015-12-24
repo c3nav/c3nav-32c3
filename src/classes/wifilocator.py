@@ -7,6 +7,8 @@ from scipy.interpolate import LinearNDInterpolator
 from scipy.misc import imread
 from scipy.spatial.distance import cdist
 
+from .userposition import UserPosition
+
 
 class WifiLocator():
     diag = 2**0.5
@@ -181,8 +183,11 @@ class WifiLocator():
         matches = diffs.sum(axis=3)
         # print(matches)
         best_match = np.unravel_index(np.argmin(matches), matches.shape)
-        print(diffs[best_match])
-        return [int(i*self.divide_by) for i in best_match], round(self.w_to_dbm(np.min(matches)), 2), known_spots
+
+        position = UserPosition(*[int(i*self.divide_by) for i in best_match], located=True)
+        position.room = self.graph.get_room(position)
+        return position, round(self.w_to_dbm(np.min(matches)), 2), known_spots
+
 
     def locate_old(self, scan):
         scan = {(s['bssid'], s['ssid']): s['level'] for s in scan}

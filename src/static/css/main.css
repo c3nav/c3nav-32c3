@@ -148,6 +148,20 @@ div.location {
     background-image:url('/static/img/icons/nolocate.svg');
 }
 
+.location.locating span {
+    animation: blink 2s linear infinite;
+    -webkit-animation: blink 2s linear infinite;
+    opacity:1;
+    margin-top:6px;
+    font-style:italic;
+}
+@keyframes blink {
+    50% { opacity:0.2; }
+}
+@-webkit-keyframes blink {
+    50% { opacity:0.2; }
+}
+
 #swapbtn {
     float:right;
     padding:6px 10px;
