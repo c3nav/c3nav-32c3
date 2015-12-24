@@ -53,6 +53,9 @@ h2, p {
     border-color:#00CC00;
     color:#003300;
 }
+.message a {
+    color:#000099;
+}
 
 .pure-g {
     margin:0 -5px;
