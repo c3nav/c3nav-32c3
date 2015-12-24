@@ -128,18 +128,14 @@ class Graph():
             self.auto_connect()
 
     def get_selectable_location(self, name):
-        print('name', name)
         if name is None:
             return None
         elif re.match(r'^[0-9]+:[0-9]+:[0-9]+$', name) is not None:
-            print('letstry')
             level, x, y = (int(i) for i in name.split(':'))
-            print(level, x, y)
             if (level not in range(self.levels) or
                     x not in range(self.width) or
                     y not in range(self.height)):
                 return None
-            print('ok, weiter')
             position = UserPosition(level, x, y)
             room = self.get_room(position)
             position.room = room
