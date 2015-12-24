@@ -86,7 +86,7 @@ function linkbtn_click(e) {
     e.stopPropagation();
     $('#linkmodal').remove();
     $('body').append(
-        $('<div id="linkmodal">').append(
+        $('<div id="linkmodal">').data('title', $(this).parents('.location').find('span').text()).append(
             $('<img>').attr('src', '/qr'+$(this).attr('href'))
         ).append(
             $('<strong>').text('https://'+location.host+$(this).attr('href')).css('display', 'block').css('margin-bottom', 15)
@@ -94,10 +94,17 @@ function linkbtn_click(e) {
             $('<button class="pure-button">').text($('#main').attr('data-locale-close')).click(function() {$('#linkmodal').remove();})
         )
     );
+    if ($(this).parents('.p').is('[name=d]') &&
+          typeof mobileclient !== "undefined" && typeof mobileclient.createShortcut !== "undefined") {
+        $('<button class="pure-button">').text($('#main').attr('data-locale-shortcut')).click(function() {
+            mobileclient.createShortcut($(this).siblings('strong').text(), $(this).parent().data('title'));
+        }).insertBefore($('#linkmodal button:last-child'));
+        $('<br>').insertBefore($('#linkmodal button:last-child'));
+    }
     if (typeof mobileclient !== "undefined") {
         $('<button class="pure-button">').text($('#main').attr('data-locale-share')).click(function() {
             mobileclient.shareUrl($(this).siblings('strong').text());
-        }).insertBefore($('#linkmodal button'));
+        }).insertBefore($('#linkmodal button:last-child'));
     }
 }
 $(document).ready(function() {

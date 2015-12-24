@@ -65,6 +65,7 @@ def main(origin=None, destination=None):
     _('swap')
     _('close')
     _('share')
+    _('create shortcut')
     _('wifi positioning is currently not (yet) available')
     _('determining your position…')
 
