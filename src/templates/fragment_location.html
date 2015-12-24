@@ -1,7 +1,15 @@
-{% if resetable %}<div class="location">{% else %}<button type="submit" name="{{ prefix }}" value="{{ location.name }}" class="location">{% endif %}
+{% if resetable %}
+<div class="location{% if location.user %} user{% endif %}">
+{% else %}
+<button type="submit" name="{{ prefix }}" value="{{ location.name }}" class="location{% if location.user %} user{% endif %}">
+{% endif %}
     <span>{{ location.title }}</span>
     <small>{{ location.subtitle }}</small>
     {% if resetable %}
     <div class="buttons"><a href="/link/{{ prefix }}{{ location.name }}" class="link"></a><button type="submit" class="reset"></button></div>
     {% endif %}
-{% if resetable %}</div>{% else %}</button>{% endif %}
+{% if resetable %}
+</div>
+{% else %}
+</button>
+{% endif %}

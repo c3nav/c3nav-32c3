@@ -3,6 +3,7 @@ from .position import Position
 
 
 class UserPosition(Position, Location):
+    user = True
     priority = 3
 
     def __init__(self, level, x, y):

@@ -26,13 +26,29 @@ function keyup_complete(e) {
         if (e.which == 27) {
             $(this).val('').keyup();
         }
+
         var value = $(this).val().toLowerCase();
-        active = locations.each(function() {
+        locations.filter(':not(.user)').each(function() {
             $(this).hide().toggle($(this).text().toLowerCase().indexOf(value)>-1 || $(this).val().indexOf(value)>-1);
-        }).removeClass('active').filter(':visible').first().addClass('active');
+        });
+        toggle_user_location(locations.filter('.user'), value);
+        active = locations.removeClass('active').filter(':visible').first().addClass('active');
         if (active.is(':first-child')) active.parent().scrollTop(0);
     }
-
+}
+function toggle_user_location(location, name) {
+    location.hide();
+    if (name.match(/^[0-9]+:[0-9]+:[0-9]+$/)) {
+        pos = name.split(':');
+        var level = parseInt(pos[0]);
+        var x = parseInt(pos[1]);
+        var y = parseInt(pos[2]);
+        if (level < 0 || level >= levels || x < 0 || x >= width || y < 0 || y >= height) return;
+        location.val(name);
+        location.find('span').text('Custom location on level '+String(level));
+        location.find('small').text(name);
+        location.show();
+    }
 }
 function update_history() {
     var qs = '';
@@ -80,6 +96,9 @@ function linkbtn_click(e) {
 }
 $(document).ready(function() {
     wifilocate = ($('body').attr('data-wifilocate') == '1');
+    levels = parseInt($('body').attr('data-levels'));
+    width = parseInt($('body').attr('data-w'));
+    height = parseInt($('body').attr('data-h'));
     $('body').addClass('yesscript');
     $('.location.c').remove();
     $('.noscript').remove();
@@ -115,6 +134,12 @@ $(document).ready(function() {
             );
         }
         buttons.insertBefore(this);
+
+        $('<button type="submit" class="location user">').attr('name', $(this).parents('.p').attr('name')).append(
+            $('<span>').text('bla')
+        ).append(
+            $('<small>').text('blaaaaa')
+        ).appendTo($(this).find('form'));
     });
     $('.nolocate').attr('title', $('#main').attr('data-locale-nolocate')).click(function() {
         alert($('#main').attr('data-locale-nolocate'));
@@ -198,6 +223,8 @@ $(document).ready(function() {
     $('.p[name=d] legend').append($('<button id="swapbtn" class="pure-button">').text($('#main').attr('data-locale-swap')).click(function() {
         origin = $('.p[name=o]').is('.selected') ? $('[type=hidden][name=o]').val() : null;
         destination = $('.p[name=d]').is('.selected') ? $('[type=hidden][name=d]').val() : null;
+        if (origin !== null) toggle_user_location($('.p[name=d]').find('button.user'), origin);
+        if (destination !== null) toggle_user_location($('.p[name=o]').find('button.user'), destination);
         $('.p[name=d]').find((origin !== null) ? ('button.location[value="'+origin+'"]') : '.reset').click();
         $('.p[name=o]').find((destination !== null) ? ('button.location[value="'+destination+'"]') : '.reset').click();
     }));
