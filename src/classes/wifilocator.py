@@ -176,6 +176,9 @@ class WifiLocator():
         my_sids = np.array(my_sids)
         known_spots = len(my_sids)
 
+        if not known_spots:
+            return None
+
         # best_station = np.argmax(scan)
         # best_sid = self.sids[best_station]
 
