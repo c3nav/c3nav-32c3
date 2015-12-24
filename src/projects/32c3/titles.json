@@ -1,4 +1,8 @@
 {
+    "afra": {
+        "de": "Afra",
+        "en": "Afra"
+    },
     "be2": {
         "de": "Hinteraufzug 2. OG",
         "en": "Backstage Elevator Level 2"
@@ -11,6 +15,10 @@
         "de": "Hinteraufzug 4. OG",
         "en": "Backstage Elevator Level 4"
     },
+    "bitcoins": {
+        "de": "Bitcoins",
+        "en": "Bitcoins"
+    },
     "cash": {
         "de": "Cash Desk",
         "en": "Cash Desk"
@@ -19,9 +27,21 @@
         "de": "Cash Desk (Hinter der Theke)",
         "en": "Cash Desk (behind the counter)"
     },
+    "cbase": {
+        "de": "c-base",
+        "en": "c-base"
+    },
+    "ccchh": {
+        "de": "CCCHH",
+        "en": "CCCHH"
+    },
     "cert": {
         "de": "CERT",
         "en": "CERT"
+    },
+    "cider": {
+        "de": "Cider-Security",
+        "en": "Cider-Security"
     },
     "corr0": {
         "de": "Flur neben Saal 3",
@@ -34,6 +54,14 @@
     "corrp": {
         "de": "Presseraum-Flur",
         "en": "Press Room Corridor"
+    },
+    "cwh": {
+        "de": "Chaos West Hackcenter",
+        "en": "Chaos West Hackcenter"
+    },
+    "cwl": {
+        "de": "Chaos West Loungecenter",
+        "en": "Chaos West Loungecenter"
     },
     "e1": {
         "de": "Aufz\u00fcge 1. OG",
@@ -99,6 +127,10 @@
         "de": "Saal D-G Foyer",
         "en": "Hall D-G Foyer"
     },
+    "fe": {
+        "de": "F+E",
+        "en": "F+E"
+    },
     "fh4": {
         "de": "Garderobe",
         "en": "Cloakroom"
@@ -114,6 +146,10 @@
     "garage": {
         "de": "zum Parkhaus",
         "en": "to the Garage"
+    },
+    "geheim": {
+        "de": "Geheimorga",
+        "en": "Geheimorga"
     },
     "gsm": {
         "de": "GSM",
@@ -182,6 +218,10 @@
     "h3": {
         "de": "Saal 3",
         "en": "Hall 3"
+    },
+    "h3arcade": {
+        "de": "Arcade",
+        "en": "Arcade"
     },
     "h4": {
         "de": "Saal 4",
@@ -255,6 +295,30 @@
         "de": "Lounge",
         "en": "Lounge"
     },
+    "lucius": {
+        "de": "Lucius",
+        "en": "Lucius"
+    },
+    "matelight": {
+        "de": "Matelight",
+        "en": "Matelight"
+    },
+    "mlabs": {
+        "de": "microlabs",
+        "en": "microlabs"
+    },
+    "nad": {
+        "de": "Nad-Lounge",
+        "en": "Nad-Lounge"
+    },
+    "nerdherd": {
+        "de": "Nerdherd",
+        "en": "Nerdherd"
+    },
+    "nerdistan": {
+        "de": "Nerdistan",
+        "en": "Nerdistan"
+    },
     "noc": {
         "de": "Saal 8",
         "en": "Hall 8"
@@ -262,6 +326,10 @@
     "outside": {
         "de": "Vorplatz",
         "en": "Forecourt"
+    },
+    "pasten": {
+        "de": "Pasten",
+        "en": "Pasten"
     },
     "planten": {
         "de": "Hallendach Halle H",
@@ -275,6 +343,10 @@
         "de": "Presseraum",
         "en": "Press Room"
     },
+    "s11": {
+        "de": "Leitstelle S1/1",
+        "en": "Leitstelle S1/1"
+    },
     "sendez": {
         "de": "Sendezentrum",
         "en": "Sendezentrum"
@@ -286,6 +358,10 @@
     "shirtsb": {
         "de": "Shirt Desk (Hinter der Theke)",
         "en": "Shirt Desk (behind the counter)"
+    },
+    "siri": {
+        "de": "Siri",
+        "en": "Siri"
     },
     "speak": {
         "de": "Speakers Desk",
