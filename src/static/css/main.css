@@ -261,6 +261,9 @@ legend {
 #linkmodal button {
     margin:0 4px;
 }
+#linkmodal img {
+    max-width:100%;
+}
 
 #github {
     position:absolute;
