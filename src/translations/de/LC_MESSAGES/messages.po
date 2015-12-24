@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-23 23:07+0100\n"
-"PO-Revision-Date: 2015-12-23 23:09+0100\n"
+"POT-Creation-Date: 2015-12-24 16:38+0100\n"
+"PO-Revision-Date: 2015-12-24 16:41+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -54,7 +54,7 @@ msgstr "WLAN-basierte ortung ist aktuell (noch) nicht verfügbar"
 msgid "determining your position…"
 msgstr "Suche deine Position…"
 
-#: main.py:149
+#: main.py:150
 msgid ""
 "This route contains way types that you wanted to avoid because otherwise no "
 "route would be possible."
@@ -62,7 +62,7 @@ msgstr ""
 "Diese Route enthält Wegtypen, die du vermeiden wolltest, weil sonst keine "
 "Route möglich wäre."
 
-#: classes/route.py:32 classes/route.py:71
+#: classes/route.py:32 classes/route.py:70
 #, python-format
 msgid "level %(level)d"
 msgstr "%(level)d. Stock"
@@ -72,95 +72,111 @@ msgstr "%(level)d. Stock"
 msgid "You are now in %(room)s on %(level)s."
 msgstr "Du bist jetzt in %(room)s im %(level)s."
 
-#: classes/route.py:60
+#: classes/route.py:59
 msgid " on the left"
 msgstr " links"
 
-#: classes/route.py:63
+#: classes/route.py:62
 msgid " on the right"
 msgstr " rechts\t"
 
-#: classes/route.py:72
+#: classes/route.py:71
 #, python-format
 msgid " to %(level)s"
 msgstr " in den %(level)s"
 
-#: classes/route.py:78
+#: classes/route.py:77
 #, python-format
 msgid "Go up the steps%(located)s."
 msgstr "Geh%(located)s die Stufen nach oben."
 
-#: classes/route.py:79
+#: classes/route.py:78
 #, python-format
 msgid "Go down the steps%(located)s."
 msgstr "Geh%(located)s die Stufen herunter."
 
-#: classes/route.py:80
+#: classes/route.py:79
 #, python-format
 msgid "Go up the stairs%(located)s%(to_level)s."
 msgstr "Geh%(located)s die Treppe hoch%(to_level)s."
 
-#: classes/route.py:81
+#: classes/route.py:80
 #, python-format
 msgid "Go down the stairs%(located)s%(to_level)s."
 msgstr "Geh%(located)s die Treppe runter%(to_level)s."
 
-#: classes/route.py:82
+#: classes/route.py:81
 #, python-format
 msgid "Take the escalator%(located)s up%(to_level)s."
 msgstr "Fahr%(located)s mit der Rolltreppe hoch%(to_level)s."
 
-#: classes/route.py:83
+#: classes/route.py:82
 #, python-format
 msgid "Take the escalator%(located)s down%(to_level)s."
 msgstr "Fahr%(located)s mit der Rolltreppe nach unten%(to_level)s."
 
-#: classes/route.py:84
+#: classes/route.py:83
 #, python-format
 msgid "Take the elevator%(located)s up%(to_level)s."
 msgstr "Fahr%(located)s mit dem Aufzug hoch%(to_level)s."
 
-#: classes/route.py:85
+#: classes/route.py:84
 #, python-format
 msgid "Take the elevator%(located)s down%(to_level)s."
 msgstr "Fahr%(located)s mit dem Aufzug runter%(to_level)s."
 
-#: classes/route.py:91
+#: classes/route.py:90
 #, python-format
 msgid "Enter %(room)s%(located)s."
 msgstr "Betritt%(located)s %(room)s."
 
-#: classes/route.py:94
+#: classes/route.py:93
 #, python-format
 msgid "Leave %(from_room)s and enter %(to_room)s."
 msgstr "Verlasse %(from_room)s und betritt %(to_room)s."
 
-#: classes/route.py:102
+#: classes/route.py:101
 #, python-format
 msgid "Turn light to the left and continue for %(d).1f meters."
 msgstr "Leicht nach links und %(d).1fm weiter geradeaus."
 
-#: classes/route.py:103
+#: classes/route.py:102
 #, python-format
 msgid "Turn light to the right and continue for %(d).1f meters."
 msgstr "Leicht nach recht und %(d).1fm weiter geradeaus."
 
-#: classes/route.py:104
+#: classes/route.py:103
 #, python-format
 msgid "Turn left and continue for %(d).1f meters."
 msgstr "Links abbiegen und %(d).1fm weiter geradeaus."
 
-#: classes/route.py:105
+#: classes/route.py:104
 #, python-format
 msgid "Turn right and continue for %(d).1f meters."
 msgstr "Rechts abbiegen und %(d).1fm weiter geradeaus."
 
-#: classes/route.py:106
+#: classes/route.py:105
 #, python-format
 msgid "Continue for %(d).1f meters."
 msgstr "%(d).1fm weiter geradeaus."
 
-#: classes/router.py:189
+#: classes/router.py:180
+msgid ""
+"Your origin lies outside the accessible map. It was connected to the nearest "
+"point on the map to get your route."
+msgstr ""
+"Dein Startort liegt außerhalb der begehbaren Karte. Er wurde mit dem "
+"nächsten Punkt auf der karte verbunden um eine Route zu ermöglichen."
+
+#: classes/router.py:186
+msgid ""
+"Your destination lies outside the accessible map. It was connected to the "
+"nearest point on the map to get your route."
+msgstr ""
+"Dein Zielort liegt außerhalb der begehbaren Karte. Er wurde mit dem nächsten "
+"Punkt auf der karte verbunden um eine Route zu ermöglichen."
+
+#: classes/router.py:195
 msgid ""
 "This route contains locations that you wanted to avoid because your origin "
 "has no point outside of them."
@@ -168,7 +184,7 @@ msgstr ""
 "Diese Route enthält Orte, die du vermeiden wolltest, weil dein Startort "
 "keine Punkte außerhalb dieser Orte enthält."
 
-#: classes/router.py:193
+#: classes/router.py:199
 msgid ""
 "This route contains locations that you wanted to avoid because your "
 "destination has no point outside of them."
@@ -176,17 +192,27 @@ msgstr ""
 "Diese Route enthält Orte, die du vermeiden wolltest, weil dein Zielort keine "
 "Punkte außerhalb dieser Orte enthält."
 
-#: classes/router.py:199
+#: classes/router.py:205
 msgid "Congratulations – you are already there!"
 msgstr "Herzlichen Glückwunsch – du bist bereits dort!"
 
-#: classes/router.py:243
+#: classes/router.py:249
 msgid ""
 "This route contains locations that you wanted to avoid because otherwise no "
 "route would be possible."
 msgstr ""
 "Diese Route enthält Orte, die du vermeiden wolltest, weil sonst keine Route "
 "möglich wäre."
+
+#: classes/userposition.py:19
+#, python-format
+msgid "Custom location in %(room)s"
+msgstr "Benutzerdefinierter Ort in %(room)s"
+
+#: classes/userposition.py:20
+#, python-format
+msgid "Custom location on level %(level)d"
+msgstr "Benutzerdefinierter Ort im %(level)d. OG"
 
 #: templates/fragment_allowoptions.html:1
 msgid "allowed"

@@ -1,6 +1,8 @@
 from .location import Location
 from .position import Position
 
+from flask.ext.babel import gettext as _
+
 
 class UserPosition(Position, Location):
     user = True
@@ -14,8 +16,8 @@ class UserPosition(Position, Location):
     def title(self):
         room = self.room if not self.forced else self.room_before
         if room is not None:
-            return 'Custom location in %s' % self.room.title
-        return 'Custom location on level %d' % self.level
+            return _('Custom location in %(room)s', room=self.room.title)
+        return _('Custom location on level %(level)d', level=self.level)
 
     @property
     def subtitle(self):

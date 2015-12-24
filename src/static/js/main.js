@@ -40,13 +40,19 @@ function toggle_user_location(location, name) {
     location.hide();
     if (name.match(/^[0-9]+:[0-9]+:[0-9]+$/)) {
         pos = name.split(':');
+        if ((pos[0].length > 1 && pos[0][0] == '0') ||
+            (pos[1].length > 1 && pos[1][0] == '0') ||
+            (pos[2].length > 1 && pos[2][0] == '0')) return;
         var level = parseInt(pos[0]);
         var x = parseInt(pos[1]);
         var y = parseInt(pos[2]);
         if (level < 0 || level >= levels || x < 0 || x >= width || y < 0 || y >= height) return;
         location.val(name);
-        location.find('span').text('Custom location on level '+String(level));
+        location.find('span').text('…');
         location.find('small').text(name);
+        $.ajax({'type': 'GET', 'url': '/n'+String(level)+':'+String(x)+':'+String(y), 'success': function(data) {
+            $('.location[value="'+String(data.name)+'"] span').text(data.title);
+        }, 'dataType': 'json'});
         location.show();
     }
 }
@@ -136,9 +142,9 @@ $(document).ready(function() {
         buttons.insertBefore(this);
 
         $('<button type="submit" class="location user">').attr('name', $(this).parents('.p').attr('name')).append(
-            $('<span>').text('bla')
+            $('<span>')
         ).append(
-            $('<small>').text('blaaaaa')
+            $('<small>')
         ).appendTo($(this).find('form'));
     });
     $('.nolocate').attr('title', $('#main').attr('data-locale-nolocate')).click(function() {

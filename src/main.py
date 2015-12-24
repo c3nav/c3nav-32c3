@@ -8,13 +8,13 @@ from collections import Iterable
 from datetime import datetime, timedelta
 
 import qrcode
-from flask import Flask, g, make_response, render_template, request, send_file
+from flask import Flask, g, make_response, render_template, request, send_file, Response
 from flask.ext.assets import Environment
 from flask.ext.babel import gettext as _
 from flask.ext.babel import Babel
 from htmlmin import minify
 
-from classes import Graph, Router
+from classes import Graph, Router, UserPosition
 
 LANGUAGES = {
     'en': 'English',
@@ -201,6 +201,16 @@ def short_origin(location):
 @app.route('/d<location>')
 def short_destination(location):
     return main(destination=location)
+
+
+@app.route('/n<int:level>:<int:x>:<int:y>')
+def get_location_title(level, x, y):
+    pos = UserPosition(level, x, y)
+    graph.connect_position(pos)
+    return json.dumps({
+        'name': '%d:%d:%d' % (level, x, y),
+        'title': pos.title
+    })
 
 
 if 'gunicorn' not in os.environ.get('SERVER_SOFTWARE', ''):
