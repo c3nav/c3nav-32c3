@@ -28,7 +28,7 @@ graph = Graph(project, auto_connect=False, load_wifi=True)
 @app.route('/')
 def map():
     graph = Graph(project, auto_connect=False, load_wifi=True)
-    return render_template('wificollect.html', graph=graph)
+    return render_template('wificollect.html', fakemobile=('fakemobile' in request.args), graph=graph)
 
 
 @app.route('/add', methods=['POST'])
@@ -36,7 +36,7 @@ def addroom():
     data = json.load(open('projects/'+project+'/wifiscans.json'))
     position = [int(i) for i in request.form.get('position').split('.')]
     stations = json.loads(request.form.get('stations'))
-    data.append({
+    data['wifiscans'].append({
         'level': position[0],
         'x': position[1],
         'y': position[2],
@@ -49,7 +49,9 @@ def addroom():
 
 @app.route('/locate', methods=['POST'])
 def locate():
-    result = graph.wifi.locate(json.loads(request.form.get('stations')))
+    result = list(graph.wifi.locate(json.loads(request.form.get('stations'))))
+    result[0] = (result[0].level, result[0].x, result[0].y)
     return json.dumps(result)
+
 
 app.run(threaded=True, debug=True)

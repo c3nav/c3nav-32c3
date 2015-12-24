@@ -73,6 +73,7 @@ def main(origin=None, destination=None):
         'location_select': sorted(graph.selectable_locations.values(), key=lambda l: (0-l.priority, l.title)),
         'titles': {name: titles.get(get_locale(), name) for name, titles in graph.data['titles'].items()},
         'mobile_client': request.headers.get('User-Agent').startswith('c3navClient'),
+        'fake_mobile_client': 'fakemobile' in request.args,
         'graph': graph
     }
 

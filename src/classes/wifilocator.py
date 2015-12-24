@@ -38,7 +38,6 @@ class WifiLocator():
             for station in scan['stations']:
                 sid = (station['bssid'], station['ssid'])
                 if sid[0] in sid_positions and sid_positions[sid[0]] is None:
-                    print(sid)
                     continue
                 if sid not in scans_by_position[pos]:
                     scans_by_position[pos][sid] = []
@@ -55,12 +54,22 @@ class WifiLocator():
                 stations[sid] = (sum(stations[sid])+(self.no_signal*(count-len(stations[sid]))))/count
 
         # sids to id
-        self.sids = [sid for sid, values in self.sids_count.items() if values >= 6]
+        self.sids = [sid for sid, values in self.sids_count.items() if values >= 3]
         self.sid_ids = {sid: i for i, sid in enumerate(self.sids)}
         # print('\n'.join(str(a) for a in self.sid_ids.keys()))
 
-        self.matrix = np.empty((self.graph.levels, self.graph.width//2, self.graph.height//2, len(self.sids)))
+        self.matrix = np.empty((self.graph.levels, self.graph.width//self.divide_by,
+                                self.graph.height//self.divide_by, len(self.sids)))
         self.matrix.fill(self.no_signal)
+
+        for pos, statlist in scans_by_position.items():
+            for sid, value in statlist.items():
+                if sid in self.sid_ids:
+                    self.matrix[pos[0], pos[1]//self.divide_by,
+                                pos[2]//self.divide_by, self.sid_ids[sid]] = self.dbm_to_w(value)
+
+        # uncomment this to disable interpolation
+        # return
 
         # group scans by sid
         levelmatrixes = []
@@ -86,7 +95,6 @@ class WifiLocator():
 
             cartesian = cartesian[distances.flatten() <= max_distance]
             cartesian_div = cartesian//self.divide_by
-            print(cartesian.shape)
 
             if False:
                 # Enable this to show allowed positionss based on max_distance
@@ -137,7 +145,7 @@ class WifiLocator():
             # print(levelmatrixes)
 
         if len(levelmatrixes) > 1:
-            self.matrix = np.dstack(levelmatrixes)
+            self.matrix = np.array(levelmatrixes)
         else:
             self.matrix = levelmatrixes[0].reshape((1, )+levelmatrixes[0].shape)
         print(time.time()-starttime)
