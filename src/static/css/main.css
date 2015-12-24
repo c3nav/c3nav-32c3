@@ -408,7 +408,7 @@ marker path {
 .mobile-client {
     margin-top:10px;
 }
-.mobile-client h1, .mobile-client #github {
+.mobile-client h1, .mobile-client #github, .mobile-client .nomobileclient {
     display:none;
 }
 
