@@ -9,7 +9,8 @@ from .roomgroup import RoomGroup
 from .barrier import Barrier
 from .router import Router
 from .route import Route
+from .userposition import UserPosition
 
 
 __all__ = ('Graph', 'Position', 'Node', 'Location', 'Room', 'Barrier',
-           'POI', 'SuperRoom', 'RoomGroup', 'Router', 'Route')
+           'POI', 'SuperRoom', 'RoomGroup', 'Router', 'Route', 'UserPosition')

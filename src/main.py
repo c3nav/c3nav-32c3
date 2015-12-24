@@ -77,8 +77,8 @@ def main(origin=None, destination=None):
 
     # Select origins
 
-    origin = graph.selectable_locations.get(src.get('o', origin))
-    destination = graph.selectable_locations.get(src.get('d', destination))
+    origin = graph.get_selectable_location(src.get('o', origin))
+    destination = graph.get_selectable_location(src.get('d', destination))
     ctx.update({'origin': origin, 'destination': destination})
     if request.method == 'POST':
         if origin is None:

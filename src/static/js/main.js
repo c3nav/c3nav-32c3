@@ -198,7 +198,7 @@ $(document).ready(function() {
     $('.p[name=d] legend').append($('<button id="swapbtn" class="pure-button">').text($('#main').attr('data-locale-swap')).click(function() {
         origin = $('.p[name=o]').is('.selected') ? $('[type=hidden][name=o]').val() : null;
         destination = $('.p[name=d]').is('.selected') ? $('[type=hidden][name=d]').val() : null;
-        $('.p[name=d]').find((origin !== null) ? ('button.location[value='+origin+']') : '.reset').click();
-        $('.p[name=o]').find((destination !== null) ? ('button.location[value='+destination+']') : '.reset').click();
+        $('.p[name=d]').find((origin !== null) ? ('button.location[value="'+origin+'"]') : '.reset').click();
+        $('.p[name=o]').find((destination !== null) ? ('button.location[value="'+destination+'"]') : '.reset').click();
     }));
 });

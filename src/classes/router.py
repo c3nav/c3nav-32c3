@@ -174,11 +174,17 @@ class Router():
         print(datetime.now(), origin, destination, json.dumps(self.settings))
         messages = []
 
-        if isinstance(origin, Position) and not hasattr(origin, 'nodes'):
-            self.graph.connect_position(origin)
+        if isinstance(origin, Position) and (not hasattr(origin, 'nodes') or not origin.nodes):
+            on_map = self.graph.connect_position(origin, force=True)
+            if not on_map:
+                messages.append(('warn', _('Your origin lies outside the accessible map. It was '
+                                           'connected to the nearest point on the map to get your route.')))
 
-        if isinstance(destination, Position) and not hasattr(destination, 'nodes'):
-            self.graph.connect_position(destination)
+        if isinstance(destination, Position) and (not hasattr(destination, 'nodes') or not destination.nodes):
+            on_map = self.graph.connect_position(destination, force=True)
+            if not on_map:
+                messages.append(('warn', _('Your destination lies outside the accessible map. It was '
+                                           'connected to the nearest point on the map to get your route.')))
 
         origin_nodes = set(p.i for p in origin.nodes)
         destination_nodes = set(p.i for p in destination.nodes)

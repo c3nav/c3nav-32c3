@@ -1,4 +1,5 @@
 import json
+import re
 
 import numpy as np
 from matplotlib.path import Path
@@ -9,6 +10,7 @@ from .poi import POI
 from .room import Room
 from .roomgroup import RoomGroup
 from .superroom import SuperRoom
+from .userposition import UserPosition
 from .wifilocator import WifiLocator
 
 
@@ -125,6 +127,30 @@ class Graph():
         if auto_connect:
             self.auto_connect()
 
+    def get_selectable_location(self, name):
+        print('name', name)
+        if name is None:
+            return None
+        elif re.match(r'^[0-9]+:[0-9]+:[0-9]+$', name) is not None:
+            print('letstry')
+            level, x, y = (int(i) for i in name.split(':'))
+            print(level, x, y)
+            if (level not in range(self.levels) or
+                    x not in range(self.width) or
+                    y not in range(self.height)):
+                return None
+            print('ok, weiter')
+            position = UserPosition(level, x, y)
+            room = self.get_room(position)
+            position.room = room
+            if room is None:
+                pass # return None  # todo: find next acceptable point
+            else:
+                self.connect_position(position)
+            return position
+        else:
+            return self.selectable_locations.get(name)
+
     def room_positions(self):
         self.did_room_positions = True
         for node, room in ((node, self.get_room(node)) for node in self.nodes):
@@ -173,7 +199,7 @@ class Graph():
         for name, poi in self.pois.items():
             self.connect_position(poi)
 
-    def connect_position(self, position):
+    def connect_position(self, position, force=False):
         if not self.did_room_positions:
             self.room_positions()
         if position.room is None:
@@ -181,15 +207,29 @@ class Graph():
 
         position.nodes = []
         position.node_distances = {}
-        paths = position.room.barrier_paths()
-        for p in position.room.nodes:
-            for path in paths:
-                if path.intersects_path(Path(np.vstack((position.xy, p.xy))), False):
-                    break
-            else:
-                position.nodes.append(p)
-                distance = np.linalg.norm(position.xy-p.xy)*self.cm_per_px
-                position.node_distances[p.i] = distance
+        if position.room is not None:
+            paths = position.room.barrier_paths()
+            for p in position.room.nodes:
+                for path in paths:
+                    if path.intersects_path(Path(np.vstack((position.xy, p.xy))), False):
+                        break
+                else:
+                    position.nodes.append(p)
+                    distance = np.linalg.norm(position.xy-p.xy)*self.cm_per_px
+                    position.node_distances[p.i] = distance
+
+        if position.nodes:
+            return True
+
+        if force:
+            node = min((p for p in self.nodes if p.level == position.level),
+                       key=lambda p: np.linalg.norm(position.xy-p.xy)*self.cm_per_px)
+            position.nodes.append(node)
+            distance = np.linalg.norm(position.xy-node.xy)*self.cm_per_px
+            position.node_distances[node.i] = distance
+            position.room = node.room
+
+        return False
 
     def can_connect_positions(self, p0, p1):
         if p0.room != p1.room:
