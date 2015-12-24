@@ -218,18 +218,15 @@ class Graph():
                     distance = np.linalg.norm(position.xy-p.xy)*self.cm_per_px
                     position.node_distances[p.i] = distance
 
-        if position.nodes:
-            return True
-
-        if force:
+        if not position.nodes:
             node = min((p for p in self.nodes if p.level == position.level),
                        key=lambda p: np.linalg.norm(position.xy-p.xy)*self.cm_per_px)
             position.nodes.append(node)
             distance = np.linalg.norm(position.xy-node.xy)*self.cm_per_px
             position.node_distances[node.i] = distance
+            position.forced = True
+            position.room_before = position.room
             position.room = node.room
-
-        return False
 
     def can_connect_positions(self, p0, p1):
         if p0.room != p1.room:
