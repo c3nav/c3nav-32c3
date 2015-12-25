@@ -76,7 +76,17 @@ function point_set() {
     $('#savesettings').toggle(show_settings);
     if (!cansubmit) $('#savesettings').prop('checked', show_settings);
 }
+lastscan = 0;
+function scan_now() {
+    lastscan = new Date().getTime()/1000;
+}
+function scan_perhaps() {
+    if ($('.poswait, .path.map').length) {
+        if (lastscan < (new Date().getTime()/1000-15000)) scan_now();
+    }
+}
 function nearby_stations_available() {
+    lastscan = 0;
     console.log(JSON.parse(mobileclient.getNearbyStations()));
     if ($('.p.locating').length > 0) {
         $.ajax({
@@ -154,6 +164,7 @@ function set_position() {
     $('.maplevelselect.poswait').removeClass('poswait').find('button[data-level='+String(current_position.level)+']').click();
     $('.mapinput.poswait').removeClass('poswait').scrollLeft(current_position.x-$('.mapinput').width()/2).scrollTop(current_position.y-$('.mapinput').height()/2);
 }
+
 $(document).ready(function() {
     wifilocate = ($('body').attr('data-wifilocate') == '1');
     levels = parseInt($('body').attr('data-levels'));
@@ -212,6 +223,9 @@ $(document).ready(function() {
         mapinput.append($('<div class="poscontainer">'));
         levelselect.find('button[data-level=0]').click();
     });
+    if (typeof mobileclient !== "undefined" && wifilocate) {
+        window.setInterval(scan_perhaps, 3000);
+    }
     $('.nolocate').attr('title', $('#main').attr('data-locale-nolocate')).click(function() {
         alert($('#main').attr('data-locale-nolocate'));
     });
@@ -224,6 +238,7 @@ $(document).ready(function() {
         mapinput.parent().find('button[data-level=0]').click();
         mapinput.scrollTop((parseInt($('body').attr('data-h'))-mapinput.height())/2);
         mapinput.scrollLeft((parseInt($('body').attr('data-w'))-mapinput.width())/2);
+        scan_now();
     });
     $('.mapinput img').click(function(e) {
         level = parseInt($(this).attr('data-level'));
@@ -272,7 +287,7 @@ $(document).ready(function() {
         if (!$(this).is('.locating')) {
             $('input[type=hidden][name='+$(this).parents('.p').attr('name')+']').val($(this).val());
         } else {
-            mobileclient.scanNow();
+            scan_now();
         }
         point_set();
         if ($('.locationinput:visible').first().focus().length && $(window).width()<568) {
