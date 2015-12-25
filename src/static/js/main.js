@@ -129,7 +129,7 @@ function linkbtn_click(e) {
         }).insertBefore($('#linkmodal button:last-child'));
     }
 }
-function set_position(level, x, y) {
+function set_position() {
     $('circle.pos').remove();
     // <circle class="pos" r="5" cx="{{ 0-routepart.minx+20 }}" cy="{{ 0-routepart.miny+20 }}" />
     $('.path').each(function() {
@@ -142,6 +142,17 @@ function set_position(level, x, y) {
         }
         $(this).html($(this).html());
     });
+    $('.mapinput .pos').remove();
+    $('<div class="pos">').css({
+        left: current_position.x,
+        top: current_position.y
+    }).appendTo('.mapinput .poscontainer').attr('data-level', current_position.level);
+    $('.mapinput .pos').each(function() {
+        $(this).toggle($(this).parent().siblings('img[data-level='+String($(this).attr('data-level'))+']:visible').length > 0);
+    });
+
+    $('.maplevelselect.poswait').removeClass('poswait').find('button[data-level='+String(current_position.level)+']').click();
+    $('.mapinput.poswait').removeClass('poswait').scrollLeft(current_position.x-$('.mapinput').width()/2).scrollTop(current_position.y-$('.mapinput').height()/2);
 }
 $(document).ready(function() {
     wifilocate = ($('body').attr('data-wifilocate') == '1');
@@ -172,14 +183,12 @@ $(document).ready(function() {
                 n();
             });
         });
-        var buttons = $('<div class="buttons">');/*.append(
+        var buttons = $('<div class="buttons">').append(
             $('<button class="map">')
-        );*/
+        );
         if (typeof mobileclient !== "undefined") {
             buttons.prepend(
                 $('<button>').addClass(wifilocate ? 'locate' : 'nolocate')
-            ).prepend(
-                $('<button class="located">')
             );
         }
         buttons.insertBefore(this);
@@ -192,6 +201,16 @@ $(document).ready(function() {
         $('<button type="submit" class="location locating">').attr('name', $(this).parents('.p').attr('name')).attr('value', 'locating').append(
             $('<span>').text($('#main').attr('data-locale-locating'))
         ).appendTo($(this).find('form'));
+
+        var mapinput = $('<div class="mapinput">').hide().insertBefore(this);
+        var levelselect = $('<div class="maplevelselect">').hide().insertBefore(this);
+        levelselect.append($('<button class="pure-button pure-button-danger abort">').text('×'));
+        for (var i=0;i<parseInt($('body').attr('data-levels'));i++) {
+            levelselect.append($('<button class="pure-button">').attr('data-level', i).text(i));
+            mapinput.append($('<img>').attr('src', '/static/img/levels/'+$('body').attr('data-name')+'/level'+String(i)+'.jpg').attr('data-level', i).hide());
+        }
+        mapinput.append($('<div class="poscontainer">'));
+        levelselect.find('button[data-level=0]').click();
     });
     $('.nolocate').attr('title', $('#main').attr('data-locale-nolocate')).click(function() {
         alert($('#main').attr('data-locale-nolocate'));
@@ -199,11 +218,51 @@ $(document).ready(function() {
     $('.locate').click(function() {
         $(this).parents('.p').find('.locating').click();
     });
+    $('button.map').click(function() {
+        $(this).parents('.p').find('.locationinput, .buttons').blur().hide();
+        var mapinput = $(this).parents('.p').find('.mapinput, .maplevelselect').toggleClass('poswait', true).show();
+        mapinput.parent().find('button[data-level=0]').click();
+        mapinput.scrollTop((parseInt($('body').attr('data-h'))-mapinput.height())/2);
+        mapinput.scrollLeft((parseInt($('body').attr('data-w'))-mapinput.width())/2);
+    });
+    $('.mapinput img').click(function(e) {
+        level = parseInt($(this).attr('data-level'));
+        x = e.offsetX;
+        y = e.offsetY;
+        name = String(level)+':'+String(x)+':'+String(y);
+
+        var mapinput = $(this).parents('.mapinput');
+        mapinput.hide();
+        mapinput.parent().find('.locationinput, .buttons').show().focus();
+
+        var location = $(this).parents('.p').find('button.user');
+        location.val(name);
+        location.find('span').text('…');
+        location.find('small').text(name);
+        location.click();
+        $.ajax({'type': 'GET', 'url': '/n'+String(level)+':'+String(x)+':'+String(y), 'success': function(data) {
+            $('.location[value="'+String(data.name)+'"] span').text(data.title);
+        }, 'dataType': 'json'});
+    });
+    $('.maplevelselect button[data-level]').click(function() {
+        var mapinput = $(this).parents('.p').find('.mapinput');
+        mapinput.find('button').removeClass('pure-button-active');
+        mapinput.find('img').hide();
+        mapinput.parent().find('button[data-level='+$(this).attr('data-level')+']').addClass('pure-button-active');
+        mapinput.find('img[data-level='+$(this).attr('data-level')+']').show();
+        mapinput.find('.pos').toggle(mapinput.find('.pos').attr('data-level') == $(this).attr('data-level'));
+    });
+    $('.maplevelselect button.abort').click(function() {
+        var mapinput = $(this).parents('.p').find('.mapinput');
+        mapinput.hide();
+        mapinput.siblings('.maplevelselect').hide();
+        mapinput.parent().find('.locationinput, .buttons').show().focus();
+    });
     $('button.location').attr('tabIndex', '-1').click(function(e) {
         e.preventDefault();
         $(this).parents('.selector').siblings('form').remove();
         $('<form>').html(
-            $('<div class="location">').toggleClass('locating', $(this).is('.locating')).html($(this).html()).append($('<div class="buttons">').append(
+            $('<div class="location">').toggleClass('locating', $(this).is('.locating')).html($(this).html()).attr('value', $(this).val()).append($('<div class="buttons">').append(
                 $(this).is(':not(.locating)') ? $('<a class="link">').attr('href', '/'+$(this).parents('.p').attr('name')+$(this).val()).click(linkbtn_click) : null
             ).append(
                 $('<button type="submit" class="reset">')
