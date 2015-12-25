@@ -189,7 +189,7 @@
         <div class="pure-g part">
             <div class="pure-u-1 pure-u-md-1-2">
                 <div class="path">
-                    <svg class="map" data-level="{{ routepart.level }}" viewBox="0 0 {{ routepart.maxx-routepart.minx }} {{ routepart.maxy-routepart.miny }}" style="max-height:{% if routepart.maxy-routepart.miny > 200 %}200{% else %}{{ routepart.maxy-routepart.miny }}{% endif %}px">
+                    <svg class="map" data-level="{{ routepart.level }}" viewBox="0 0 {{ routepart.maxx-routepart.minx }} {{ routepart.maxy-routepart.miny }}" style="max-height:{% if routepart.maxy-routepart.miny > 200 %}200{% else %}{{ routepart.maxy-routepart.miny }}{% endif %}px" data-level="{{ routepart.level }}">
                         <defs>
                             <marker id="arrow-{{ bigloop.i }}-{{ loop.i }}" markerWidth="4" markerHeight="4" refX="2.5" refY="2" orient="auto">
                                 <path d="M0,0 L3,2 L0,4 L0,0" style="fill: #FF0000; stroke: 0;" />

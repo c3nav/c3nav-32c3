@@ -128,6 +128,21 @@ function linkbtn_click(e) {
         }).insertBefore($('#linkmodal button:last-child'));
     }
 }
+function set_position(level, x, y) {
+    $('circle.pos').remove();
+    // <circle class="pos" r="5" cx="{{ 0-routepart.minx+20 }}" cy="{{ 0-routepart.miny+20 }}" />
+    positioned = [level, x, y];
+    $('.path').each(function() {
+        var map = $(this).find('.map');
+        if (map.attr('data-level') == String(positioned[0])) {
+            $('<circle class="pos" r="5" />').attr({
+                'cx': positioned[1]+parseInt(map.find('image').attr('x')),
+                'cy': positioned[2]+parseInt(map.find('image').attr('y'))
+            }).insertBefore(map.find('.connections'));
+        }
+        $(this).html($(this).html());
+    });
+}
 $(document).ready(function() {
     wifilocate = ($('body').attr('data-wifilocate') == '1');
     levels = parseInt($('body').attr('data-levels'));

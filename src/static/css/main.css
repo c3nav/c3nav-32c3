@@ -346,6 +346,11 @@ marker path {
      fill: #FF0000;
      stroke: 0;
 }
+circle.pos {
+    fill:#3399FF;
+    stroke-width:10px;
+    stroke:rgba(51, 153, 255, 0.2);
+}
 .path {
     background-color:#000000;
     margin-bottom:15px;
