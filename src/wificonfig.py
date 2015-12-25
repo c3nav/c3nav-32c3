@@ -5,6 +5,7 @@ import sys
 import time
 
 import matplotlib.cm as cm
+import numpy as np
 from matplotlib import pyplot as plt
 from scipy.misc import imread
 
@@ -26,11 +27,18 @@ for sid in graph.wifi.sids:
     while True:
         print('')
         print(sid)
-        data = json.load(open('projects/'+project+'/wifiscans.json'))
-        plt.imshow(imread('static/img/levels/dev/level0.jpg')[::graph.wifi.divide_by, ::graph.wifi.divide_by])
-        plt.imshow(graph.wifi.w_to_dbm(graph.wifi.matrix[0, :, :, graph.wifi.sid_ids[sid]]).transpose(),
-                   alpha=0.5, cmap=cm.jet, origin='upper')
+        f, axes = plt.subplots(graph.levels)
 
+        vmin = graph.wifi.w_to_dbm(np.min(graph.wifi.matrix[:, :, :, graph.wifi.sid_ids[sid]]))
+        vmax = graph.wifi.w_to_dbm(np.max(graph.wifi.matrix[:, :, :, graph.wifi.sid_ids[sid]]))
+        for i, ax in enumerate(axes):
+            ax.imshow(imread('static/img/levels/dev/level%d.jpg' % i)[::graph.wifi.divide_by, ::graph.wifi.divide_by])
+            ax.imshow(graph.wifi.w_to_dbm(graph.wifi.matrix[i, :, :, graph.wifi.sid_ids[sid]]).transpose(),
+                      alpha=0.5, cmap=cm.jet, origin='upper', vmin=vmin, vmax=vmax)
+
+        plt.savefig('foo.svg')
+
+        data = json.load(open('projects/'+project+'/wifiscans.json'))
         if (sid[0] in data['wifipositions']):
             now = data['wifipositions'][sid[0]]
             if now is None:
@@ -39,8 +47,6 @@ for sid in graph.wifi.sids:
                 print('current value: '+':'.join(str(n) for n in now))
         else:
             print('currently no value')
-
-        plt.show()
 
         be = input('>>> ').strip()
         if be == 'ignore':

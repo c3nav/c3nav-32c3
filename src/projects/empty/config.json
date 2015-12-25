@@ -12,5 +12,7 @@
     },
     "overwrite_poigroup_priority": {
         "bottles": 0
-    }
+    },
+    "wifi_maxdistance": 500,
+    "wifi_divideby": 2
 }

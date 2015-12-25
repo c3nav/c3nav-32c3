@@ -13,7 +13,6 @@ from .userposition import UserPosition
 class WifiLocator():
     diag = 2**0.5
 
-    divide_by = 2
     no_signal = -90
 
     def __init__(self, graph):
@@ -28,6 +27,8 @@ class WifiLocator():
         self.disabled = False
 
         sid_positions = graph.data['wifipositions']
+        self.divide_by = graph.data['wifi_divideby']
+        self.max_distance = graph.data['wifi_maxdistance']
 
         # group multiple scans at the same position
         scans_by_position = {}
@@ -91,15 +92,13 @@ class WifiLocator():
                            alpha=0.3, cmap=cm.prism, origin='upper')
                 plt.show()
 
-            max_distance = 1500
-
-            cartesian = cartesian[distances.flatten() <= max_distance]
+            cartesian = cartesian[distances.flatten() <= self.max_distance]
             cartesian_div = cartesian//self.divide_by
 
             if False:
                 # Enable this to show allowed positionss based on max_distance
                 plt.imshow(imread('static/img/levels/dev/level0.jpg')[::self.divide_by, ::self.divide_by])
-                plt.imshow(np.where(distances <= max_distance, 1, 0).transpose(),
+                plt.imshow(np.where(distances <= self.max_distance, 1, 0).transpose(),
                            alpha=0.3, cmap=cm.gray, origin='upper')
                 plt.plot(*np_positions.transpose()//self.divide_by, marker='o')
                 plt.show()
@@ -114,6 +113,10 @@ class WifiLocator():
 
                 polar = np.dstack((np.arctan2(*(np_positions-center).transpose())/np.pi/2*360,
                                    cdist([center], np_positions)[0]))[0]
+                nearestvalue = values[np.argmin(polar[:, 1])]
+                print(nearestvalue)
+                polar = np.concatenate((polar, ((0, 0), )))
+                values = np.concatenate((values, (nearestvalue, )))
                 values = self.dbm_to_w_linear(values, polar[:, 1])
 
                 polar = np.concatenate((polar-np.array((360, 0)), polar, polar+np.array((360, 0))))
@@ -158,7 +161,7 @@ class WifiLocator():
         return 10**(value/10)
 
     def dbm_to_w_linear(self, value, distance):
-        return 10**(value/10)*(distance*self.graph.cm_per_px)**2
+        return 10**(value/10)*(np.clip(distance, 1, 10000000)*self.graph.cm_per_px)**2
 
     def w_linear_to_dbm(self, value, distance):
         return 10*np.log10(1/(distance*self.graph.cm_per_px)**2*value)
