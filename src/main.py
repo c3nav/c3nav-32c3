@@ -14,7 +14,7 @@ from flask.ext.babel import gettext as _
 from flask.ext.babel import Babel
 from htmlmin import minify
 
-from classes import Graph, Router, UserPosition
+from classes import Graph, Node, Router, UserPosition
 
 LANGUAGES = {
     'en': 'English',
@@ -152,8 +152,11 @@ def main(origin=None, destination=None):
             messages.append(('warn', _('This route contains way types that you wanted to avoid '
                                        'because otherwise no route would be possible.')))
         total_duration = sum(rp['duration'] for rp in route_description)
+
         ctx.update({
             'routeparts': route_description,
+            'origin_title': None if isinstance(route.points[0], Node) else route.points[0].title,
+            'destination_title': None if isinstance(route.points[-1], Node) else route.points[-1].title,
             'total_distance': round(sum(rp['distance'] for rp in route_description)/100, 1),
             'total_duration': (int(total_duration/60), int(total_duration % 60)),
             'jsonfoo': json.dumps(route_description, indent=4)

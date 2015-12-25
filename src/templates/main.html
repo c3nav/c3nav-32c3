@@ -233,7 +233,8 @@
                     {% if loop.last %}
                     <div>
                         <img src="/static/img/icons/destination.svg">
-                        <p>{{ _('You have reached your destination.') }}</p>
+                        <p>{{ _('You have reached your destination.') }}
+                           {% if destination_title %}<br><strong>{{ destination_title }}</strong>{% endif %}</p>
                     </div>
                     {% endif %}
                 </div>

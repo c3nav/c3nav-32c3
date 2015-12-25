@@ -4,6 +4,8 @@ from collections import OrderedDict
 from flask import escape
 from flask.ext.babel import gettext as _
 
+from .node import Node
+
 
 class Route():
     def __init__(self, graph, points, settings, avoided_ctypes=()):
@@ -12,6 +14,9 @@ class Route():
         self.settings = settings.copy()
         self.avoided_ctypes = avoided_ctypes
 
+        self.origin = points[0]
+        self.destination = points[-1]
+
     def describe(self, merge_descriptions=True):
         routeparts = self._into_parts()
         has_avoided_ctypes = False
@@ -19,18 +24,26 @@ class Route():
         for i, part in enumerate(routeparts):
 
             for j, path in enumerate(part['path']):
-                from_room = '<strong>'+self.graph.rooms[path['from']['room']].title+'</strong>'
-                to_room = '<strong>'+self.graph.rooms[path['to']['room']].title+'</strong>'
+                from_room = '<b>'+self.graph.rooms[path['from']['room']].title+'</b>'
+                to_room = '<b>'+self.graph.rooms[path['to']['room']].title+'</b>'
 
                 desc = {
                     'icon': '',
                     'text': '',
                 }
+
                 if j == 0:
-                    part['desc'] = _('You are now in %(room)s on %(level)s.',
-                                     room=from_room if i == 0 else to_room,
-                                     level='<strong>'+_('level %(level)d', level=part['level'])+'</strong>'
-                                     ).replace('&lt;strong&gt;', '<strong>').replace('&lt;/strong&gt;', '</strong>')
+                    level = '<b>'+_('level %(level)d', level=part['level'])+'</b>'
+                    room = from_room if i == 0 else to_room
+                    if isinstance(self.points[0], Node):
+                        tmp = str(escape(_('You are now in %(room)s on %(level)s.',
+                                           room=room, level=level)))
+                    else:
+                        tmp = str(escape(_('You are now at %(poi)s in %(room)s on %(level)s.',
+                                           poi='<b>'+self.points[0].title+'</b>',
+                                           room=room, level=level)))
+
+                    part['desc'] = tmp.replace('&lt;b&gt;', '<strong>').replace('&lt;/b&gt;', '</strong>')
 
                 if i != 0 and j == 0:
                     desc['ignore'] = True
@@ -67,7 +80,7 @@ class Route():
                 if path['ctype'] in ('stairs', 'steps', 'escalator', 'elevator'):
                     args = {'located': '', 'to_level': ''}
                     if len(routeparts) > i+1 and len(part['path']) == j+1:
-                        level = '<strong>'+_('level %(level)d', level=routeparts[i+1]['level'])+'</strong>'
+                        level = '<b>'+_('level %(level)d', level=routeparts[i+1]['level'])+'</b>'
                         args['to_level'] = _(' to %(level)s', level=level)
 
                     if path['ctype'] == 'steps':
@@ -88,7 +101,7 @@ class Route():
                     desc['icon'] = located_icon
                     if j > 0:
                         desc['text'] = _('Enter %(room)s%(located)s.',
-                                         room='<strong>'+to_room+'</strong>', located=located)
+                                         room=to_room, located=located)
                     else:
                         desc['text'] = _('Leave %(from_room)s and enter %(to_room)s.',
                                          from_room=from_room, to_room=to_room)
@@ -105,9 +118,9 @@ class Route():
                     }.get(turning, _('Continue for %(d).1f meters.', d=d))
 
                 desc['text'] = str(escape(desc['text'])).replace(
-                    '&lt;strong&gt;', '<strong>'
+                    '&lt;b&gt;', '<strong>'
                 ).replace(
-                    '&lt;/strong&gt;', '</strong>'
+                    '&lt;/b&gt;', '</strong>'
                 )
 
         if merge_descriptions:
