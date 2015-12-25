@@ -9,5 +9,13 @@
             "heaven",
             "noc"
         ]
+    },
+    "overwrite_priority": {
+        "heaven": 2,
+        "assembly": 4,
+        "project": 4
+    },
+    "overwrite_poigroup_priority": {
+        "bottles": 0
     }
 }

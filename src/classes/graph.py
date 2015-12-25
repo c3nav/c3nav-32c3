@@ -138,6 +138,15 @@ class Graph():
         self.selectable_locations.update(self.pois)
         self.selectable_locations.update(self.poigroups)
 
+        for name, location in self.selectable_locations.items():
+            if name in data['overwrite_priority']:
+                location.priority = data['overwrite_priority'][name]
+
+        for name, poi in self.pois.items():
+            for group in reversed(poi.groups):
+                if group.name in data['overwrite_poigroup_priority']:
+                    poi.priority = data['overwrite_poigroup_priority'][group.name]
+
         if room_positions:
             self.room_positions()
         if auto_connect:

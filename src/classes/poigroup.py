@@ -5,7 +5,7 @@ from .location import Location
 
 
 class POIGroup(Location):
-    priority = 4
+    priority = 10
 
     def __init__(self, graph, name, titles={}, any_titles={}):
         super().__init__(name, titles)
