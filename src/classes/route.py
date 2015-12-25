@@ -241,6 +241,11 @@ class Route():
                     p2['desc']['text'] = p['desc']['text']+'<br />'+p2['desc']['text']
                     newpaths.append(p)
                     newpaths.append(p2)
+                elif paths and p['ctype'] == paths[0]['ctype'] == 'stairs' and p['level'] == paths[0]['level']:
+                    p['desc']['merged_to_next'] = True
+                    p2 = paths.pop(0)
+                    newpaths.append(p)
+                    newpaths.append(p2)
                 else:
                     newpaths.append(p)
             part['path'] = newpaths
