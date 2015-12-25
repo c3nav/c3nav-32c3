@@ -3,6 +3,10 @@
         "de": "N\u00e4chstgelegene Assembly",
         "en": "Nearest Assembly"
     },
+    ":bottles": {
+        "de": "N\u00e4chste Flaschenabgabe",
+        "en": "Nearest Bottle Drop Point"
+    },
     ":heaven": {
         "de": "Himmel",
         "en": "Heaven"
@@ -27,6 +31,38 @@
         "de": "Assembly",
         "en": "Assembly"
     },
+    "bdp001": {
+        "de": "Flaschenabgabe 1",
+        "en": "Bottle Drop Point 1"
+    },
+    "bdp002": {
+        "de": "Flaschenabgabe 2",
+        "en": "Bottle Drop Point 2"
+    },
+    "bdp003": {
+        "de": "Flaschenabgabe 3",
+        "en": "Bottle Drop Point 3"
+    },
+    "bdp004": {
+        "de": "Flaschenabgabe 4",
+        "en": "Bottle Drop Point 4"
+    },
+    "bdp005": {
+        "de": "Flaschenabgabe 5",
+        "en": "Bottle Drop Point 5"
+    },
+    "bdp006": {
+        "de": "Flaschenabgabe 6",
+        "en": "Bottle Drop Point 6"
+    },
+    "bdp007": {
+        "de": "Flaschenabgabe 7",
+        "en": "Bottle Drop Point 7"
+    },
+    "bdp008": {
+        "de": "Flaschenabgabe 8",
+        "en": "Bottle Drop Point 8"
+    },
     "be2": {
         "de": "Hinteraufzug 2. OG",
         "en": "Backstage Elevator Level 2"
@@ -42,6 +78,10 @@
     "bitcoins": {
         "de": "Bitcoins",
         "en": "Bitcoins"
+    },
+    "bottles": {
+        "de": "Flaschenabgabe",
+        "en": "Bottle Drop Point"
     },
     "cash": {
         "de": "Cash Desk",

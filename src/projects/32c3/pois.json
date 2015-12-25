@@ -1,15 +1,83 @@
 {
     "afra": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 618,
-        "y": 379,
-        "groups": ["assembly"]
+        "y": 379
+    },
+    "bdp001": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 0,
+        "x": 883,
+        "y": 498
+    },
+    "bdp002": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 0,
+        "x": 583,
+        "y": 475
+    },
+    "bdp003": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 0,
+        "x": 778,
+        "y": 366
+    },
+    "bdp004": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 0,
+        "x": 1022,
+        "y": 455
+    },
+    "bdp005": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 0,
+        "x": 947,
+        "y": 526
+    },
+    "bdp006": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 0,
+        "x": 887,
+        "y": 563
+    },
+    "bdp007": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 0,
+        "x": 789,
+        "y": 537
+    },
+    "bdp008": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 0,
+        "x": 788,
+        "y": 474
     },
     "bitcoins": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 654,
-        "y": 331,
-        "groups": ["assembly"]
+        "y": 331
     },
     "cash": {
         "level": 0,
@@ -17,40 +85,52 @@
         "y": 318
     },
     "cbase": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 765,
-        "y": 312,
-        "groups": ["assembly"]
+        "y": 312
     },
     "ccchh": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 628,
-        "y": 364,
-        "groups": ["assembly"]
+        "y": 364
     },
     "cider": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 615,
-        "y": 340,
-        "groups": ["assembly"]
+        "y": 340
     },
     "cwh": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 707,
-        "y": 366,
-        "groups": ["assembly"]
+        "y": 366
     },
     "cwl": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 682,
-        "y": 306,
-        "groups": ["assembly"]
+        "y": 306
     },
     "fe": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 630,
-        "y": 341,
-        "groups": ["assembly"]
+        "y": 341
     },
     "garage": {
         "level": 0,
@@ -58,16 +138,20 @@
         "y": 315
     },
     "geheim": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 640,
-        "y": 291,
-        "groups": ["assembly"]
+        "y": 291
     },
     "h3arcade": {
+        "groups": [
+            "project"
+        ],
         "level": 0,
         "x": 781,
-        "y": 335,
-        "groups": ["project"]
+        "y": 335
     },
     "hvdesk": {
         "level": 1,
@@ -80,52 +164,68 @@
         "y": 520
     },
     "lucius": {
+        "groups": [
+            "project"
+        ],
         "level": 0,
         "x": 729,
-        "y": 273,
-        "groups": ["project"]
+        "y": 273
     },
     "matelight": {
+        "groups": [
+            "project"
+        ],
         "level": 0,
         "x": 681,
-        "y": 272,
-        "groups": ["project"]
+        "y": 272
     },
     "mlabs": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 773,
-        "y": 310,
-        "groups": ["assembly"]
+        "y": 310
     },
     "nad": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 641,
-        "y": 337,
-        "groups": ["assembly"]
+        "y": 337
     },
     "nerdherd": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 651,
-        "y": 360,
-        "groups": ["assembly"]
+        "y": 360
     },
     "nerdistan": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 612,
-        "y": 379,
-        "groups": ["assembly"]
+        "y": 379
     },
     "pasten": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 639,
-        "y": 378,
-        "groups": ["assembly"]
+        "y": 378
     },
     "patin": {
+        "groups": [
+            "assembly"
+        ],
         "level": 1,
         "x": 670,
-        "y": 489,
-        "groups": ["assembly"]
+        "y": 489
     },
     "poc": {
         "level": 1,
@@ -133,10 +233,12 @@
         "y": 444
     },
     "s11": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 625,
-        "y": 318,
-        "groups": ["assembly"]
+        "y": 318
     },
     "sendez": {
         "level": 1,
@@ -149,9 +251,11 @@
         "y": 341
     },
     "siri": {
+        "groups": [
+            "project"
+        ],
         "level": 0,
         "x": 745,
-        "y": 313,
-        "groups": ["project"]
+        "y": 313
     }
 }
