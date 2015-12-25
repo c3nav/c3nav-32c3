@@ -246,7 +246,7 @@ $(document).ready(function() {
     });
     $('.maplevelselect button[data-level]').click(function() {
         var mapinput = $(this).parents('.p').find('.mapinput');
-        mapinput.find('button').removeClass('pure-button-active');
+        mapinput.parent().find('button').removeClass('pure-button-active');
         mapinput.find('img').hide();
         mapinput.parent().find('button[data-level='+$(this).attr('data-level')+']').addClass('pure-button-active');
         mapinput.find('img[data-level='+$(this).attr('data-level')+']').show();
