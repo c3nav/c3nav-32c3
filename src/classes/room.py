@@ -1,4 +1,5 @@
 import numpy as np
+from flask.ext.babel import gettext as _
 from matplotlib.path import Path
 
 from .location import Location
@@ -40,7 +41,10 @@ class Room(Location):
 
     @property
     def subtitle(self):
-        return 'Room, Level %d' % self.level
+        if not self.groups:
+            return _('Level %(level)d', level=self.level)
+        else:
+            return _('%(roomgroup)s, Level %(level)d', roomgroup=self.groups[0].collection_title, level=self.level)
 
     def __repr__(self):
         return 'Room(%s)' % repr(self.name)

@@ -1,7 +1,31 @@
 {
+    ":assembly": {
+        "de": "N\u00e4chstgelegene Assembly",
+        "en": "Nearest Assembly"
+    },
+    ":heaven": {
+        "de": "Himmel",
+        "en": "Heaven"
+    },
+    ":project": {
+        "de": "N\u00e4chstgelegenes Projekt",
+        "en": "Nearest Project"
+    },
+    ":wc": {
+        "de": "N\u00e4chstgelegene Toilette",
+        "en": "Nearest Toilet"
+    },
+    ":wch": {
+        "de": "N\u00e4chstgelegene barrierefreie Toilette",
+        "en": "Nearest Handicapped Toilet"
+    },
     "afra": {
         "de": "Afra",
         "en": "Afra"
+    },
+    "assembly": {
+        "de": "Assembly",
+        "en": "Assembly"
     },
     "be2": {
         "de": "Hinteraufzug 2. OG",
@@ -347,6 +371,10 @@
         "de": "Presseraum",
         "en": "Press Room"
     },
+    "project": {
+        "de": "Projekt",
+        "en": "Project"
+    },
     "s11": {
         "de": "Leitstelle S1/1",
         "en": "Leitstelle S1/1"
@@ -448,11 +476,11 @@
         "en": "Toilet, Lobby"
     },
     "wc": {
-        "de": "Beliebige Toilette",
-        "en": "Any Toilet"
+        "de": "Toilette",
+        "en": "Toilet"
     },
     "wch": {
-        "de": "Beliebige barrierefreie Toilette",
-        "en": "Any Handicapped Toilet"
+        "de": "Barrierefreie Toilette",
+        "en": "Handicapped Toilet"
     }
 }

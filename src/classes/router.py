@@ -8,8 +8,12 @@ from flask.ext.babel import gettext as _
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import shortest_path
 
+from .poigroup import POIGroup
 from .position import Position
+from .room import Room
+from .roomgroup import RoomGroup
 from .route import Route
+from .superroom import SuperRoom
 
 
 class Router():
@@ -200,24 +204,37 @@ class Router():
                                        'because your destination has no point outside of them.')))
 
         if origin_nodes & destination_nodes:
-            if ((not isinstance(origin, Position) and not isinstance(destination, Position)) or
-                    (origin.level == destination.level and origin.x == destination.x and origin.y == destination.y)):
+            if (isinstance(origin, (Room, RoomGroup, SuperRoom)) or
+                    isinstance(destination, (Room, RoomGroup, SuperRoom))):
                 messages.append(('success', _('Congratulations – you are already there!')))
                 return messages, None
 
-            if self.graph.can_connect_positions(origin, destination):
-                return messages, Route(self.graph, [origin, destination], self.settings, [])
+            origin_points = [origin] if isinstance(origin, Position) else origin.pois
+            destination_points = [destination] if isinstance(destination, Position) else destination.pois
+
+            for op in origin_points:
+                for dp in destination_points:
+                    if op.level == dp.level and op.x == dp.x and op.y == dp.y:
+                        messages.append(('success', _('Congratulations – you are already there!')))
+                        return messages, None
+
+            for op in origin_points:
+                for dp in destination_points:
+                    if self.graph.can_connect_positions(op, dp):
+                        return messages, Route(self.graph, [op, dp], self.settings, [])
 
             via = None
             via_dist = float('inf')
             for i in (origin_nodes & destination_nodes):
-                distance = (self.graph.get_connection(origin, self.graph.nodes[i])[1] +
-                            self.graph.get_connection(origin, self.graph.nodes[i])[1])
+                distance = (origin.node_distances[i] + destination.node_distances[i])
                 if distance < via_dist:
                     via = i
                     via_dist = distance
 
-            return messages, Route(self.graph, [origin, self.graph.nodes[via], destination], self.settings, [])
+            myorigin = origin if isinstance(origin, Position) else origin.node_nearest[via]
+            mydestination = destination if isinstance(destination, Position) else destination.node_nearest[via]
+
+            return messages, Route(self.graph, [myorigin, self.graph.nodes[via], mydestination], self.settings, [])
 
         # Remove all routes that dont have the correct origin or destination
         # If we have free placed points, add the delay to their nodes
@@ -226,12 +243,12 @@ class Router():
         for i in range(len(self.graph.nodes)):
             if i not in origin_nodes:
                 possible_routes[i, :] = np.inf
-            elif isinstance(origin, Position):
+            elif isinstance(origin, (Position, POIGroup)):
                 possible_routes[i, :] += origin.node_distances[i]*wayfactor
 
             if i not in destination_nodes:
                 possible_routes[:, i] = np.inf
-            elif isinstance(destination, Position):
+            elif isinstance(destination, (Position, POIGroup)):
                 possible_routes[i, :] += destination.node_distances[i]*wayfactor
 
         # We may still have multiple routes if we had multiple origin or destination nodes
@@ -253,9 +270,13 @@ class Router():
 
         if isinstance(origin, Position):
             positions.insert(0, origin)
+        elif isinstance(origin, POIGroup):
+            positions.insert(0, origin.node_nearest[route[0]])
 
         if isinstance(destination, Position):
             positions.append(destination)
+        elif isinstance(destination, POIGroup):
+            positions.append(destination.node_nearest[route[-1]])
 
         avoided_ctypes = self.avoided_ctypes()
 

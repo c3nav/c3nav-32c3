@@ -199,7 +199,6 @@ class WifiLocator():
         position.room = self.graph.get_room(position)
         return position, round(self.w_to_dbm(np.min(matches)), 2), known_spots
 
-
     def locate_old(self, scan):
         scan = {(s['bssid'], s['ssid']): s['level'] for s in scan}
         scan = {sid: level for sid, level in scan.items() if sid in self.sids}

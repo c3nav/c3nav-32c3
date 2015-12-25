@@ -3,6 +3,7 @@ from .position import Position
 from .node import Node
 from .location import Location
 from .poi import POI
+from .poigroup import POIGroup
 from .room import Room
 from .superroom import SuperRoom
 from .roomgroup import RoomGroup
@@ -12,5 +13,5 @@ from .route import Route
 from .userposition import UserPosition
 
 
-__all__ = ('Graph', 'Position', 'Node', 'Location', 'Room', 'Barrier',
+__all__ = ('Graph', 'Position', 'Node', 'Location', 'Room', 'Barrier', 'POIGroup',
            'POI', 'SuperRoom', 'RoomGroup', 'Router', 'Route', 'UserPosition')

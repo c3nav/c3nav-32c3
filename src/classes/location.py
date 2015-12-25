@@ -10,3 +10,7 @@ class Location:
     @property
     def title(self):
         return self.titles.get(g.locale, self.name)
+
+    @property
+    def single_title(self):
+        return self.title

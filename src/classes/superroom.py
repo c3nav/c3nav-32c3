@@ -1,3 +1,5 @@
+from flask.ext.babel import gettext as _
+
 from .location import Location
 
 
@@ -12,7 +14,7 @@ class SuperRoom(Location):
     @property
     def subtitle(self):
         levels = [room.level for room in self.rooms]
-        return 'Room, Level %d-%d' % (min(levels), max(levels))
+        return _('Room, Level %(min)d-%(max)d', min=min(levels), max=max(levels))
 
     @property
     def nodes(self):

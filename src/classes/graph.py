@@ -7,6 +7,7 @@ from matplotlib.path import Path
 from .barrier import Barrier
 from .node import Node
 from .poi import POI
+from .poigroup import POIGroup
 from .room import Room
 from .roomgroup import RoomGroup
 from .superroom import SuperRoom
@@ -63,7 +64,8 @@ class Graph():
             for groupname in rdata.get('groups', ()):
                 roomgroup = self.roomgroups.get(groupname)
                 if roomgroup is None:
-                    roomgroup = RoomGroup(self, groupname, data['titles'].get(groupname, {}))
+                    roomgroup = RoomGroup(self, groupname, data['titles'].get(groupname, {}),
+                                          data['titles'].get(':'+groupname, {}))
                     self.roomgroups[groupname] = roomgroup
                 roomgroup.rooms.append(room)
                 room.groups.append(roomgroup)
@@ -76,8 +78,21 @@ class Graph():
         self.nodes_by_name = {p.name: p.i for p in self.nodes}
 
         # load POIs
-        self.pois = {n: POI(n, p['level'], p['x'], p['y'], data['titles'].get(n, {}))
-                     for n, p in data['pois'].items()}
+        self.pois = {}
+        self.poigroups = {}
+        for name, pdata in data['pois'].items():
+            poi = POI(name, pdata['level'], pdata['x'], pdata['y'], data['titles'].get(name, {}))
+
+            for groupname in pdata.get('groups', ()):
+                poigroup = self.poigroups.get(groupname)
+                if poigroup is None:
+                    poigroup = POIGroup(self, groupname, data['titles'].get(groupname, {}),
+                                        data['titles'].get(':'+groupname, {}))
+                    self.poigroups[groupname] = poigroup
+                poigroup.pois.append(poi)
+                poi.groups.append(poigroup)
+
+            self.pois[name] = poi
 
         # create distance matrices, one for every connection type
         self.matrices = {ctype: np.zeros((len(self.nodes), len(self.nodes)))
@@ -121,6 +136,7 @@ class Graph():
         self.selectable_locations.update(self.superrooms)
         self.selectable_locations.update(self.roomgroups)
         self.selectable_locations.update(self.pois)
+        self.selectable_locations.update(self.poigroups)
 
         if room_positions:
             self.room_positions()
@@ -192,6 +208,16 @@ class Graph():
 
         for name, poi in self.pois.items():
             self.connect_position(poi)
+
+        for poigroup in self.poigroups.values():
+            poigroup.nodes = sum((p.nodes for p in poigroup.pois), [])
+            poigroup.node_distances = {}
+            poigroup.node_nearest = {}
+            for node in poigroup.nodes:
+                distance, poi = min([(p.node_distances.get(node.i, float('inf')), p) for p in poigroup.pois],
+                                    key=lambda i: i[0])
+                poigroup.node_distances[node.i] = distance
+                poigroup.node_nearest[node.i] = poi
 
     def connect_position(self, position, force=False):
         if not self.did_room_positions:

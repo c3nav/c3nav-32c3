@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-from subprocess import Popen, PIPE
 import json
 import time
+from subprocess import PIPE, Popen
 
 while True:
     p = Popen(['iwlist', 'scan'], stdout=PIPE, stderr=PIPE)

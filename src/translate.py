@@ -24,8 +24,11 @@ rooms = list(data['rooms'].keys())
 pois = list(data['pois'].keys())
 superrooms = [room['superroom'] for room in data['rooms'].values() if 'superroom' in room]
 roomgroups = list(sum((room.get('groups', []) for room in data['rooms'].values()), []))
+roomgroups += [(':'+s) for s in roomgroups]
+poigroups = list(sum((poi.get('groups', []) for poi in data['pois'].values()), []))
+poigroups += [(':'+s) for s in poigroups]
 
-for name in set(pois+roomgroups+rooms+superrooms):
+for name in set(pois+roomgroups+rooms+superrooms+poigroups):
     data = json.load(open('projects/'+project+'/titles.json'))
     titles = data.get(name, {})
 

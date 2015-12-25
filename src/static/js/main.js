@@ -197,6 +197,7 @@ $(document).ready(function() {
         $(this).parents('.p').addClass('selected').toggleClass('locating', $(this).is('.locating'));
         if (!$(this).is('.locating')) {
             $('input[type=hidden][name='+$(this).parents('.p').attr('name')+']').val($(this).val());
+        } else {
             mobileclient.scanNow();
         }
         point_set();

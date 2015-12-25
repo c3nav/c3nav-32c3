@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-from flask import Flask, make_response
-from subprocess import Popen, PIPE
 import json
 import time
+from subprocess import PIPE, Popen
+
+from flask import Flask, make_response
 
 app = Flask('c3nav-wificollect')
 
