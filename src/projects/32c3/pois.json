@@ -71,6 +71,310 @@
         "x": 788,
         "y": 474
     },
+    "bdp101": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 1,
+        "x": 880,
+        "y": 500
+    },
+    "bdp102": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 1,
+        "x": 967,
+        "y": 354
+    },
+    "bdp103": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 1,
+        "x": 882,
+        "y": 430
+    },
+    "bdp104": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 1,
+        "x": 821,
+        "y": 546
+    },
+    "bdp105": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 1,
+        "x": 897,
+        "y": 543
+    },
+    "bdp106": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 1,
+        "x": 816,
+        "y": 478
+    },
+    "bdp107": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 1,
+        "x": 786,
+        "y": 430
+    },
+    "bdp108": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 1,
+        "x": 646,
+        "y": 532
+    },
+    "bdp109": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 1,
+        "x": 250,
+        "y": 574
+    },
+    "bdp201": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 881,
+        "y": 501
+    },
+    "bdp202": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 586,
+        "y": 476
+    },
+    "bdp203": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 564,
+        "y": 577
+    },
+    "bdp204": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 503,
+        "y": 515
+    },
+    "bdp205": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 248,
+        "y": 574
+    },
+    "bdp206": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 705,
+        "y": 526
+    },
+    "bdp207": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 824,
+        "y": 475
+    },
+    "bdp208": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 907,
+        "y": 418
+    },
+    "bdp209": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 961,
+        "y": 429
+    },
+    "bdp210": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 1108,
+        "y": 383
+    },
+    "bdp211": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 2,
+        "x": 1072,
+        "y": 303
+    },
+    "bdp301": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 3,
+        "x": 883,
+        "y": 500
+    },
+    "bdp302": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 3,
+        "x": 1040,
+        "y": 289
+    },
+    "bdp303": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 3,
+        "x": 905,
+        "y": 420
+    },
+    "bdp304": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 3,
+        "x": 826,
+        "y": 472
+    },
+    "bdp305": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 3,
+        "x": 788,
+        "y": 549
+    },
+    "bdp306": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 3,
+        "x": 736,
+        "y": 562
+    },
+    "bdp307": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 3,
+        "x": 656,
+        "y": 560
+    },
+    "bdp308": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 3,
+        "x": 605,
+        "y": 543
+    },
+    "bdp309": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 3,
+        "x": 561,
+        "y": 396
+    },
+    "bdp401": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 4,
+        "x": 883,
+        "y": 500
+    },
+    "bdp402": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 4,
+        "x": 586,
+        "y": 497
+    },
+    "bdp403": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 4,
+        "x": 655,
+        "y": 559
+    },
+    "bdp404": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 4,
+        "x": 753,
+        "y": 559
+    },
+    "bdp405": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 4,
+        "x": 827,
+        "y": 479
+    },
+    "bdp406": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 4,
+        "x": 908,
+        "y": 441
+    },
+    "bdp407": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 4,
+        "x": 974,
+        "y": 452
+    },
+    "bdp408": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 4,
+        "x": 1045,
+        "y": 412
+    },
+    "bdp409": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 4,
+        "x": 1068,
+        "y": 347
+    },
     "bitcoins": {
         "groups": [
             "assembly"
