@@ -90,6 +90,7 @@ function nearby_stations_available() {
                     return;
                 }
                 current_location = data;
+                set_position();
                 $('.p.locating').each(function() {
                     var location = $(this).find('button.user');
                     location.val(current_location.name);
@@ -131,13 +132,12 @@ function linkbtn_click(e) {
 function set_position(level, x, y) {
     $('circle.pos').remove();
     // <circle class="pos" r="5" cx="{{ 0-routepart.minx+20 }}" cy="{{ 0-routepart.miny+20 }}" />
-    positioned = [level, x, y];
     $('.path').each(function() {
         var map = $(this).find('.map');
-        if (map.attr('data-level') == String(positioned[0])) {
+        if (map.attr('data-level') == String(current_position.level)) {
             $('<circle class="pos" r="5" />').attr({
-                'cx': positioned[1]+parseInt(map.find('image').attr('x')),
-                'cy': positioned[2]+parseInt(map.find('image').attr('y'))
+                'cx': current_position.x+parseInt(map.find('image').attr('x')),
+                'cy': current_position.y+parseInt(map.find('image').attr('y'))
             }).insertBefore(map.find('.connections'));
         }
         $(this).html($(this).html());
