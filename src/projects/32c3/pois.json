@@ -517,6 +517,14 @@
         "x": 459,
         "y": 364
     },
+    "chack": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 664,
+        "y": 537
+    },
     "chinkl": {
         "groups": [
             "assembly"

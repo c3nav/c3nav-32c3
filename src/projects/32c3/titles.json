@@ -347,6 +347,10 @@
         "de": "CERT",
         "en": "CERT"
     },
+    "chack": {
+        "de": "c-hack",
+        "en": "c-hack"
+    },
     "chinkl": {
         "de": "Chaos inKL",
         "en": "Chaos inKL"
