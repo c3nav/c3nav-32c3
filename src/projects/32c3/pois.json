@@ -764,12 +764,26 @@
         "x": 473,
         "y": 471
     },
+    "hackzog": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 673,
+        "y": 533
+    },
     "helferl": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 616,
         "y": 615
     },
     "hsaar": {
+        "groups": [
+            "assembly"
+        ],
         "level": 1,
         "x": 284,
         "y": 478
