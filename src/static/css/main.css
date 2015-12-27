@@ -475,6 +475,9 @@ circle.pos {
 .mobile-client h1, .mobile-client #github, .mobile-client .nomobileclient {
     display:none;
 }
+body:not(.mobile-client) .mobileclientonly {
+    display:none;
+}
 
 .routemeta {
     color:#666666;
