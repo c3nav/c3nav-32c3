@@ -41,8 +41,7 @@ class Graph():
         self.titles = data['titles']
         self.overwrite_default_settings = data['overwrite_default_settings']
 
-        if load_wifi:
-            self.wifi = WifiLocator(self)
+        self.wifi = WifiLocator(self, load_wifi=False)
 
         # load rooms
         self.rooms = {}

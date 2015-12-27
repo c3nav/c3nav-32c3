@@ -15,8 +15,11 @@ class WifiLocator():
 
     no_signal = -90
 
-    def __init__(self, graph):
+    def __init__(self, graph, load_wifi=True):
         self.graph = graph
+        if not load_wifi:
+            return
+
         import time
         starttime = time.time()
 
