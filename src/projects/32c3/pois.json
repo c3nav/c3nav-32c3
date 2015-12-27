@@ -788,6 +788,14 @@
         "x": 616,
         "y": 615
     },
+    "hreset": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 660,
+        "y": 523
+    },
     "hsaar": {
         "groups": [
             "assembly"

@@ -687,6 +687,10 @@
         "de": "Saal G",
         "en": "Hall G"
     },
+    "hreset": {
+        "de": "hard-reset",
+        "en": "hard-reset"
+    },
     "hsaar": {
         "de": "Hacksaar",
         "en": "Hacksaar"
