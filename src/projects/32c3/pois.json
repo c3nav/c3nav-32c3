@@ -41,86 +41,6 @@
         "x": 624,
         "y": 521
     },
-    "stud": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 546,
-        "y": 388
-    },
-    "jhackt": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 1,
-        "x": 622,
-        "y": 513
-    },
-    "mainframe": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 364,
-        "y": 563
-    },
-    "rust": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 1,
-        "x": 682,
-        "y": 538
-    },
-    "math": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 1,
-        "x": 303,
-        "y": 495
-    },
-    "warsaw": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 368,
-        "y": 485
-    },
-    "osm": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 1,
-        "x": 623,
-        "y": 450
-    },
-    "simplon": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 1,
-        "x": 648,
-        "y": 614
-    },
-    "fsfe": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 1,
-        "x": 908,
-        "y": 439
-    },
-    "squirrel": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 1,
-        "x": 300,
-        "y": 492
-    },
     "bdp001": {
         "groups": [
             "bottles"
@@ -802,6 +722,14 @@
         "x": 570,
         "y": 475
     },
+    "fsfe": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 908,
+        "y": 439
+    },
     "garage": {
         "level": 0,
         "x": 1038,
@@ -862,6 +790,14 @@
         "level": 0,
         "x": 781,
         "y": 335
+    },
+    "h4x0rpsch0rr": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 371,
+        "y": 524
     },
     "hackeriet": {
         "level": 0,
@@ -939,6 +875,14 @@
         "x": 270,
         "y": 511
     },
+    "jhackt": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 622,
+        "y": 513
+    },
     "kids": {
         "level": 3,
         "x": 800,
@@ -994,6 +938,14 @@
         "x": 689,
         "y": 615
     },
+    "mainframe": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 364,
+        "y": 563
+    },
     "marburg": {
         "groups": [
             "assembly"
@@ -1009,6 +961,14 @@
         "level": 0,
         "x": 681,
         "y": 272
+    },
+    "math": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 303,
+        "y": 495
     },
     "mlabs": {
         "groups": [
@@ -1079,6 +1039,14 @@
         "x": 639,
         "y": 523
     },
+    "osm": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 623,
+        "y": 450
+    },
     "pasten": {
         "groups": [
             "assembly"
@@ -1147,6 +1115,14 @@
         "x": 1034,
         "y": 440
     },
+    "rust": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 682,
+        "y": 538
+    },
     "rzl": {
         "groups": [
             "assembly"
@@ -1197,6 +1173,14 @@
         "x": 931,
         "y": 341
     },
+    "simplon": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 648,
+        "y": 614
+    },
     "singul": {
         "groups": [
             "assembly"
@@ -1213,6 +1197,14 @@
         "x": 745,
         "y": 313
     },
+    "squirrel": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 300,
+        "y": 492
+    },
     "strat0": {
         "groups": [
             "assembly"
@@ -1220,6 +1212,14 @@
         "level": 0,
         "x": 425,
         "y": 365
+    },
+    "stud": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 546,
+        "y": 388
     },
     "tabcat": {
         "groups": [
@@ -1275,6 +1275,14 @@
         "x": 446,
         "y": 571
     },
+    "warsaw": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 368,
+        "y": 485
+    },
     "words": {
         "groups": [
             "music"
@@ -1283,11 +1291,6 @@
         "x": 624,
         "y": 568
     },
-    "subtitles": {
-        "level": 4,
-        "x": 826,
-        "y": 360
-    },
     "xil": {
         "groups": [
             "assembly"
@@ -1295,13 +1298,5 @@
         "level": 0,
         "x": 714,
         "y": 550
-    },
-    "h4x0rpsch0rr": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 371,
-        "y": 524
     }
 }
