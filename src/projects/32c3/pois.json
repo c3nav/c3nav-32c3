@@ -1,4 +1,9 @@
 {
+    "acab": {
+        "level": 2,
+        "x": 573,
+        "y": 542
+    },
     "afra": {
         "groups": [
             "assembly"
@@ -14,6 +19,11 @@
         "level": 1,
         "x": 262,
         "y": 479
+    },
+    "anarch": {
+        "level": 1,
+        "x": 1037,
+        "y": 356
     },
     "bdp001": {
         "groups": [
@@ -391,6 +401,21 @@
         "x": 654,
         "y": 331
     },
+    "books": {
+        "level": 4,
+        "x": 955,
+        "y": 460
+    },
+    "bpit": {
+        "level": 0,
+        "x": 373,
+        "y": 436
+    },
+    "brave": {
+        "level": 4,
+        "x": 811,
+        "y": 575
+    },
     "c3pb": {
         "groups": [
             "assembly"
@@ -412,14 +437,6 @@
         "x": 765,
         "y": 312
     },
-    "ccchh": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 628,
-        "y": 364
-    },
     "ccchd": {
         "groups": [
             "assembly"
@@ -427,6 +444,14 @@
         "level": 0,
         "x": 446,
         "y": 419
+    },
+    "ccchh": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 628,
+        "y": 364
     },
     "cider": {
         "groups": [
@@ -436,6 +461,14 @@
         "x": 615,
         "y": 340
     },
+    "coffee": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 4,
+        "x": 1088,
+        "y": 402
+    },
     "cryptobar": {
         "groups": [
             "bar",
@@ -444,6 +477,11 @@
         "level": 2,
         "x": 423,
         "y": 519
+    },
+    "cwelle": {
+        "level": 2,
+        "x": 972,
+        "y": 506
     },
     "cwh": {
         "groups": [
@@ -455,7 +493,7 @@
     },
     "cwl": {
         "groups": [
-            "assembly"
+            "music"
         ],
         "level": 0,
         "x": 682,
@@ -469,6 +507,19 @@
         "level": 2,
         "x": 685,
         "y": 583
+    },
+    "digcour": {
+        "level": 2,
+        "x": 444,
+        "y": 566
+    },
+    "dome": {
+        "groups": [
+            "music"
+        ],
+        "level": 2,
+        "x": 741,
+        "y": 720
     },
     "exploitbar": {
         "groups": [
@@ -486,6 +537,30 @@
         "level": 0,
         "x": 630,
         "y": 341
+    },
+    "food1": {
+        "groups": [
+            "catering"
+        ],
+        "level": 2,
+        "x": 691,
+        "y": 556
+    },
+    "food2": {
+        "groups": [
+            "catering"
+        ],
+        "level": 2,
+        "x": 1059,
+        "y": 404
+    },
+    "foodg": {
+        "groups": [
+            "catering"
+        ],
+        "level": 2,
+        "x": 338,
+        "y": 541
     },
     "garage": {
         "level": 0,
@@ -513,10 +588,20 @@
         "x": 837,
         "y": 568
     },
+    "hwhack": {
+        "level": 0,
+        "x": 558,
+        "y": 520
+    },
     "info": {
         "level": 0,
         "x": 754,
         "y": 520
+    },
+    "kids": {
+        "level": 3,
+        "x": 800,
+        "y": 592
     },
     "kinky": {
         "groups": [
@@ -525,6 +610,19 @@
         "level": 1,
         "x": 693,
         "y": 543
+    },
+    "lng": {
+        "groups": [
+            "music"
+        ],
+        "level": 0,
+        "x": 819,
+        "y": 726
+    },
+    "loc": {
+        "level": 0,
+        "x": 645,
+        "y": 668
     },
     "lucius": {
         "groups": [
@@ -582,6 +680,19 @@
         "x": 612,
         "y": 379
     },
+    "nets": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 558,
+        "y": 459
+    },
+    "noch": {
+        "level": 1,
+        "x": 632,
+        "y": 596
+    },
     "openlab": {
         "groups": [
             "assembly"
@@ -606,10 +717,18 @@
         "x": 670,
         "y": 489
     },
-    "poc": {
+    "pick": {
+        "groups": [
+            "assembly"
+        ],
         "level": 1,
-        "x": 849,
-        "y": 444
+        "x": 629,
+        "y": 431
+    },
+    "poch": {
+        "level": 1,
+        "x": 858,
+        "y": 424
     },
     "queer": {
         "groups": [
@@ -619,6 +738,16 @@
         "x": 934,
         "y": 426
     },
+    "quiet": {
+        "level": 1,
+        "x": 289,
+        "y": 488
+    },
+    "relax": {
+        "level": 3,
+        "x": 1034,
+        "y": 440
+    },
     "s11": {
         "groups": [
             "assembly"
@@ -626,6 +755,14 @@
         "level": 0,
         "x": 625,
         "y": 318
+    },
+    "savage": {
+        "groups": [
+            "music"
+        ],
+        "level": 4,
+        "x": 599,
+        "y": 570
     },
     "sendez": {
         "level": 1,
@@ -636,6 +773,14 @@
         "level": 0,
         "x": 931,
         "y": 341
+    },
+    "singul": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 447,
+        "y": 384
     },
     "siri": {
         "groups": [
@@ -653,6 +798,27 @@
         "x": 649,
         "y": 579
     },
+    "tardis": {
+        "groups": [
+            "project"
+        ],
+        "level": 0,
+        "x": 369,
+        "y": 374
+    },
+    "tea": {
+        "level": 4,
+        "x": 967,
+        "y": 500
+    },
+    "tower": {
+        "groups": [
+            "project"
+        ],
+        "level": 0,
+        "x": 467,
+        "y": 459
+    },
     "uptimebar": {
         "groups": [
             "bar",
@@ -661,5 +827,13 @@
         "level": 0,
         "x": 446,
         "y": 571
+    },
+    "words": {
+        "groups": [
+            "music"
+        ],
+        "level": 3,
+        "x": 624,
+        "y": 568
     }
 }

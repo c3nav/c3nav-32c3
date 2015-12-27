@@ -11,9 +11,17 @@
         "de": "N\u00e4chste Flaschenabgabe",
         "en": "Nearest Bottle Drop Point"
     },
+    ":catering": {
+        "de": "N\u00e4chstes Catering",
+        "en": "Catering"
+    },
     ":heaven": {
         "de": "Himmel",
         "en": "Heaven"
+    },
+    ":music": {
+        "de": "N\u00e4chste Musik",
+        "en": "Nearest Music"
     },
     ":project": {
         "de": "N\u00e4chstes Projekt",
@@ -35,6 +43,10 @@
         "de": "N\u00e4chste Unisex Toilette",
         "en": "Nearest Unisex Toilet"
     },
+    "acab": {
+        "de": "ACAB",
+        "en": "ACAB"
+    },
     "afra": {
         "de": "Afra",
         "en": "Afra"
@@ -42,6 +54,10 @@
     "anagrom": {
         "de": "Anagrom Ataf",
         "en": "Anagrom Ataf"
+    },
+    "anarch": {
+        "de": "Anarchism sessions",
+        "en": "AAnarchism sessions"
     },
     "assembly": {
         "de": "Assembly",
@@ -251,9 +267,21 @@
         "de": "Bitcoins",
         "en": "Bitcoins"
     },
+    "books": {
+        "de": "B\u00fccher",
+        "en": "Books"
+    },
     "bottles": {
         "de": "Flaschenabgabe",
         "en": "Bottle Drop Point"
+    },
+    "bpit": {
+        "de": "B\u00e4llebad",
+        "en": "Ball Pit"
+    },
+    "brave": {
+        "de": "Brave new sector",
+        "en": "Brave new sector"
     },
     "c3pb": {
         "de": "c3pb",
@@ -266,6 +294,10 @@
     "cashb": {
         "de": "Cash Desk (Hinter der Theke)",
         "en": "Cash Desk (behind the counter)"
+    },
+    "catering": {
+        "de": "Catering",
+        "en": "Nearest Catering"
     },
     "cbase": {
         "de": "c-base",
@@ -287,6 +319,10 @@
         "de": "Cider-Security",
         "en": "Cider-Security"
     },
+    "coffee": {
+        "de": "Coffee Nerds",
+        "en": "Coffee Nerds"
+    },
     "corr0": {
         "de": "Flur neben Saal 3",
         "en": "Corridor beside Hall 3"
@@ -303,6 +339,10 @@
         "de": "Crypto Bar",
         "en": "Crypto Bar"
     },
+    "cwelle": {
+        "de": "Chaoswelle",
+        "en": "Chaoswelle"
+    },
     "cwh": {
         "de": "Chaos West Hackcenter",
         "en": "Chaos West Hackcenter"
@@ -314,6 +354,14 @@
     "ddosbar": {
         "de": "DDoS Bar",
         "en": "DDoS Bar"
+    },
+    "digcour": {
+        "de": "Digitalcourage",
+        "en": "Digitalcourage"
+    },
+    "dome": {
+        "de": "Zwischen0und1",
+        "en": "Zwischen0und1"
     },
     "e1": {
         "de": "Aufz\u00fcge 1. OG",
@@ -394,6 +442,18 @@
     "fnoc": {
         "de": "NOC Foyer",
         "en": "NOC Foyer"
+    },
+    "food1": {
+        "de": "Catering Saal 1",
+        "en": "Catering Hall 2"
+    },
+    "food2": {
+        "de": "Catering Saal 2",
+        "en": "Catering Hall 1"
+    },
+    "foodg": {
+        "de": "Catering Saal G",
+        "en": "Catering Hall G"
     },
     "fspeak": {
         "de": "Speaker Foyer",
@@ -539,17 +599,33 @@
         "de": "Himmel Hackcenter",
         "en": "Heaven Hackcenter"
     },
+    "hwhack": {
+        "de": "Hardware Hacking",
+        "en": "Hardware Hacking"
+    },
     "info": {
         "de": "Infodesk",
         "en": "Infodesk"
+    },
+    "kids": {
+        "de": "Kids Space",
+        "en": "Kids Space"
     },
     "kinky": {
         "de": "Kinky Geeks",
         "en": "Kinky Geeks"
     },
+    "lng": {
+        "de": "Ende Gel\u00e4nde",
+        "en": "Ende Gel\u00e4nde"
+    },
     "lobby": {
         "de": "Lobby",
         "en": "Lobby"
+    },
+    "loc": {
+        "de": "LOC",
+        "en": "LOC"
     },
     "lounge": {
         "de": "Lounge",
@@ -571,6 +647,10 @@
         "de": "microlabs",
         "en": "microlabs"
     },
+    "music": {
+        "de": "Musik",
+        "en": "Music"
+    },
     "nad": {
         "de": "Nad-Lounge",
         "en": "Nad-Lounge"
@@ -583,9 +663,17 @@
         "de": "Nerdistan",
         "en": "Nerdistan"
     },
+    "nets": {
+        "de": "Netze",
+        "en": "Nets"
+    },
     "noc": {
         "de": "Saal 8",
         "en": "Hall 8"
+    },
+    "noch": {
+        "de": "NOC Helpdesk",
+        "en": "NOC Helpdesk"
     },
     "openlab": {
         "de": "OpenLab Augsburg",
@@ -603,6 +691,10 @@
         "de": "Chaospatinnen",
         "en": "Chaospatinnen"
     },
+    "pick": {
+        "de": "Lockpicking",
+        "en": "Lockpicking"
+    },
     "planten": {
         "de": "Hallendach Halle H",
         "en": "On the Roof of Hall H"
@@ -610,6 +702,10 @@
     "poc": {
         "de": "POC",
         "en": "POC"
+    },
+    "poch": {
+        "de": "POC Helpdesk",
+        "en": "POC Helpdesk"
     },
     "press": {
         "de": "Presseraum",
@@ -623,9 +719,21 @@
         "de": "Queer Feminist Geeks",
         "en": "Queer Feminist Geeks"
     },
+    "quiet": {
+        "de": "Quiet area",
+        "en": "Quiet area"
+    },
+    "relax": {
+        "de": "Relax Area",
+        "en": "Relax Area"
+    },
     "s11": {
         "de": "Leitstelle S1/1",
         "en": "Leitstelle S1/1"
+    },
+    "savage": {
+        "de": "Savage sector",
+        "en": "Savage sector"
     },
     "sendez": {
         "de": "Sendezentrum",
@@ -638,6 +746,10 @@
     "shirtsb": {
         "de": "Shirt Desk (Hinter der Theke)",
         "en": "Shirt Desk (behind the counter)"
+    },
+    "singul": {
+        "de": "Singularity City",
+        "en": "Singularity City"
     },
     "siri": {
         "de": "Siri",
@@ -675,9 +787,17 @@
         "de": "Tabvillage & Katzennetzwerkende",
         "en": "Tabvillage & Katzennetzwerkende"
     },
+    "tardis": {
+        "de": "Tardis",
+        "en": "Tardis"
+    },
     "te2": {
         "de": "Toilette, Aufz\u00fcge 2. OG",
         "en": "Toilet, Elevators Level 2"
+    },
+    "tea": {
+        "de": "Tee",
+        "en": "Tea"
     },
     "tf0": {
         "de": "Toilette, Erdgeschoss Foyer",
@@ -727,6 +847,10 @@
         "de": "Toilette, Lobby",
         "en": "Toilet, Lobby"
     },
+    "tower": {
+        "de": "Tower",
+        "en": "Tower"
+    },
     "uptimebar": {
         "de": "Uptime Bar (24 h ge\u00f6ffnet)",
         "en": "Uptime Bar (open 24 hours)"
@@ -746,5 +870,9 @@
     "wcu": {
         "de": "Unisextoilette",
         "en": "Unisex Toilet"
+    },
+    "words": {
+        "de": "Wordlounge",
+        "en": "Wordlounge"
     }
 }
