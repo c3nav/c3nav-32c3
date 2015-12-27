@@ -49,14 +49,6 @@
         "x": 578,
         "y": 431
     },
-    "cccda": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 556,
-        "y": 413
-    },
     "bdp003": {
         "groups": [
             "bottles"
@@ -466,6 +458,14 @@
         "x": 765,
         "y": 312
     },
+    "cccda": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 556,
+        "y": 413
+    },
     "ccchd": {
         "groups": [
             "assembly"
@@ -489,6 +489,14 @@
         "level": 0,
         "x": 459,
         "y": 364
+    },
+    "chinkl": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 405,
+        "y": 524
     },
     "cider": {
         "groups": [
@@ -863,6 +871,14 @@
         "level": 1,
         "x": 858,
         "y": 424
+    },
+    "python": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 793,
+        "y": 506
     },
     "queer": {
         "groups": [

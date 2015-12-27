@@ -315,13 +315,13 @@
         "de": "c-base",
         "en": "c-base"
     },
-    "ccchd": {
-        "de": "CCCHD",
-        "en": "CCCHD"
-    },
     "cccda": {
         "de": "Chaos Darmstadt",
         "en": "Chaos Darmstadt"
+    },
+    "ccchd": {
+        "de": "CCCHD",
+        "en": "CCCHD"
     },
     "ccchh": {
         "de": "CCCHH",
@@ -335,13 +335,17 @@
         "de": "CERT",
         "en": "CERT"
     },
-    "clusterfuckhl": {
-        "de": "Lübecker Clusterfuck",
-        "en": "Clusterfuck Lübeck"  
+    "chinkl": {
+        "de": "Chaos inKL",
+        "en": "Chaos inKL"
     },
     "cider": {
         "de": "Cider-Security",
         "en": "Cider-Security"
+    },
+    "clusterfuckhl": {
+        "de": "L\u00fcbecker Clusterfuck",
+        "en": "Clusterfuck L\u00fcbeck"
     },
     "coffee": {
         "de": "Coffee Nerds",
@@ -786,6 +790,10 @@
     "project": {
         "de": "Projekt",
         "en": "Project"
+    },
+    "python": {
+        "de": "Python",
+        "en": "Python"
     },
     "queer": {
         "de": "Queer Feminist Geeks",
