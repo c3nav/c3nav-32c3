@@ -522,6 +522,14 @@
         "x": 1088,
         "y": 402
     },
+    "cosna": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 435,
+        "y": 541
+    },
     "cryptobar": {
         "groups": [
             "bar",
