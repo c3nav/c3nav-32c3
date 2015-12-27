@@ -73,6 +73,14 @@
         "x": 682,
         "y": 538
     },
+    "squirrel": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 300,
+        "y": 492
+    },
     "bdp001": {
         "groups": [
             "bottles"
