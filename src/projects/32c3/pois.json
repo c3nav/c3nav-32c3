@@ -1202,5 +1202,13 @@
         "level": 0,
         "x": 714,
         "y": 550
+    },
+    "diaspora": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 644,
+        "y": 561
     }
 }
