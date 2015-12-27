@@ -59,6 +59,10 @@
         "de": "Anarchism sessions",
         "en": "AAnarchism sessions"
     },
+    "arch": {
+        "de": "archlinux.de",
+        "en": "archlinux.de"
+    },
     "assembly": {
         "de": "Assembly",
         "en": "Assembly"
@@ -287,6 +291,10 @@
         "de": "Bytewerk",
         "en": "Bytewerk"
     },
+    "c3d2": {
+        "de": "C3D2",
+        "en": "C3D2"
+    },
     "c3pb": {
         "de": "c3pb",
         "en": "c3pb"
@@ -314,6 +322,10 @@
     "ccchh": {
         "de": "CCCHH",
         "en": "CCCHH"
+    },
+    "cccs": {
+        "de": "CCCS",
+        "en": "CCCS"
     },
     "cert": {
         "de": "CERT",
@@ -362,6 +374,10 @@
     "digcour": {
         "de": "Digitalcourage",
         "en": "Digitalcourage"
+    },
+    "django": {
+        "de": "Django",
+        "en": "Django"
     },
     "dome": {
         "de": "Zwischen0und1",
@@ -459,6 +475,10 @@
         "de": "Catering Saal G",
         "en": "Catering Hall G"
     },
+    "foxit": {
+        "de": "fox_it",
+        "en": "fox_it"
+    },
     "freifunk": {
         "de": "Freifunk",
         "en": "Freifunk"
@@ -474,6 +494,10 @@
     "geheim": {
         "de": "Geheimorga",
         "en": "Geheimorga"
+    },
+    "gfac": {
+        "de": "Gfac",
+        "en": "Gfac"
     },
     "gsm": {
         "de": "GSM",
@@ -563,6 +587,10 @@
         "de": "Saal A",
         "en": "Hall A"
     },
+    "hackeriet": {
+        "de": "Hackeriet",
+        "en": "Hackeriet"
+    },
     "hb": {
         "de": "Saal B",
         "en": "Hall B"
@@ -623,6 +651,10 @@
         "de": "Kinky Geeks",
         "en": "Kinky Geeks"
     },
+    "koffein": {
+        "de": "KoFfeIn",
+        "en": "KoFfeIn"
+    },
     "lng": {
         "de": "Ende Gel\u00e4nde",
         "en": "Ende Gel\u00e4nde"
@@ -655,9 +687,17 @@
         "de": "microlabs",
         "en": "microlabs"
     },
+    "muccc": {
+        "de": "MuCCC",
+        "en": "MuCCC"
+    },
     "music": {
         "de": "Musik",
         "en": "Music"
+    },
+    "n2n": {
+        "de": "nerd2nerd",
+        "en": "nerd2nerd"
     },
     "nad": {
         "de": "Nad-Lounge",
@@ -731,9 +771,17 @@
         "de": "Quiet area",
         "en": "Quiet area"
     },
+    "rad1o": {
+        "de": "rad1o",
+        "en": "rad1o"
+    },
     "relax": {
         "de": "Relax Area",
         "en": "Relax Area"
+    },
+    "rzl": {
+        "de": "RaumZeitLabor",
+        "en": "RaumZeitLabor"
     },
     "s11": {
         "de": "Leitstelle S1/1",
@@ -746,6 +794,10 @@
     "sendez": {
         "de": "Sendezentrum",
         "en": "Sendezentrum"
+    },
+    "shack": {
+        "de": "shackspace",
+        "en": "shackspace"
     },
     "shirts": {
         "de": "Shirt Desk",
@@ -766,6 +818,10 @@
     "speak": {
         "de": "Speakers Desk",
         "en": "Speakers Desk"
+    },
+    "strat0": {
+        "de": "Stratum 0",
+        "en": "Stratum 0"
     },
     "t1f1h1": {
         "de": "Toilette (links), Saal 1 Garderobenfoyer",
@@ -882,5 +938,9 @@
     "words": {
         "de": "Wordlounge",
         "en": "Wordlounge"
+    },
+    "xil": {
+        "de": "xil",
+        "en": "xil"
     }
 }
