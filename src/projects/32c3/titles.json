@@ -331,6 +331,11 @@
         "de": "CERT",
         "en": "CERT"
     },
+    "clusterfuckhl": {
+        "de": "Lübecker Clusterfuck",
+        "en": "Clusterfuck Lübeck"  
+    },
+    }
     "cider": {
         "de": "Cider-Security",
         "en": "Cider-Security"
