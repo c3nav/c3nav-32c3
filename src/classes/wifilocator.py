@@ -63,7 +63,6 @@ class WifiLocator():
         self.sid_ids = {sid: i for i, sid in enumerate(self.sids)}
         # print('\n'.join(str(a) for a in self.sid_ids.keys()))
 
-
         print((self.graph.levels, self.graph.width//self.divide_by,
                self.graph.height//self.divide_by, len(self.sids)))
         self.matrix = np.empty((self.graph.levels, self.graph.width//self.divide_by,
