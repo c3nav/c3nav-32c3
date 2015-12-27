@@ -562,6 +562,14 @@
         "x": 338,
         "y": 541
     },
+    "freifunk": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 570,
+        "y": 475
+    },
     "garage": {
         "level": 0,
         "x": 1038,
