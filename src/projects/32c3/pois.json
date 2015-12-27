@@ -673,6 +673,9 @@
         "y": 520
     },
     "infuanfu": {
+        "groups": [
+            "assembly"
+        ],
         "level": 1,
         "x": 270,
         "y": 511
