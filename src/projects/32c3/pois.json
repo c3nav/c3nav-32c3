@@ -627,6 +627,14 @@
         "x": 682,
         "y": 306
     },
+    "darksystem": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 445,
+        "y": 536
+    },
     "ddosbar": {
         "groups": [
             "bar",
@@ -1280,8 +1288,8 @@
             "bottles"
         ],
         "level": 0,
-        "x": 446,
-        "y": 571
+        "x": 403,
+        "y": 567
     },
     "warsaw": {
         "groups": [
