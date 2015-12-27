@@ -257,4 +257,5 @@ def locate():
 
 
 if 'gunicorn' not in os.environ.get('SERVER_SOFTWARE', ''):
-    app.run(threaded=True, debug=('debug' in sys.argv))
+    app.run(threaded=True, debug=('debug' in sys.argv),
+            port=(4999 if os.environ.get('WIFIONLY') else 5000))
