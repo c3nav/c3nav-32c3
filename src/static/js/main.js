@@ -291,7 +291,7 @@ $(document).ready(function() {
             scan_now();
         }
         point_set();
-        if ($('.locationinput:visible').first().focus().length && $(window).width()<568) {
+        if (!$(this).is('.locating') && $('.locationinput:visible').first().focus().length && $(window).width()<568) {
             $('html, body').animate({ scrollTop: $('.locationinput:visible').first().parents('fieldset').offset().top-5 }, 300);
         }
     }).mouseover(function(e) {
