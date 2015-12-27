@@ -577,6 +577,14 @@
         "x": 685,
         "y": 583
     },
+    "devlol": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 711,
+        "y": 597
+    },
     "digcour": {
         "level": 2,
         "x": 444,
