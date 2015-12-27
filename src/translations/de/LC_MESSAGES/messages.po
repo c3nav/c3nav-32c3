@@ -186,7 +186,7 @@ msgstr "Leicht nach links und %(d).1fm weiter geradeaus."
 #: classes/route.py:115
 #, python-format
 msgid "Turn light to the right and continue for %(d).1f meters."
-msgstr "Leicht nach recht und %(d).1fm weiter geradeaus."
+msgstr "Leicht nach rechts und %(d).1fm weiter geradeaus."
 
 #: classes/route.py:116
 #, python-format
