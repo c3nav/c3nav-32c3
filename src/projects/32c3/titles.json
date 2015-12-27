@@ -287,6 +287,10 @@
         "de": "Brave new sector",
         "en": "Brave new sector"
     },
+    "bspace": {
+        "de": "backspace",
+        "en": "backspace"
+    },
     "bwerk": {
         "de": "Bytewerk",
         "en": "Bytewerk"

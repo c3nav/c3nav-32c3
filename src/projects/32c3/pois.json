@@ -424,6 +424,14 @@
         "x": 811,
         "y": 575
     },
+    "bspace": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 694,
+        "y": 521
+    },
     "bwerk": {
         "groups": [
             "assembly"
