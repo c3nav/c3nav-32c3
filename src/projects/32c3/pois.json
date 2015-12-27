@@ -485,6 +485,14 @@
         "x": 459,
         "y": 364
     },
+    "clusterfuckhl": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 538,
+        "y": 457
+    },
     "cider": {
         "groups": [
             "assembly"
