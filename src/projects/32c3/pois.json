@@ -582,6 +582,14 @@
         "x": 737,
         "y": 537
     },
+    "curryclub": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 649,
+        "y": 518
+    },
     "cwelle": {
         "level": 2,
         "x": 972,
@@ -972,7 +980,7 @@
             "assembly"
         ],
         "level": 0,
-        "x": 641,
+        "x": 639,
         "y": 523
     },
     "pasten": {
