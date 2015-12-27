@@ -35,7 +35,7 @@ class Route():
                 if j == 0:
                     level = '<b>'+_('level %(level)d', level=part['level'])+'</b>'
                     room = from_room if i == 0 else to_room
-                    if isinstance(self.points[0], Node):
+                    if isinstance(self.points[0], Node) or i != 0:
                         tmp = str(escape(_('You are now in %(room)s on %(level)s.',
                                            room=room, level=level)))
                     else:
