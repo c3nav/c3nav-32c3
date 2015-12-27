@@ -4,7 +4,7 @@
         "en": "Nearest Assembly"
     },
     ":bottles": {
-        "de": "N\u00e4chste Flaschenabgabe",
+        "de": "N\u00e4chstgelegene Flaschenabgabe",
         "en": "Nearest Bottle Drop Point"
     },
     ":heaven": {
