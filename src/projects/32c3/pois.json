@@ -425,12 +425,9 @@
         "y": 575
     },
     "bwerk": {
-        "groups": [
-            "assembly"
-        ],
         "level": 0,
-        "x": 681,
-        "y": 504
+        "x": 684,
+        "y": 522
     },
     "c3d2": {
         "groups": [
@@ -485,14 +482,6 @@
         "x": 459,
         "y": 364
     },
-    "clusterfuckhl": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 538,
-        "y": 457
-    },
     "cider": {
         "groups": [
             "assembly"
@@ -500,6 +489,14 @@
         "level": 0,
         "x": 615,
         "y": 340
+    },
+    "clusterfuckhl": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 538,
+        "y": 457
     },
     "coffee": {
         "groups": [
