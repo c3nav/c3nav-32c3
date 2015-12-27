@@ -14,5 +14,6 @@
         "bottles": 0
     },
     "wifi_maxdistance": 500,
-    "wifi_divideby": 2
+    "wifi_divideby": 2,
+    "wifi_knownonly": true
 }
