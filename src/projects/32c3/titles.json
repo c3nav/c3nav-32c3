@@ -535,6 +535,10 @@
         "de": "Freifunk",
         "en": "Freifunk"
     },
+    "fsfe": {
+        "de": "FSFE",
+        "en": "FSFE"
+    },
     "fspeak": {
         "de": "Speaker Foyer",
         "en": "Speaker Foyer"
@@ -791,6 +795,10 @@
         "de": "Matelight",
         "en": "Matelight"
     },
+    "math": {
+        "de": "The Math Guys",
+        "en": "The Math Guys"
+    },
     "mlabs": {
         "de": "microlabs",
         "en": "microlabs"
@@ -834,6 +842,10 @@
     "openlab": {
         "de": "OpenLab Augsburg",
         "en": "OpenLab Augsburg"
+    },
+    "osm": {
+        "de": "OpenStreetMap",
+        "en": "OpenStreetMap"
     },
     "outside": {
         "de": "Vorplatz",
@@ -926,6 +938,10 @@
     "shirtsb": {
         "de": "Shirt Desk (Hinter der Theke)",
         "en": "Shirt Desk (behind the counter)"
+    },
+    "simplon": {
+        "de": "Simplon.co",
+        "en": "Simplon.co"
     },
     "singul": {
         "de": "Singularity City",
@@ -1054,6 +1070,10 @@
     "uptimebar": {
         "de": "Uptime Bar (24 h ge\u00f6ffnet)",
         "en": "Uptime Bar (open 24 hours)"
+    },
+    "warsaw": {
+        "de": "Warsaw Hackerspace",
+        "en": "Warsaw Hackerspace"
     },
     "wc": {
         "de": "Toilette",

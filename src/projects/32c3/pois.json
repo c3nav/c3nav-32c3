@@ -73,6 +73,46 @@
         "x": 682,
         "y": 538
     },
+    "math": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 303,
+        "y": 495
+    },
+    "warsaw": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 368,
+        "y": 485
+    },
+    "osm": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 623,
+        "y": 450
+    },
+    "simplon": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 648,
+        "y": 614
+    },
+    "fsfe": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 6908,
+        "y": 439
+    },
     "squirrel": {
         "groups": [
             "assembly"
