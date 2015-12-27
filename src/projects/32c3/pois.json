@@ -618,6 +618,14 @@
         "x": 789,
         "y": 550
     },
+    "failov": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 626,
+        "y": 571
+    },
     "fe": {
         "groups": [
             "assembly"
