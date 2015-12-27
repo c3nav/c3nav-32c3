@@ -959,6 +959,10 @@
         "de": "Tower",
         "en": "Tower"
     },
+    "trollh": {
+        "de": "Trollh\u00f6hle",
+        "en": "Trollh\u00f6hle"
+    },
     "uptimebar": {
         "de": "Uptime Bar (24 h ge\u00f6ffnet)",
         "en": "Uptime Bar (open 24 hours)"

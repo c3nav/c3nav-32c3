@@ -1025,6 +1025,14 @@
         "x": 467,
         "y": 459
     },
+    "trollh": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 746,
+        "y": 592
+    },
     "uptimebar": {
         "groups": [
             "bar",
