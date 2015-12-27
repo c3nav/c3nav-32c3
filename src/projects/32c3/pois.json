@@ -558,6 +558,14 @@
         "x": 423,
         "y": 519
     },
+    "csirts": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 737,
+        "y": 537
+    },
     "cwelle": {
         "level": 2,
         "x": 972,
