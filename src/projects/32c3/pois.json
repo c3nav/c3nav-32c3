@@ -550,6 +550,14 @@
         "x": 612,
         "y": 379
     },
+    "openlab": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 641,
+        "y": 523
+    },
     "pasten": {
         "groups": [
             "assembly"
