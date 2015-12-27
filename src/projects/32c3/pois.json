@@ -33,6 +33,14 @@
         "x": 428,
         "y": 386
     },
+    "bakka": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 624,
+        "y": 521
+    },
     "bdp001": {
         "groups": [
             "bottles"
