@@ -1037,6 +1037,14 @@
         "x": 599,
         "y": 570
     },
+    "sburg": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 687,
+        "y": 531
+    },
     "sendez": {
         "level": 1,
         "x": 704,
