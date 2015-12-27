@@ -652,6 +652,14 @@
         "x": 711,
         "y": 597
     },
+    "diaspora": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 644,
+        "y": 561
+    },
     "digcour": {
         "level": 2,
         "x": 444,
@@ -1266,6 +1274,11 @@
         "x": 683,
         "y": 565
     },
+    "toppoint": {
+        "level": 0,
+        "x": 529,
+        "y": 480
+    },
     "tower": {
         "groups": [
             "project"
@@ -1314,13 +1327,5 @@
         "level": 0,
         "x": 714,
         "y": 550
-    },
-    "diaspora": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 1,
-        "x": 644,
-        "y": 561
     }
 }

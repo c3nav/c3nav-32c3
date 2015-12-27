@@ -427,6 +427,10 @@
         "de": "/dev/lol",
         "en": "/dev/lol"
     },
+    "diaspora": {
+        "de": "Diaspora*",
+        "en": "Diaspora*"
+    },
     "digcour": {
         "de": "Digitalcourage",
         "en": "Digitalcourage"
@@ -1079,6 +1083,10 @@
         "de": "Toilette, Lobby",
         "en": "Toilet, Lobby"
     },
+    "toppoint": {
+        "de": "toppoint",
+        "en": "toppoint"
+    },
     "tower": {
         "de": "Tower",
         "en": "Tower"
@@ -1118,9 +1126,5 @@
     "xil": {
         "de": "xil",
         "en": "xil"
-    },
-    "diaspora": {
-        "de": "Diaspora*",
-        "en": "Diaspora*"
     }
 }
