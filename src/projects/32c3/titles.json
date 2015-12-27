@@ -1,14 +1,14 @@
 {
     ":assembly": {
-        "de": "N\u00e4chstgelegene Assembly",
+        "de": "N\u00e4chste Assembly",
         "en": "Nearest Assembly"
     },
     ":bar": {
-        "de": "N\u00e4chstgelegene Bar",
+        "de": "N\u00e4chste Bar",
         "en": "Nearest Bar"
     },
     ":bottles": {
-        "de": "N\u00e4chstgelegene Flaschenabgabe",
+        "de": "N\u00e4chste Flaschenabgabe",
         "en": "Nearest Bottle Drop Point"
     },
     ":heaven": {
@@ -16,16 +16,24 @@
         "en": "Heaven"
     },
     ":project": {
-        "de": "N\u00e4chstgelegenes Projekt",
+        "de": "N\u00e4chstes Projekt",
         "en": "Nearest Project"
     },
     ":wc": {
-        "de": "N\u00e4chstgelegene Toilette",
+        "de": "N\u00e4chste Toilette",
         "en": "Nearest Toilet"
     },
+    ":wcc": {
+        "de": "N\u00e4chste konventionelle Toilette",
+        "en": "Nearest Conventional Toilet"
+    },
     ":wch": {
-        "de": "N\u00e4chstgelegene barrierefreie Toilette",
+        "de": "N\u00e4chste barrierefreie Toilette",
         "en": "Nearest Handicapped Toilet"
+    },
+    ":wcu": {
+        "de": "N\u00e4chste Unisex Toilette",
+        "en": "Nearest Unisex Toilet"
     },
     "afra": {
         "de": "Afra",
@@ -727,8 +735,16 @@
         "de": "Toilette",
         "en": "Toilet"
     },
+    "wcc": {
+        "de": "Konventionelle Toilette",
+        "en": "Conventional Toilet"
+    },
     "wch": {
         "de": "Barrierefreie Toilette",
         "en": "Handicapped Toilet"
+    },
+    "wcu": {
+        "de": "Unisextoilette",
+        "en": "Unisex Toilet"
     }
 }
