@@ -844,6 +844,11 @@
         "x": 616,
         "y": 615
     },
+    "hf2door": {
+        "level": 2,
+        "x": 1108,
+        "y": 430
+    },
     "hreset": {
         "groups": [
             "assembly"
