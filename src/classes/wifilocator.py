@@ -18,16 +18,17 @@ class WifiLocator():
     def __init__(self, graph, load_wifi=True):
         self.graph = graph
         if not load_wifi:
+            self.disabled = True
             return
 
         import time
         starttime = time.time()
 
         data = graph.data['wifiscans']
+        self.disabled = False
         if not data:
             self.disabled = True
             return
-        self.disabled = False
 
         sid_positions = graph.data['wifipositions']
         self.divide_by = graph.data['wifi_divideby']
