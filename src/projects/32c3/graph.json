@@ -8149,6 +8149,7 @@
         },
         "tfac": {
             "groups": [
+                "wcc",
                 "wc"
             ],
             "level": 1,
@@ -8156,6 +8157,7 @@
         },
         "tfdg": {
             "groups": [
+                "wcc",
                 "wc"
             ],
             "level": 2,
@@ -8163,6 +8165,7 @@
         },
         "tfh4": {
             "groups": [
+                "wcc",
                 "wc"
             ],
             "level": 0,
@@ -8170,13 +8173,14 @@
         },
         "thvc": {
             "groups": [
-                "wc"
+                "wcu", "wc"
             ],
             "level": 1,
             "shape": "919,486 913,488 897,466 948,437 962,462"
         },
         "thvf": {
             "groups": [
+                "wcc",
                 "wc"
             ],
             "level": 1,
@@ -8184,6 +8188,7 @@
         },
         "tlobby": {
             "groups": [
+                "wcc",
                 "wc"
             ],
             "level": 0,
