@@ -1275,6 +1275,9 @@
         "y": 565
     },
     "toppoint": {
+        "groups": [
+            "assembly"
+        ],
         "level": 0,
         "x": 529,
         "y": 480
