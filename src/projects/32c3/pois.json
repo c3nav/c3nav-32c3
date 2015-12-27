@@ -676,6 +676,14 @@
         "x": 661,
         "y": 560
     },
+    "grobeelbstrabe": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 621,
+        "y": 536
+    },
     "h3arcade": {
         "groups": [
             "project"
