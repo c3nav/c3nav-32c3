@@ -196,8 +196,7 @@ class WifiLocator():
         # best_station = np.argmax(scan)
         # best_sid = self.sids[best_station]
 
-        diffs = ((self.matrix[:, :, :, my_sids]-self.dbm_to_w(np_scan[my_sids]))**2)
-        matches = diffs.sum(axis=3)
+        matches = ((self.matrix[:, :, :, my_sids]-self.dbm_to_w(np_scan[my_sids]))**2).sum(axis=3)
         # print(matches)
         best_match = np.unravel_index(np.argmin(matches), matches.shape)
 
