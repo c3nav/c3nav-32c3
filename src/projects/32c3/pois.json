@@ -804,6 +804,14 @@
         "x": 397,
         "y": 370
     },
+    "mafia": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 689,
+        "y": 615
+    },
     "marburg": {
         "groups": [
             "assembly"
