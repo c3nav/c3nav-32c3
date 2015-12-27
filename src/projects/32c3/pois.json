@@ -65,6 +65,14 @@
         "x": 364,
         "y": 563
     },
+    "rust": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 682,
+        "y": 538
+    },
     "bdp001": {
         "groups": [
             "bottles"
