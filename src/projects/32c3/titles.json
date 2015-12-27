@@ -31,6 +31,10 @@
         "de": "Afra",
         "en": "Afra"
     },
+    "anagrom": {
+        "de": "Anagrom Ataf",
+        "en": "Anagrom Ataf"
+    },
     "assembly": {
         "de": "Assembly",
         "en": "Assembly"
@@ -258,6 +262,10 @@
     "cbase": {
         "de": "c-base",
         "en": "c-base"
+    },
+    "ccchd": {
+        "de": "CCCHD",
+        "en": "CCCHD"
     },
     "ccchh": {
         "de": "CCCHH",
@@ -527,6 +535,10 @@
         "de": "Infodesk",
         "en": "Infodesk"
     },
+    "kinky": {
+        "de": "Kinky Geeks",
+        "en": "Kinky Geeks"
+    },
     "lobby": {
         "de": "Lobby",
         "en": "Lobby"
@@ -538,6 +550,10 @@
     "lucius": {
         "de": "Lucius",
         "en": "Lucius"
+    },
+    "marburg": {
+        "de": "Haquium Marburgensis",
+        "en": "Haquium Marburgensis"
     },
     "matelight": {
         "de": "Matelight",
@@ -595,6 +611,10 @@
         "de": "Projekt",
         "en": "Project"
     },
+    "queer": {
+        "de": "Queer Feminist Geeks",
+        "en": "Queer Feminist Geeks"
+    },
     "s11": {
         "de": "Leitstelle S1/1",
         "en": "Leitstelle S1/1"
@@ -642,6 +662,10 @@
     "t2f2h1": {
         "de": "Toilette (rechts), Saal 1 Hauptfoyer",
         "en": "Toilet (right), Hall 1 Main Foyer"
+    },
+    "tabcat": {
+        "de": "Tabvillage & Katzennetzwerkende",
+        "en": "Tabvillage & Katzennetzwerkende"
     },
     "te2": {
         "de": "Toilette, Aufz\u00fcge 2. OG",

@@ -7,6 +7,14 @@
         "x": 618,
         "y": 379
     },
+    "anagrom": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 262,
+        "y": 479
+    },
     "bdp001": {
         "groups": [
             "bottles"
@@ -412,6 +420,14 @@
         "x": 628,
         "y": 364
     },
+    "ccchd": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 446,
+        "y": 419
+    },
     "cider": {
         "groups": [
             "assembly"
@@ -502,6 +518,14 @@
         "x": 754,
         "y": 520
     },
+    "kinky": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 693,
+        "y": 543
+    },
     "lucius": {
         "groups": [
             "project"
@@ -509,6 +533,14 @@
         "level": 0,
         "x": 729,
         "y": 273
+    },
+    "marburg": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 590,
+        "y": 460
     },
     "matelight": {
         "groups": [
@@ -579,6 +611,14 @@
         "x": 849,
         "y": 444
     },
+    "queer": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 934,
+        "y": 426
+    },
     "s11": {
         "groups": [
             "assembly"
@@ -604,6 +644,14 @@
         "level": 0,
         "x": 745,
         "y": 313
+    },
+    "tabcat": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 649,
+        "y": 579
     },
     "uptimebar": {
         "groups": [
