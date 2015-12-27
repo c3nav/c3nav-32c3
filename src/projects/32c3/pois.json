@@ -677,6 +677,14 @@
         "x": 754,
         "y": 520
     },
+    "infuanfu": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 270,
+        "y": 511
+    },
     "kids": {
         "level": 3,
         "x": 800,
