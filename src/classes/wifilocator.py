@@ -29,6 +29,7 @@ class WifiLocator():
         sid_positions = graph.data['wifipositions']
         self.divide_by = graph.data['wifi_divideby']
         self.max_distance = graph.data['wifi_maxdistance']
+        self.essids_contain = graph.data['essids_contain']
 
         # group multiple scans at the same position
         scans_by_position = {}
@@ -37,7 +38,10 @@ class WifiLocator():
             if pos not in scans_by_position:
                 scans_by_position[pos] = {}
             for station in scan['stations']:
-                sid = (station['bssid'], station['ssid'])
+                if self.essids_contain not in station['ssid']:
+                    print(station['ssid'])
+                    continue
+                sid = (station['bssid'].upper(), station['ssid'])
                 if sid[0] in sid_positions and sid_positions[sid[0]] is None:
                     continue
                 if sid not in scans_by_position[pos]:
@@ -59,6 +63,9 @@ class WifiLocator():
         self.sid_ids = {sid: i for i, sid in enumerate(self.sids)}
         # print('\n'.join(str(a) for a in self.sid_ids.keys()))
 
+
+        print((self.graph.levels, self.graph.width//self.divide_by,
+               self.graph.height//self.divide_by, len(self.sids)))
         self.matrix = np.empty((self.graph.levels, self.graph.width//self.divide_by,
                                 self.graph.height//self.divide_by, len(self.sids)))
         self.matrix.fill(self.no_signal)
@@ -114,7 +121,6 @@ class WifiLocator():
                 polar = np.dstack((np.arctan2(*(np_positions-center).transpose())/np.pi/2*360,
                                    cdist([center], np_positions)[0]))[0]
                 nearestvalue = values[np.argmin(polar[:, 1])]
-                print(nearestvalue)
                 polar = np.concatenate((polar, ((0, 0), )))
                 values = np.concatenate((values, (nearestvalue, )))
                 values = self.dbm_to_w_linear(values, polar[:, 1])
@@ -139,9 +145,10 @@ class WifiLocator():
                 if False:
                     # Enable this show interpolated ap data
                     print(sid, np.max(values))
-                    plt.imshow(imread('static/img/levels/dev/level0.jpg')[::self.divide_by, ::self.divide_by])
+                    plt.imshow(imread('static/img/levels/32c3/level%d.jpg' % level)[::self.divide_by,
+                                                                                    ::self.divide_by])
                     plt.imshow(self.w_to_dbm(newmatrix).transpose(), alpha=0.5, cmap=cm.jet, origin='upper')
-                    plt.plot(*np_positions.transpose()//self.divide_by, marker=',w')
+                    # plt.plot(*np_positions.transpose()//self.divide_by, marker=',w')
                     plt.show()
 
             levelmatrixes.append(np.dstack(sidmatrixes))
@@ -175,7 +182,7 @@ class WifiLocator():
     def locate(self, scan):
         if self.disabled:
             return None
-        scan = {(s['bssid'], s['ssid']): s['level'] for s in scan}
+        scan = {(s['bssid'].upper(), s['ssid']): s['level'] for s in scan}
         np_scan = np.ones((len(self.sid_ids), ))*self.no_signal
         my_sids = []
         for sid, level in scan.items():
@@ -198,7 +205,8 @@ class WifiLocator():
         # print(matches)
         best_match = np.unravel_index(np.argmin(matches), matches.shape)
 
-        position = UserPosition(*[int(i*self.divide_by) for i in best_match], located=True)
+        best_match = int(best_match[0]), int(best_match[1]*self.divide_by), int(best_match[2]*self.divide_by)
+        position = UserPosition(*best_match, located=True)
         position.room = self.graph.get_room(position)
         return position, round(self.w_to_dbm(np.min(matches)), 2), known_spots
 

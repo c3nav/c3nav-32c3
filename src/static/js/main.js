@@ -79,16 +79,17 @@ function point_set() {
 lastscan = 0;
 function scan_now() {
     lastscan = new Date().getTime()/1000;
+    mobileclient.scanNow();
 }
 function scan_perhaps() {
-    if ($('.poswait, .path.map').length) {
+    if ($('.path .map, .mapinput:visible').length) {
         if (lastscan < (new Date().getTime()/1000-15000)) scan_now();
     }
 }
 function nearby_stations_available() {
     lastscan = 0;
     console.log(JSON.parse(mobileclient.getNearbyStations()));
-    if ($('.p.locating').length > 0) {
+    if ($('.p.locating, .path .map, .mapinput:visible').length > 0) {
         $.ajax({
             type: "POST",
             url: '/locate',
@@ -99,13 +100,13 @@ function nearby_stations_available() {
                     $('.p.locating').find('.locating .reset').click();
                     return;
                 }
-                current_location = data;
+                current_position = data;
                 set_position();
                 $('.p.locating').each(function() {
                     var location = $(this).find('button.user');
-                    location.val(current_location.name);
-                    location.find('span').text(current_location.title);
-                    location.find('small').text(current_location.name);
+                    location.val(current_position.name);
+                    location.find('span').text(current_position.title);
+                    location.find('small').text(current_position.name);
                     location.click();
                 });
                 toggle_user_location($('.p[name=d]').find('button.user'), origin);
@@ -161,7 +162,7 @@ function set_position() {
         $(this).toggle($(this).parent().siblings('img[data-level='+String($(this).attr('data-level'))+']:visible').length > 0);
     });
 
-    $('.maplevelselect.poswait').removeClass('poswait').find('button[data-level='+String(current_position.level)+']').click();
+    $('.maplevelselect.poswait').removeClass('poswait').parent().find('button[data-level='+String(current_position.level)+']').click();
     $('.mapinput.poswait').removeClass('poswait').scrollLeft(current_position.x-$('.mapinput').width()/2).scrollTop(current_position.y-$('.mapinput').height()/2);
 }
 
