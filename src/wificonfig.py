@@ -32,7 +32,8 @@ for sid in graph.wifi.sids:
         vmin = graph.wifi.w_to_dbm(np.min(graph.wifi.matrix[:, :, :, graph.wifi.sid_ids[sid]]))
         vmax = graph.wifi.w_to_dbm(np.max(graph.wifi.matrix[:, :, :, graph.wifi.sid_ids[sid]]))
         for i, ax in enumerate(axes):
-            ax.imshow(imread('static/img/levels/dev/level%d.jpg' % i)[::graph.wifi.divide_by, ::graph.wifi.divide_by])
+            ax.imshow(imread('static/img/levels/%s/level%d.jpg' % (project, i))[::graph.wifi.divide_by,
+                                                                                ::graph.wifi.divide_by])
             ax.imshow(graph.wifi.w_to_dbm(graph.wifi.matrix[i, :, :, graph.wifi.sid_ids[sid]]).transpose(),
                       alpha=0.5, cmap=cm.jet, origin='upper', vmin=vmin, vmax=vmax)
 
