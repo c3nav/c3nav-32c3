@@ -695,6 +695,14 @@
         "x": 726,
         "y": 614
     },
+    "gfuc": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 661,
+        "y": 585
+    },
     "grobeelbstrabe": {
         "groups": [
             "assembly"
