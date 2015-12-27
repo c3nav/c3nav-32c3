@@ -731,6 +731,10 @@
         "de": "Hardware Hacking",
         "en": "Hardware Hacking"
     },
+    "icmp": {
+        "de": "ICMP",
+        "en": "ICMP"
+    },
     "info": {
         "de": "Infodesk",
         "en": "Infodesk"
