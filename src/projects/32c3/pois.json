@@ -679,6 +679,14 @@
         "x": 1038,
         "y": 315
     },
+    "geekbag": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 641,
+        "y": 550
+    },
     "geheim": {
         "groups": [
             "assembly"

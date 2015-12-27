@@ -471,6 +471,10 @@
         "de": "Saal A-C Foyer",
         "en": "Hall A-C Foyer"
     },
+    "failov": {
+        "de": "failoverflow",
+        "en": "failoverflow"
+    },
     "fdg": {
         "de": "Saal D-G Foyer",
         "en": "Hall D-G Foyer"
@@ -514,6 +518,10 @@
     "garage": {
         "de": "zum Parkhaus",
         "en": "to the Garage"
+    },
+    "geekbag": {
+        "de": "Electronic Geek Bag",
+        "en": "Electronic Geek Bag"
     },
     "geheim": {
         "de": "Geheimorga",
