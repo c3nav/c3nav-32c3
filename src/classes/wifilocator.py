@@ -21,7 +21,7 @@ class WifiLocator():
         starttime = time.time()
 
         data = graph.data['wifiscans']
-        if not data or True:
+        if not data:
             self.disabled = True
             return
         self.disabled = False
