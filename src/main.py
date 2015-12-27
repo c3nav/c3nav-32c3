@@ -35,7 +35,8 @@ else:
     sys.exit(1)
 
 starttime = time.time()
-graph = Graph(project, auto_connect=True, load_wifi=True)
+graph = Graph(project, auto_connect=(not os.environ.get('WIFIONLY')),
+              load_wifi=(not os.environ.get('ROUTEONLY')))
 print('Graph loaded in %.3fs' % (time.time()-starttime))
 
 
@@ -56,6 +57,9 @@ def before_request():
 
 @app.route('/', methods=['GET', 'POST'])
 def main(origin=None, destination=None):
+    if os.environ.get('WIFIONLY'):
+        return ''
+
     src = request.args if request.method == 'GET' else request.form
 
     _('Sorry, an error occured =(')
@@ -179,6 +183,9 @@ def main(origin=None, destination=None):
 
 @app.route('/qr/<path:path>')
 def qr_code(path):
+    if os.environ.get('WIFIONLY'):
+        return ''
+
     qr = qrcode.QRCode(
         version=1,
         error_correction=qrcode.constants.ERROR_CORRECT_L,
@@ -195,21 +202,33 @@ def qr_code(path):
 
 @app.route('/link/<path:path>')
 def link_for_noscript(path):
+    if os.environ.get('WIFIONLY'):
+        return ''
+
     return render_template('link.html', path=path, short_base=short_base)
 
 
 @app.route('/o<location>')
 def short_origin(location):
+    if os.environ.get('WIFIONLY'):
+        return ''
+
     return main(origin=location)
 
 
 @app.route('/d<location>')
 def short_destination(location):
+    if os.environ.get('WIFIONLY'):
+        return ''
+
     return main(destination=location)
 
 
 @app.route('/n<int:level>:<int:x>:<int:y>')
 def get_location_title(level, x, y):
+    if os.environ.get('WIFIONLY'):
+        return ''
+
     pos = UserPosition(level, x, y)
     graph.connect_position(pos)
     return json.dumps({
@@ -220,6 +239,9 @@ def get_location_title(level, x, y):
 
 @app.route('/locate', methods=['POST'])
 def locate():
+    if os.environ.get('ROUTEONLY'):
+        return ''
+
     result = graph.wifi.locate(json.loads(request.form.get('stations')))
     if result is not None:
         position, score, matched_stations = result
