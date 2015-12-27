@@ -41,6 +41,30 @@
         "x": 624,
         "y": 521
     },
+    "stud": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 546,
+        "y": 388
+    },
+    "jhackt": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 622,
+        "y": 513
+    },
+    "mainframe": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 364,
+        "y": 563
+    },
     "bdp001": {
         "groups": [
             "bottles"

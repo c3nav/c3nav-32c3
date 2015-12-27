@@ -735,6 +735,10 @@
         "de": "infuanfu",
         "en": "infuanfu"
     },
+    "jhackt": {
+        "de": "Jugend Hackt",
+        "en": "Studentennetze"
+    },
     "kids": {
         "de": "Kids Space",
         "en": "Kids Space"
@@ -774,6 +778,10 @@
     "mafia": {
         "de": "MafiA",
         "en": "MafiA"
+    },
+    "mainframe": {
+        "de": "Mainframe",
+        "en": "Mainframe"
     },
     "marburg": {
         "de": "Haquium Marburgensis",
@@ -930,6 +938,10 @@
     "strat0": {
         "de": "Stratum 0",
         "en": "Stratum 0"
+    },
+    "stud": {
+        "de": "Studentennetze",
+        "en": "Jugend hackt"
     },
     "t1f1h1": {
         "de": "Toilette (links), Saal 1 Garderobenfoyer",
