@@ -647,6 +647,10 @@
         "de": "Saal 4",
         "en": "Hall 4"
     },
+    "h4x0rpsch0rr": {
+        "de": "H4x0rPsch0rr",
+        "en": "H4x0rPsch0rr"
+    },
     "h6": {
         "de": "Saal 6",
         "en": "Hall 6"
@@ -734,10 +738,6 @@
     "icmp": {
         "de": "ICMP",
         "en": "ICMP"
-    },
-    "h4x0rpsch0rr": {
-        "de": "H4x0rPsch0rr",
-        "en": "H4x0rPsch0rr"
     },
     "info": {
         "de": "Infodesk",
@@ -974,6 +974,10 @@
     "stud": {
         "de": "Studentennetze",
         "en": "Jugend hackt"
+    },
+    "subtitles": {
+        "de": "Subtitles",
+        "en": "Subtitles"
     },
     "t1f1h1": {
         "de": "Toilette (links), Saal 1 Garderobenfoyer",

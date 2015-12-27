@@ -1283,6 +1283,11 @@
         "x": 624,
         "y": 568
     },
+    "subtitles": {
+        "level": 4,
+        "x": 826,
+        "y": 360
+    },
     "xil": {
         "groups": [
             "assembly"
@@ -1291,7 +1296,7 @@
         "x": 714,
         "y": 550
     },
-    "h4x0rPsch0rr": {
+    "h4x0rpsch0rr": {
         "groups": [
             "assembly"
         ],
