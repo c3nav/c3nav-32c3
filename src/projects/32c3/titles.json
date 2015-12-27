@@ -283,6 +283,10 @@
         "de": "Brave new sector",
         "en": "Brave new sector"
     },
+    "bwerk": {
+        "de": "Bytewerk",
+        "en": "Bytewerk"
+    },
     "c3pb": {
         "de": "c3pb",
         "en": "c3pb"
@@ -435,10 +439,6 @@
         "de": "F+E",
         "en": "F+E"
     },
-    "freifunk": {
-        "de": "Freifunk",
-        "en": "Freifunk"
-    },
     "fh4": {
         "de": "Garderobe",
         "en": "Cloakroom"
@@ -458,6 +458,10 @@
     "foodg": {
         "de": "Catering Saal G",
         "en": "Catering Hall G"
+    },
+    "freifunk": {
+        "de": "Freifunk",
+        "en": "Freifunk"
     },
     "fspeak": {
         "de": "Speaker Foyer",

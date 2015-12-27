@@ -416,6 +416,14 @@
         "x": 811,
         "y": 575
     },
+    "bwerk": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 681,
+        "y": 504
+    },
     "c3pb": {
         "groups": [
             "assembly"
