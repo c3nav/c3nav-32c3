@@ -707,6 +707,14 @@
         "x": 284,
         "y": 478
     },
+    "htours": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 748,
+        "y": 606
+    },
     "hvdesk": {
         "level": 1,
         "x": 837,
