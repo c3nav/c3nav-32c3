@@ -29,7 +29,6 @@ class WifiLocator():
         sid_positions = graph.data['wifipositions']
         self.divide_by = graph.data['wifi_divideby']
         self.max_distance = graph.data['wifi_maxdistance']
-        self.essids_contain = graph.data['essids_contain']
 
         # group multiple scans at the same position
         scans_by_position = {}
@@ -38,9 +37,6 @@ class WifiLocator():
             if pos not in scans_by_position:
                 scans_by_position[pos] = {}
             for station in scan['stations']:
-                if self.essids_contain not in station['ssid']:
-                    print(station['ssid'])
-                    continue
                 sid = (station['bssid'].upper(), station['ssid'])
                 if sid[0] in sid_positions and sid_positions[sid[0]] is None:
                     continue

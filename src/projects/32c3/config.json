@@ -19,6 +19,5 @@
         "bottles": 0
     },
     "wifi_maxdistance": 1000,
-    "wifi_divideby": 8,
-    "essids_contain": "32C3"
+    "wifi_divideby": 8
 }
