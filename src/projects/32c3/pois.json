@@ -49,6 +49,14 @@
         "x": 578,
         "y": 431
     },
+    "cccda": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 556,
+        "y": 413
+    },
     "bdp003": {
         "groups": [
             "bottles"
