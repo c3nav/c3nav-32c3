@@ -412,6 +412,15 @@
         "x": 615,
         "y": 340
     },
+    "cryptobar": {
+        "groups": [
+            "bar",
+            "bottles"
+        ],
+        "level": 2,
+        "x": 423,
+        "y": 519
+    },
     "cwh": {
         "groups": [
             "assembly"
@@ -427,6 +436,24 @@
         "level": 0,
         "x": 682,
         "y": 306
+    },
+    "ddosbar": {
+        "groups": [
+            "bar",
+            "bottles"
+        ],
+        "level": 2,
+        "x": 685,
+        "y": 583
+    },
+    "exploitbar": {
+        "groups": [
+            "bar",
+            "bottles"
+        ],
+        "level": 4,
+        "x": 789,
+        "y": 550
     },
     "fe": {
         "groups": [
@@ -561,5 +588,14 @@
         "level": 0,
         "x": 745,
         "y": 313
+    },
+    "uptimebar": {
+        "groups": [
+            "bar",
+            "bottles"
+        ],
+        "level": 0,
+        "x": 446,
+        "y": 571
     }
 }

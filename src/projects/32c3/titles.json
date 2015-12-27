@@ -3,6 +3,10 @@
         "de": "N\u00e4chstgelegene Assembly",
         "en": "Nearest Assembly"
     },
+    ":bar": {
+        "de": "N\u00e4chstgelegene Bar",
+        "en": "Nearest Bar"
+    },
     ":bottles": {
         "de": "N\u00e4chstgelegene Flaschenabgabe",
         "en": "Nearest Bottle Drop Point"
@@ -30,6 +34,10 @@
     "assembly": {
         "de": "Assembly",
         "en": "Assembly"
+    },
+    "bar": {
+        "de": "Bar",
+        "en": "Bar"
     },
     "bdp001": {
         "de": "Flaschenabgabe 1",
@@ -271,6 +279,10 @@
         "de": "Presseraum-Flur",
         "en": "Press Room Corridor"
     },
+    "cryptobar": {
+        "de": "Crypto Bar",
+        "en": "Crypto Bar"
+    },
     "cwh": {
         "de": "Chaos West Hackcenter",
         "en": "Chaos West Hackcenter"
@@ -278,6 +290,10 @@
     "cwl": {
         "de": "Chaos West Loungecenter",
         "en": "Chaos West Loungecenter"
+    },
+    "ddosbar": {
+        "de": "DDoS Bar",
+        "en": "DDoS Bar"
     },
     "e1": {
         "de": "Aufz\u00fcge 1. OG",
@@ -298,6 +314,10 @@
     "entry": {
         "de": "Eingangsbereich",
         "en": "Entrance area"
+    },
+    "exploitbar": {
+        "de": "Exploit Bar",
+        "en": "Exploit Bar"
     },
     "f0": {
         "de": "Erdgeschoss Foyer",
@@ -666,6 +686,10 @@
     "tlobby": {
         "de": "Toilette, Lobby",
         "en": "Toilet, Lobby"
+    },
+    "uptimebar": {
+        "de": "Uptime Bar (24 h ge\u00f6ffnet)",
+        "en": "Uptime Bar (open 24 hours)"
     },
     "wc": {
         "de": "Toilette",
