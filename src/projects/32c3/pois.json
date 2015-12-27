@@ -427,6 +427,14 @@
         "x": 373,
         "y": 436
     },
+    "bratze": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 544,
+        "y": 401
+    },
     "brave": {
         "level": 4,
         "x": 811,
