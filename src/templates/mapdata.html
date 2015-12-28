@@ -1,0 +1,12 @@
+<div data-level="{{ location.level }}" class="themap">
+<svg width="1408" height="1024" data-level="{{ location.level }}">
+    <image width="1408" height="1024" xlink:href="/static/img/levels/{{ name }}/level{{ location.level }}.jpg" />
+    {% if location.ltype == 'room' %}
+    <polygon class="room" points="{% for p in location.shape %}{{ p[0] }},{{ p[1] }} {% endfor %}"
+             data-name="{{ location.name }}" style="stroke: #0000FF; stroke-width: 1.5; fill: rgba(0, 0, 255, 0.1);" />
+    {% elif location.ltype == 'position' %}
+        <circle class="point" r="4" cx="{{ location.x }}" cy="{{ location.y }}" style="fill:#FF0000;" />
+    {% endif %}
+    <div class="connections"></dv>
+</svg>
+</div>

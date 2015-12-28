@@ -14,7 +14,7 @@ from flask.ext.babel import gettext as _
 from flask.ext.babel import Babel
 from htmlmin import minify
 
-from classes import Graph, Node, Router, UserPosition
+from classes import Graph, Node, Position, Room, Router, UserPosition
 
 LANGUAGES = {
     'en': 'English',
@@ -197,6 +197,15 @@ def qr_code(path):
     qr.make_image().save(img, 'PNG')
     img.seek(0)
     return send_file(img, mimetype='image/png')
+
+
+@app.route('/mapdata/<name>')
+def mapdata(name):
+    if os.environ.get('WIFIONLY'):
+        return ''
+
+    location = graph.get_selectable_location(name)
+    return render_template('mapdata.html', location=location, name=graph.name)
 
 
 @app.route('/link/<path:path>')

@@ -1,7 +1,7 @@
 {% if resetable %}
-<div class="location{% if location.user %} user{% endif %}">
+<div class="location{% if location.user %} user{% endif %}" value="{{ location.name }}"{% if location.ltype != 'position' or location.ltype != 'room' %} data-map="1"{% endif %}>
 {% else %}
-<button type="submit" name="{{ prefix }}" value="{{ location.name }}" class="location{% if location.user %} user{% endif %}">
+<button type="submit" name="{{ prefix }}" value="{{ location.name }}"{% if location.ltype != 'position' or location.ltype != 'room' %} data-map="1"{% endif %} class="location{% if location.user %} user{% endif %}">
 {% endif %}
     <span>{{ location.title }}</span>
     <small>{{ location.subtitle }}</small>

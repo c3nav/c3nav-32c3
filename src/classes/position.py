@@ -2,6 +2,8 @@ import numpy as np
 
 
 class Position:
+    ltype = 'position'
+
     def __init__(self, level, x, y):
         self.level = level
         self.x = x

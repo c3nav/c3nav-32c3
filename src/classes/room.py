@@ -6,6 +6,7 @@ from .location import Location
 
 
 class Room(Location):
+    ltype = 'room'
     priority = 2
 
     def __init__(self, graph, name, level, titles, shape):

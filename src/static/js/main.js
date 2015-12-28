@@ -82,7 +82,7 @@ function scan_now() {
     mobileclient.scanNow();
 }
 function scan_perhaps() {
-    if ($('.path .map, .mapinput:visible').length) {
+    if ($('.path .map, .mapinput:visible, #bigmap').length) {
         if (lastscan < (new Date().getTime()/1000-15000)) scan_now();
     }
 }
@@ -140,11 +140,37 @@ function linkbtn_click(e) {
         }).insertBefore($('#linkmodal button:last-child'));
     }
 }
+function loc_mapbtn_click(e) {
+    e.preventDefault();
+    $.ajax({'type': 'GET', 'url': '/mapdata/'+$(this).parents('.location').attr('value'), 'success': function(data) {
+        $('<div id="bigmap">').css({
+            position: 'fixed', overflow: 'auto', 'z-index': 10000000,
+            top: 0, left:0, width: '100%', height: '100%',
+            'background-color': '#000000'
+        }).append(data).append($('<button class="pure-button" id="closemap">').css({
+                position: 'fixed', left: 5, top: 5
+            }).text($('#main').attr('data-locale-close')).click(function() {
+                $('#bigmap').remove();
+            })
+        ).appendTo('body');
+        var position;
+        if ($('#bigmap circle').length) {
+            position = $('#bigmap circle').position();
+        } else {
+            var poly = $('#bigmap polygon');
+            position = poly.position();
+            position.left += poly.width()/2;
+            position.top += poly.height()/2;
+        }
+        $('#bigmap').scrollLeft(position.left-$(window).width()/2).scrollTop(position.top-$(window).height()/2);
+    }, 'dataType': 'html'});
+
+}
 function set_position() {
     $('circle.pos').remove();
     // <circle class="pos" r="5" cx="{{ 0-routepart.minx+20 }}" cy="{{ 0-routepart.miny+20 }}" />
-    $('.path').each(function() {
-        var map = $(this).find('.map');
+    $('.path, #bigmap').each(function() {
+        var map = $(this).find('.map, .themap');
         if (map.attr('data-level') == String(current_position.level)) {
             $('<circle class="pos" r="5" />').attr({
                 'cx': current_position.x+parseInt(map.find('image').attr('x')),
@@ -224,6 +250,7 @@ $(document).ready(function() {
         mapinput.append($('<div class="poscontainer">'));
         levelselect.find('button[data-level=0]').click();
     });
+    $('<button class="onmap">').click(loc_mapbtn_click).insertBefore($('div.location[data-map=1] .buttons .reset'));
     if (typeof mobileclient !== "undefined" && wifilocate) {
         window.setInterval(scan_perhaps, 3000);
     }
@@ -280,6 +307,8 @@ $(document).ready(function() {
         $('<form>').html(
             $('<div class="location">').toggleClass('locating', $(this).is('.locating')).html($(this).html()).attr('value', $(this).val()).append($('<div class="buttons">').append(
                 $(this).is(':not(.locating)') ? $('<a class="link">').attr('href', '/'+$(this).parents('.p').attr('name')+$(this).val()).click(linkbtn_click) : null
+            ).append(
+                $(this).is('[data-map=1]:not(.locating)') ? $('<button class="onmap">').click(loc_mapbtn_click) : null
             ).append(
                 $('<button type="submit" class="reset">')
             ))

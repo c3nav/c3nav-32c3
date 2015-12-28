@@ -2,6 +2,8 @@ from flask import g
 
 
 class Location:
+    ltype = 'location'
+
     """ has nodes and a title """
     def __init__(self, name, titles):
         self.name = name

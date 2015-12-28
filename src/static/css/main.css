@@ -141,7 +141,7 @@ div.location {
 .buttons .link {
     background-image:url('/static/img/icons/link.svg');
 }
-.buttons .map {
+.buttons .map, .buttons .onmap {
     background-image:url('/static/img/icons/map.svg');
 }
 .buttons .locate {
