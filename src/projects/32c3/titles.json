@@ -923,6 +923,14 @@
         "de": "POC Helpdesk",
         "en": "POC Helpdesk"
     },
+    "porter_entrance": {
+        "de": "Pf\u00f6rtnereingang",
+        "en": "Porter Entrance"
+    },
+    "porter_hallway": {
+        "de": "Korridor zum Pf\u00f6rtnereingang",
+        "en": "Hallway to the Porter Entrance"
+    },
     "press": {
         "de": "Presseraum",
         "en": "Press Room"
