@@ -107,6 +107,10 @@
         "de": "Flaschenabgabe 8",
         "en": "Bottle Drop Point 8"
     },
+    "bdp009": {
+        "de": "Flaschenabgabe 9",
+        "en": "Bottle Drop Point 9"
+    },
     "bdp101": {
         "de": "Flaschenabgabe 101",
         "en": "Bottle Drop Point 101"
@@ -222,6 +226,10 @@
     "bdp309": {
         "de": "Flaschenabgabe 309",
         "en": "Bottle Drop Point 309"
+    },
+    "bdp310": {
+        "de": "Flaschenabgabe 310",
+        "en": "Bottle Drop Point 310"
     },
     "bdp401": {
         "de": "Flaschenabgabe 401",
@@ -794,6 +802,14 @@
     "lounge": {
         "de": "Lounge",
         "en": "Lounge"
+    },
+    "lounge_bar": {
+        "de": "Lounge Bar",
+        "en": "Lounge Bar"
+    },
+    "lounge_cocktail_bar": {
+        "de": "Lounge Cocktail Bar",
+        "en": "Lounge Cocktail Bar"
     },
     "lucius": {
         "de": "Lucius",
