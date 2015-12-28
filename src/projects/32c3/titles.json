@@ -315,6 +315,10 @@
         "de": "C3D2",
         "en": "C3D2"
     },
+    "c3ma": {
+        "de": "C3MA",
+        "en": "C3MA"
+    },
     "c3pb": {
         "de": "c3pb",
         "en": "c3pb"
@@ -334,6 +338,10 @@
     "cbase": {
         "de": "c-base",
         "en": "c-base"
+    },
+    "cccch": {
+        "de": "CCCCH",
+        "en": "CCCCH"
     },
     "cccda": {
         "de": "Chaos Darmstadt",
@@ -435,6 +443,10 @@
         "de": "/dev/lol",
         "en": "/dev/lol"
     },
+    "dfri": {
+        "de": "DFRI",
+        "en": "DFRI"
+    },
     "diaspora": {
         "de": "Diaspora*",
         "en": "Diaspora*"
@@ -531,6 +543,10 @@
         "de": "Garderobe",
         "en": "Cloakroom"
     },
+    "flburg": {
+        "de": "Chaostreff Flensburg",
+        "en": "Chaostreff Flensburg"
+    },
     "fnoc": {
         "de": "NOC Foyer",
         "en": "NOC Foyer"
@@ -550,6 +566,10 @@
     "foxit": {
         "de": "fox_it",
         "en": "fox_it"
+    },
+    "frama": {
+        "de": "FRAMA",
+        "en": "FRAMA"
     },
     "freifunk": {
         "de": "Freifunk",
@@ -779,6 +799,10 @@
         "de": "Kids Space",
         "en": "Kids Space"
     },
+    "kif": {
+        "de": "AIF",
+        "en": "AIF"
+    },
     "kinky": {
         "de": "Kinky Geeks",
         "en": "Kinky Geeks"
@@ -786,6 +810,10 @@
     "koffein": {
         "de": "KoFfeIn",
         "en": "KoFfeIn"
+    },
+    "labor23": {
+        "de": "Labor23",
+        "en": "Labor23"
     },
     "lng": {
         "de": "Ende Gel\u00e4nde",
@@ -847,6 +875,10 @@
         "de": "microlabs",
         "en": "microlabs"
     },
+    "mozilla": {
+        "de": "Mozilla",
+        "en": "Mozilla"
+    },
     "muccc": {
         "de": "MuCCC",
         "en": "MuCCC"
@@ -854,6 +886,10 @@
     "music": {
         "de": "Musik",
         "en": "Music"
+    },
+    "mways": {
+        "de": "Milliways",
+        "en": "Milliways"
     },
     "n2n": {
         "de": "nerd2nerd",
@@ -1007,6 +1043,10 @@
         "de": "Siri",
         "en": "Siri"
     },
+    "smcards": {
+        "de": "27 Years Attacks on Smartcards",
+        "en": "27 Years Attacks on Smartcards"
+    },
     "speak": {
         "de": "Speakers Desk",
         "en": "Speakers Desk"
@@ -1130,6 +1170,10 @@
     "trollh": {
         "de": "Trollh\u00f6hle",
         "en": "Trollh\u00f6hle"
+    },
+    "unieind": {
+        "de": "Universities Eindhoven",
+        "en": "Universities Eindhoven"
     },
     "uptimebar": {
         "de": "Uptime Bar (24 h ge\u00f6ffnet)",

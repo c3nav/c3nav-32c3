@@ -514,8 +514,8 @@
             "assembly"
         ],
         "level": 0,
-        "x": 432,
-        "y": 384
+        "x": 431,
+        "y": 399
     },
     "ccchd": {
         "groups": [
@@ -570,8 +570,24 @@
             "assembly"
         ],
         "level": 0,
-        "x": 615,
-        "y": 340
+        "x": 433,
+        "y": 541
+    },
+    "dfri": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 494,
+        "y": 441
+    },
+    "kif": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 660,
+        "y": 455
     },
     "clusterfuckhl": {
         "groups": [
@@ -907,6 +923,54 @@
         "x": 460,
         "y": 510
     },
+    "c3ma": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 455,
+        "y": 392
+    },
+    "frama": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 454,
+        "y": 392
+    },
+    "unieind": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 393,
+        "y": 532
+    },
+    "smcards": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 419,
+        "y": 518
+    },
+    "flburg": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 478,
+        "y": 522
+    },
+    "labor23": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 490,
+        "y": 522
+    },
     "info": {
         "level": 0,
         "x": 754,
@@ -1040,6 +1104,31 @@
         "x": 1000,
         "y": 336
     },
+    "mways": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 383,
+        "y": 536
+    },
+    "cccch": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 409,
+        "y": 434
+    },
+    "mozilla": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 412,
+        "y": 389
+    },
+
     "mlabs": {
         "groups": [
             "assembly"
@@ -1061,8 +1150,8 @@
             "assembly"
         ],
         "level": 0,
-        "x": 484,
-        "y": 563
+        "x": 456,
+        "y": 541
     },
     "nad": {
         "groups": [
