@@ -16,6 +16,12 @@ h2, p {
 .p fieldset {
     min-width:0;
 }
+/* Firefox hack http://stackoverflow.com/a/17863685/3070886 */
+@-moz-document url-prefix() {
+    .p fieldset {
+        display: table-cell;
+    }
+}
 
 #main {
     margin:auto;
