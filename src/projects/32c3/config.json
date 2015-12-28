@@ -7,8 +7,7 @@
     "overwrite_default_settings": {
         "e": [
             "heaven",
-            "noc",
-            "porter_hallway"
+            "noc"
         ]
     },
     "overwrite_priority": {
