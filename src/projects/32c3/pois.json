@@ -1,4 +1,12 @@
 {
+    "aaa": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 267,
+        "y": 514
+    },
     "acab": {
         "level": 2,
         "x": 573,
@@ -480,6 +488,14 @@
         "x": 410,
         "y": 557
     },
+    "c3ma": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 455,
+        "y": 392
+    },
     "c3pb": {
         "groups": [
             "assembly"
@@ -500,6 +516,14 @@
         "level": 0,
         "x": 765,
         "y": 312
+    },
+    "cccch": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 409,
+        "y": 434
     },
     "cccda": {
         "groups": [
@@ -572,38 +596,6 @@
         "level": 0,
         "x": 433,
         "y": 541
-    },
-    "dfri": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 494,
-        "y": 441
-    },
-    "kif": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 660,
-        "y": 455
-    },
-    "aaa": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 1,
-        "x": 267,
-        "y": 514
-    },
-    "sdf": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 465,
-        "y": 384
     },
     "clusterfuckhl": {
         "groups": [
@@ -700,6 +692,14 @@
         "x": 711,
         "y": 597
     },
+    "dfri": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 494,
+        "y": 441
+    },
     "diaspora": {
         "groups": [
             "assembly"
@@ -754,6 +754,14 @@
         "x": 630,
         "y": 341
     },
+    "flburg": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 478,
+        "y": 522
+    },
     "flipdot": {
         "groups": [
             "assembly"
@@ -793,6 +801,14 @@
         "level": 0,
         "x": 730,
         "y": 375
+    },
+    "frama": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 454,
+        "y": 392
     },
     "freifunk": {
         "groups": [
@@ -952,54 +968,6 @@
         "x": 460,
         "y": 510
     },
-    "c3ma": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 455,
-        "y": 392
-    },
-    "frama": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 454,
-        "y": 392
-    },
-    "unieind": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 393,
-        "y": 532
-    },
-    "smcards": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 419,
-        "y": 518
-    },
-    "flburg": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 478,
-        "y": 522
-    },
-    "labor23": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 490,
-        "y": 522
-    },
     "info": {
         "level": 0,
         "x": 754,
@@ -1026,6 +994,14 @@
         "x": 800,
         "y": 592
     },
+    "kif": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 660,
+        "y": 455
+    },
     "kinky": {
         "groups": [
             "assembly"
@@ -1041,6 +1017,14 @@
         "level": 0,
         "x": 477,
         "y": 365
+    },
+    "labor23": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 490,
+        "y": 522
     },
     "leiwandville": {
         "groups": [
@@ -1141,21 +1125,13 @@
         "x": 1000,
         "y": 336
     },
-    "mways": {
+    "mlabs": {
         "groups": [
             "assembly"
         ],
         "level": 0,
-        "x": 383,
-        "y": 536
-    },
-    "cccch": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 409,
-        "y": 434
+        "x": 773,
+        "y": 310
     },
     "mozilla": {
         "groups": [
@@ -1165,15 +1141,6 @@
         "x": 412,
         "y": 389
     },
-
-    "mlabs": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 0,
-        "x": 773,
-        "y": 310
-    },
     "muccc": {
         "groups": [
             "assembly"
@@ -1181,6 +1148,14 @@
         "level": 0,
         "x": 440,
         "y": 391
+    },
+    "mways": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 383,
+        "y": 536
     },
     "n2n": {
         "groups": [
@@ -1234,6 +1209,14 @@
         "level": 0,
         "x": 639,
         "y": 523
+    },
+    "osak": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 736,
+        "y": 379
     },
     "osm": {
         "groups": [
@@ -1356,6 +1339,14 @@
         "x": 687,
         "y": 531
     },
+    "sdf": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 465,
+        "y": 384
+    },
     "sendez": {
         "level": 1,
         "x": 704,
@@ -1398,6 +1389,14 @@
         "x": 745,
         "y": 313
     },
+    "smcards": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 419,
+        "y": 518
+    },
     "squirrel": {
         "groups": [
             "assembly"
@@ -1413,14 +1412,6 @@
         "level": 0,
         "x": 425,
         "y": 365
-    },
-    "osak": {
-        "groups": [
-            "assembly"
-        ],
-        "level": 1,
-        "x": 736,
-        "y": 379
     },
     "stud": {
         "groups": [
@@ -1482,6 +1473,22 @@
         "level": 0,
         "x": 746,
         "y": 592
+    },
+    "unbezahlbar": {
+        "groups": [
+            "bar"
+        ],
+        "level": 4,
+        "x": 567,
+        "y": 596
+    },
+    "unieind": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 393,
+        "y": 532
     },
     "uptimebar": {
         "groups": [
