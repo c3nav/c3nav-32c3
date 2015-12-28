@@ -105,6 +105,14 @@
         "x": 788,
         "y": 474
     },
+    "bdp009": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 0,
+        "x": 370,
+        "y": 577
+    },
     "bdp101": {
         "groups": [
             "bottles"
@@ -254,8 +262,8 @@
             "bottles"
         ],
         "level": 2,
-        "x": 1108,
-        "y": 383
+        "x": 1099,
+        "y": 412
     },
     "bdp211": {
         "groups": [
@@ -336,6 +344,14 @@
         "level": 3,
         "x": 561,
         "y": 396
+    },
+    "bdp310": {
+        "groups": [
+            "bottles"
+        ],
+        "level": 3,
+        "x": 1060,
+        "y": 394
     },
     "bdp401": {
         "groups": [
@@ -945,6 +961,23 @@
         "level": 0,
         "x": 645,
         "y": 668
+    },
+    "lounge_bar": {
+        "groups": [
+            "bar",
+            "bottles"
+        ],
+        "level": 0,
+        "x": 780,
+        "y": 770
+    },
+    "lounge_cocktail_bar": {
+        "groups": [
+            "bar"
+        ],
+        "level": 0,
+        "x": 781,
+        "y": 819
     },
     "lucius": {
         "groups": [
