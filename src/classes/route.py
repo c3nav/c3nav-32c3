@@ -132,14 +132,16 @@ class Route():
         routeparts = []
         currentpart = []
         currentlevel = None
+        firstpart = True
         for point in self.points:
             currentpart.append(point)
             if point.room.level != currentlevel:
                 if currentlevel is not None:
-                    routeparts.append(self._convert_routepath(currentpart, currentlevel))
+                    routeparts.append(self._convert_routepath(currentpart, currentlevel, not firstpart))
+                    firstpart = False
                 currentlevel = point.room.level
                 currentpart = currentpart[-2:]
-        routeparts.append(self._convert_routepath(currentpart, currentlevel))
+        routeparts.append(self._convert_routepath(currentpart, currentlevel, not firstpart))
 
         # skip lift-only-routeparts
         for i in reversed(range(len(routeparts))):
@@ -148,8 +150,9 @@ class Route():
             if not [p for p in path if p['ctype'] != 'elevator']:
                 newp = path[0]
                 newp['duration'] += path[1]['duration']
-                newp['to'] = path[1]['to']
                 if i > 0:
+                    routeparts[i-1]['duration'] += routepart['duration']
+                    routeparts[i-1]['distance'] += routepart['distance']
                     routeparts[i-1]['path'][-1] = newp.copy()
                 if i < len(routeparts)-1:
                     routeparts[i+1]['path'][0] = newp.copy()
@@ -165,6 +168,8 @@ class Route():
                 newp['duration'] += path[1]['duration']
                 newp['distance'] += path[1]['distance']
                 newp['to'] = path[1]['to']
+                routepart['duration'] += path[1]['duration']
+                routepart['distance'] += path[1]['distance']
                 if i > 0:
                     routeparts[i-1]['path'][-1] = newp.copy()
                 if i < len(routeparts)-1:
@@ -174,7 +179,7 @@ class Route():
 
         return routeparts
 
-    def _convert_routepath(self, points, level):
+    def _convert_routepath(self, points, level, ignorefirst=False):
         from .router import Router
         routepart = OrderedDict()
         routepart['level'] = level
@@ -185,7 +190,7 @@ class Route():
 
         lastpoint = points[0]
         lastdirection = None
-        for point in points[1:]:
+        for i, point in enumerate(points[1:]):
             ctype, distance = self.graph.get_connection(lastpoint, point)
             line = OrderedDict()
             line['from'] = OrderedDict((('x', lastpoint.x), ('y', lastpoint.y), ('room', lastpoint.room.name)))
@@ -205,11 +210,13 @@ class Route():
                 lastdirection = None
 
             line['distance'] = distance
-            total_distance += distance
+            if not ignorefirst or i > 0:
+                total_distance += distance
 
             duration = Router.get_factors_by_settings(self.settings)[ctype]*distance
             line['duration'] = duration
-            total_duration += duration
+            if not ignorefirst or i > 0:
+                total_duration += duration
 
             routepart['path'].append(line)
             lastpoint = point
