@@ -1110,6 +1110,11 @@
         "x": 858,
         "y": 424
     },
+    "porter_entrance": {
+        "level": 0,
+        "x": 979,
+        "y": 175
+    },
     "python": {
         "groups": [
             "assembly"
