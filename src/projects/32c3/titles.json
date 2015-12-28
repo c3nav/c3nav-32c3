@@ -43,6 +43,10 @@
         "de": "N\u00e4chste unisex Toilette",
         "en": "Nearest Unisex Toilet"
     },
+    "aaa": {
+        "de": "AAA",
+        "en": "AAA"
+    },
     "acab": {
         "de": "ACAB",
         "en": "ACAB"
@@ -1014,6 +1018,10 @@
     "sburg": {
         "de": "Schaffenburg",
         "en": "Schaffenburg"
+    },
+    "sdf": {
+        "de": "SDF-Kurs",
+        "en": "SDF-Kurs"
     },
     "sendez": {
         "de": "Sendezentrum",

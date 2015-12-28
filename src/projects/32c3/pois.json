@@ -589,6 +589,22 @@
         "x": 660,
         "y": 455
     },
+    "aaa": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 1,
+        "x": 267,
+        "y": 514
+    },
+    "sdf": {
+        "groups": [
+            "assembly"
+        ],
+        "level": 0,
+        "x": 465,
+        "y": 384
+    },
     "clusterfuckhl": {
         "groups": [
             "assembly"
