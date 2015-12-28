@@ -231,7 +231,7 @@ $(document).ready(function() {
         }
         buttons.insertBefore(this);
 
-        $('<button type="submit" class="location user">').attr('name', $(this).parents('.p').attr('name')).append(
+        $('<button type="submit" class="location user" data-map="1">').attr('name', $(this).parents('.p').attr('name')).append(
             $('<span>')
         ).append(
             $('<small>')
