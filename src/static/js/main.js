@@ -29,7 +29,7 @@ function keyup_complete(e) {
 
         var value = $(this).val().toLowerCase();
         locations.filter(':not(.user, .locating)').each(function() {
-            $(this).hide().toggle($(this).text().toLowerCase().indexOf(value)>-1 || $(this).val().indexOf(value)>-1);
+            $(this).hide().toggle($(this).find('span').text().toLowerCase().indexOf(value)>-1 || $(this).val().indexOf(value)>-1);
         });
         toggle_user_location(locations.filter('.user'), value);
         active = locations.removeClass('active').filter(':visible').first().addClass('active');
