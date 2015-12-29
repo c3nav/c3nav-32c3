@@ -712,8 +712,8 @@
         "en": "Heaven Hall 7"
     },
     "ha": {
-        "de": "Saal A1 A2",
-        "en": "Hall A1 A2"
+        "de": "Saal A.1 A.2",
+        "en": "Hall A.1 A.2"
     },
     "hackeriet": {
         "de": "Hackeriet",
@@ -728,8 +728,8 @@
         "en": "Hall B"
     },
     "hc": {
-        "de": "Saal C1 C2 C3 C4",
-        "en": "Hall C1 C2 C3 C4"
+        "de": "Saal C.1 C.2 C.3 C.4",
+        "en": "Hall C.1 C.2 C.3 C.4"
     },
     "hd": {
         "de": "Saal D",
