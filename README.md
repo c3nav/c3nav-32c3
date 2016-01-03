@@ -14,7 +14,8 @@ My DECT number at 32c3 will be NMKT (6658).
 ## Running it yourself
 
 * Clone the repository
-* `pip install -r requirements.txt`
+* `cd c3nav/src`
+* `pip3 install -r requirements.txt`
   (if this fails because of build dependencies use `apt-get build-dep python-pil python-matplotlib python-scipy` or something similar for you distribution to install the dependencies and run pip again)
 * `python3 main.py 32c3`
 * navigate to http://localhost:5000/
