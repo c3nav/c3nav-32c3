@@ -1,7 +1,9 @@
-# c3nav
+# c3nav-32c3
 
-Indoor navigation for the **32nd Chaos Communication Congress** and future
-events. See it live at https://c3nav.de.
+Indoor navigation for the **32nd Chaos Communication Congress**. 
+
+**Legacy code. You can find the new c3nav repository at 
+https://github.com/c3nav/c3nav**
 
 There are still some features to come including selecting from map, Wi-Fi
 positioning (as an Android App) and more POIs (assemblies etc.)
